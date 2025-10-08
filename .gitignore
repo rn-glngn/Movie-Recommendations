@@ -1,0 +1,34 @@
+# General system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / Editor settings
+.vscode/
+.idea/
+*.code-workspace
+
+# OS / Temp files
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Build / Cache files
+dist/
+build/
+.cache/
+coverage/
+
+# Environment or configuration files
+.env
+.env.*
+*.local
+
+# Placeholder
+.gitkeep
+
+# OS metadata and hidden files
+ehthumbs.db
+Icon?

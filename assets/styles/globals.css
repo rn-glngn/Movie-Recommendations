@@ -1,0 +1,217 @@
+/* @import fonts here */
+
+/* ============= 🎨 VARIABLES ============= */
+:root {
+  /* Color Palette */
+  --color-bg: #000000;
+  --color-bg-gradient: linear-gradient(#000000 60%, #1f0603 100%);
+  --color-bg-primary: #1e0000;
+  --color-bg-secondary: #390000;
+  --color-text-primary: #dbeaef;
+  --color-text-secondary: #d5b0ac;
+  --color-accent-primary: #ea181c;
+  --color-highlight: #d54f00;
+
+  /* Font Sizes */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+  --text-5xl: 3rem; /* 48px */
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+
+  /* Breakpoints */
+  --bp-mobile: 480px;
+  --bp-tablet: 768px;
+  --bp-desktop: 1024px;
+}
+
+/* ============= 🧱 BASE STYLES ============= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  font-size: var(--text-base);
+  background: var(--color-bg-gradient);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-accent-primary);
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+h1 {
+  font-size: var(--text-4xl);
+}
+h2 {
+  font-size: var(--text-3xl);
+}
+h3 {
+  font-size: var(--text-2xl);
+}
+h4 {
+  font-size: var(--text-xl);
+}
+
+p {
+  margin-bottom: var(--space-sm);
+}
+
+/* ============= 🧭 LAYOUT ============= */
+/* for header & footer */
+
+/* ============= 🎛️ COMPONENTS ============= */
+.button {
+  display: inline-block;
+  /* background-color: var(--color-accent-primary); */
+  color: var(--color-text-primary);
+  font-size: var(--text-base);
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.button:hover {
+  background-color: var(--color-highlight);
+  transform: scale(1.03);
+}
+
+.card {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: var(--space-sm);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* ============= ⚙️ UTILITIES ============= */
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+.mt-1 {
+  margin-top: var(--space-xs);
+}
+.mt-2 {
+  margin-top: var(--space-sm);
+}
+.mt-3 {
+  margin-top: var(--space-md);
+}
+
+.mb-1 {
+  margin-bottom: var(--space-xs);
+}
+.mb-2 {
+  margin-bottom: var(--space-sm);
+}
+.mb-3 {
+  margin-bottom: var(--space-md);
+}
+
+.flex {
+  display: flex;
+}
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+.flex-between {
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ============= 📱 RESPONSIVE DESIGN ============= */
+
+/* 📱 Mobile (max 480px) */
+@media (max-width: 480px) {
+  body {
+    font-size: var(--text-sm);
+  }
+
+  header,
+  footer {
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .main-container {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  h1 {
+    font-size: var(--text-3xl);
+  }
+  h2 {
+    font-size: var(--text-2xl);
+  }
+  .button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* 💻 Tablet (max 768px) */
+@media (max-width: 768px) {
+  header,
+  footer {
+    text-align: center;
+  }
+}
+
+/* 🖥 Desktop (above 1024px) */
+@media (min-width: 1024px) {
+  body {
+    font-size: var(--text-base);
+  }
+}

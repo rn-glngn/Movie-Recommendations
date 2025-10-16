@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/styles/globals.css">
     <link rel="stylesheet" href="../assets/styles/profile.css">
-    <title>Document</title>
+    <title>Filmopicks</title>
 </head>
 
 <body>
@@ -48,21 +48,50 @@
         </div>
     </div>
 
-    <div class="section">
+    <div class="sections">
         <div class="nav-sections">
             <nav>
-                <a href="" class=""></a>
-                <a href="" class=""></a>
-                <a href="" class=""></a>
-                <a href="" class=""></a>
+                <a href="#watchlist">Watchlist</a>
+                <a href="#req-history">Request History</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#settings">Settings</a>
             </nav>
         </div>
-        <div class="active-section">
-            <div class="watchlist-section"></div>
-            <div class="req-history-section"></div>
-            <div class="reviews-section"></div>
-            <div class="settings-section"></div>
-        </div>
+        <main class="profile-sections">
+            <section class="watchlist-section" id="watchlist">
+                <h2>Watchlist</h2>
+                <div class="active-section watchlist">
+                    <div class="item">
+                        <div class="poster">
+                            <img src="https://lipsum.app/175x250/" alt="">
+                        </div>
+                        <div class="details">
+                            <h4>Movie Title</h4>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="poster">
+                            <img src="https://lipsum.app/175x250/" alt="">
+                        </div>
+                        <div class="details">
+                            <h4>Movie Title</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="req-history-section" id="req-history">
+                <h2>Request History</h2>
+                <div class="active-section"></div>
+            </section>
+            <section class="reviews-section" id="reviews">
+                <h2>Reviews</h2>
+                <div class="active-section"></div>
+            </section>
+            <section class="settings-section" id="settings">
+                <h2>Settings</h2>
+                <div class="active-section"></div>
+            </section>
+        </main>
     </div>
 
 </body>

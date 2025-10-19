@@ -1,5 +1,9 @@
 @import url(../styles/globals.css);
 
+/* ----------------------------------------------
+      Navigation Bar
+------------------------------------------------- */
+
 /* Placeholder for header/navigation bar */
 .header {
   height: 50px;
@@ -10,6 +14,10 @@
   font-style: italic;
   padding-bottom: 25px;
 }
+
+/* ----------------------------------------------
+      Account Profile Section
+------------------------------------------------- */
 
 /* Account Section: User Details and Summary */
 .profile-container {
@@ -289,4 +297,147 @@ body:not(:has(:target)) #watchlist {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--color-accent-primary);
+}
+
+/* ----------------------------------------------
+      Requests History Section
+------------------------------------------------- */
+
+/* Request History Header */
+.table-container {
+  overflow: hidden;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 0.7fr 1.8fr 0.8fr 0.8fr 0.9fr;
+  padding: 10px 15px;
+  background: var(--color-bg);
+  border-bottom: 2px solid var(--color-text-primary);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.table-header span {
+  font-weight: bold;
+  text-align: center;
+  color: var(--color-text-primary);
+  font-style: italic;
+  font-size: large;
+}
+
+.table-body {
+  max-height: 550px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.request-card {
+  display: grid;
+  grid-template-columns: 0.7fr 1.8fr 0.8fr 0.8fr 0.9fr;
+  align-items: center;
+  background: #150000;
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin: 8px 0;
+  gap: 10px;
+  text-align: center;
+  transform: all 0.2s ease;
+}
+
+.request-card .poster img {
+  width: 50px;
+  height: 70px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.details {
+  text-align: left;
+}
+
+.request-card .details h4 {
+  font-size: 0.95rem;
+  margin: 0;
+  color: #fff;
+}
+
+.request-card .details p {
+  font-size: 0.75rem;
+  color: #bbb;
+  margin: 3px 0 0;
+  padding-right: 1px;
+}
+
+.request-card:hover {
+  background-color: rgba(234, 24, 28, 0.7);
+  color: var(--color-text-primary);
+  transform: scale(1.005);
+}
+
+.request-card:hover h4,
+.request-card:hover p,
+.request-card:hover .type,
+.request-card:hover .date,
+.request-card:hover .status {
+  color: var(--color-text-primary);
+}
+
+.type,
+.date {
+  font-size: 0.9rem;
+}
+
+.status {
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  text-align: center;
+  font-weight: bold;
+  color: var(--color-text-primary);
+}
+
+/* Status Colors */
+.status.approved {
+  background: #1d9a65;
+}
+
+.status.pending {
+  background: #e4a11b;
+}
+
+.status.declined {
+  background: #b02a37;
+}
+
+.status.draft {
+  background: #555;
+}
+
+/* Keep status background color visible while hovering */
+.request-card:hover .status.approved {
+  background: #2ecc71;
+}
+
+.request-card:hover .status.pending {
+  background: #dea024;
+  color: #000;
+}
+
+.request-card:hover .status.declined {
+  background: #e74c3c;
+}
+
+.request-card:hover .status.draft {
+  background: #7f8c8d;
+}
+
+/* Scrollbar styling */
+.table-body::-webkit-scrollbar {
+  width: 7px;
+}
+.table-body::-webkit-scrollbar-thumb {
+  background: #890000;
+  border-radius: 10px;
 }

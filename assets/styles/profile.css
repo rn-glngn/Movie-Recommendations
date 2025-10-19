@@ -19,7 +19,7 @@
   gap: 20px;
   flex-wrap: wrap;
   margin: 20px auto 0;
-  max-width: 1200px;
+  max-width: 1300px;
 }
 
 .profile-card {
@@ -175,6 +175,8 @@
 
   padding: 30px 15px;
   gap: 30px;
+  max-width: 1300px;
+  margin: 0 auto 50px;
 }
 
 .nav-sections {
@@ -207,6 +209,7 @@
 }
 
 .nav-sections a:hover,
+body:not(:has(:target)) .nav-sections a[href="#watchlist"],
 body:has(#watchlist:target) .nav-sections a[href="#watchlist"],
 body:has(#req-history:target) .nav-sections a[href="#req-history"],
 body:has(#reviews:target) .nav-sections a[href="#reviews"],
@@ -217,12 +220,10 @@ body:has(#settings:target) .nav-sections a[href="#settings"] {
 
 .profile-sections {
   flex: 3;
-  max-width: 825px;
+  max-width: 975px;
   min-height: 400px;
   padding: 10px 20px;
   box-sizing: border-box;
-  /* background-color: var(--color-bg); */
-  /* border: 7px solid var(--color-bg-secondary); */
   border-radius: 20px;
 }
 
@@ -274,6 +275,11 @@ body:not(:has(:target)) #watchlist {
   gap: 10px;
   text-align: center;
   flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.item:hover {
+  transform: scale(1.05);
 }
 
 .poster img {

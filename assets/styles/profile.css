@@ -453,3 +453,127 @@ body:not(:has(:target)) #watchlist {
 /* ----------------------------------------------
       Reviews Section
 ------------------------------------------------- */
+/* Scrollable container */
+.reviews-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  max-height: 550px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+/* Review card layout */
+.review-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #150000;
+  border-radius: 10px;
+  padding: 10px 12px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover effects */
+.review-card:hover {
+  background: linear-gradient(90deg, #3b0000, #5c0000);
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+.review-card:hover h3,
+.review-card:hover p {
+  color: #fff;
+}
+
+/* Poster */
+.review-card .poster {
+  width: 70px;
+  height: 100px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* Details */
+.review-details {
+  flex: 1;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.review-header h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.review-details p {
+  font-size: 0.8rem;
+  color: #ccc;
+  margin: 3px 0;
+}
+
+.stars {
+  color: gold;
+  font-size: 0.9rem;
+}
+
+/* Edit button */
+.edit-btn {
+  background: #400;
+  border: none;
+  color: #fff;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.edit-btn:hover {
+  background: #a00000;
+}
+
+.edit-btn.red {
+  background: #a00000;
+}
+
+/* Scrollbar styling */
+.reviews-container::-webkit-scrollbar {
+  width: 8px;
+}
+.reviews-container::-webkit-scrollbar-thumb {
+  background: #a00000;
+  border-radius: 10px;
+}
+
+/* Responsive (1 column on smaller screens) */
+@media (max-width: 700px) {
+  .reviews {
+    width: 95%;
+  }
+
+  .reviews-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .poster {
+    width: 60px;
+    height: 90px;
+  }
+
+  .review-details h3 {
+    font-size: 0.9rem;
+  }
+
+  .review-details p {
+    font-size: 0.75rem;
+  }
+}

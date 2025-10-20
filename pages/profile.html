@@ -380,7 +380,54 @@
             </section>
             <section class="settings-section" id="settings">
                 <h2>Settings</h2>
-                <div class="active-section"></div>
+                <div class="active-section">
+                    <h3>Personal Information</h3>
+                    <div class="personal-info">
+                        <div class="img-info">
+                            <img src="https://lipsum.app/120x120/" alt="profile picture" class="profile-pic">
+                            <button class="change-pic-btn">Edit</button>
+                        </div>
+                        <form class="info-details">
+                            <label for="name">Display Name</label>
+                            <input type="text" id="name" name="name" value="Juan Dela Cruz">
+
+                            <label for="handle">Username</label>
+                            <input type="text" id="handle" name="handle" value="@juan_dc">
+
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" value="juan.dc@example.com">
+
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" value="********">
+                        </form>
+                    </div>
+
+                    <h3>Preferences</h3>
+                    <div class="preferences">
+                        <div class="theme-toggle">
+                            <label>Theme</label>
+                            <div>
+                                <span>Light</span>
+                                <label class="theme-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                                <span>Dark</span>
+                            </div>
+                        </div>
+
+                        <div class="notifications">
+                            <span>Notifications</span>
+                            <div>
+                                <label><input type="checkbox" checked> In-App Notification</label>
+                                <label><input type="checkbox"> Email Notification</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Privacy and Security</h3>
+
+                </div>
             </section>
         </main>
     </div>

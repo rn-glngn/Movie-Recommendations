@@ -381,7 +381,7 @@
             <section class="settings-section" id="settings">
                 <h2>Settings</h2>
                 <div class="active-section">
-                    <h3>Personal Information</h3>
+                    <h3 class="label-underline">Personal Information</h3>
                     <div class="personal-info">
                         <div class="img-info">
                             <img src="https://lipsum.app/120x120/" alt="profile picture" class="profile-pic">
@@ -398,11 +398,11 @@
                             <input type="email" id="email" name="email" value="juan.dc@example.com">
 
                             <label for="password">Password</label>
-                            <input type="password" id="password" name="password" value="********">
+                            <input type="password" id="password" name="password" value="juandc" visible="false">
                         </form>
                     </div>
 
-                    <h3>Preferences</h3>
+                    <h3 class="label-underline">Preferences</h3>
                     <div class="preferences">
                         <div class="theme-toggle">
                             <label>Theme</label>
@@ -425,8 +425,26 @@
                         </div>
                     </div>
 
-                    <h3>Privacy and Security</h3>
+                    <h3 class="label-underline">Privacy and Security</h3>
+                    <form class="privacy-security">
+                        <label>Account Privacy</label>
+                        <select>
+                            <option>Public</option>
+                            <option>Private</option>
+                        </select>
+                        <label>Logout</label>
+                        <button class="btn btn-logout">Logout</button>
+                        <label>Delete Account</label>
+                        <button class="btn btn-delete">Delete Account</button>
+                        <label></label>
+                        <p>Deleting your account will remove your profile, watchlist, and all pending requests. This
+                            action cannot be undone.</p>
+                    </form>
 
+                    <div class="btn-group">
+                        <button class="btn btn-cancel">CANCEL</button>
+                        <button class="btn btn-save">SAVE CHANGES</button>
+                    </div>
                 </div>
             </section>
         </main>

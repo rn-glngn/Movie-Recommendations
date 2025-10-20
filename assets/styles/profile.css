@@ -277,13 +277,13 @@ body:not(:has(:target)) #watchlist {
 .watchlist {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 5fr));
-  gap: 18px;
+  gap: 15px;
   overflow: auto;
+  max-height: 610px;
 }
 
 .watchlist .item {
   display: flex;
-  gap: 10px;
   text-align: center;
   flex-direction: column;
   transition: transform 0.3s ease;
@@ -294,8 +294,8 @@ body:not(:has(:target)) #watchlist {
 }
 
 .watchlist .poster img {
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 200px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -458,7 +458,7 @@ body:not(:has(:target)) #watchlist {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
-  max-height: 550px;
+  max-height: 600px;
   overflow-y: auto;
   padding-right: 5px;
 }
@@ -524,8 +524,12 @@ body:not(:has(:target)) #watchlist {
 }
 
 /* Edit button */
+.review-card:hover .edit-btn {
+  background-color: #5c0000;
+}
+
 .edit-btn {
-  background: #400;
+  background: #150000;
   border: none;
   color: #fff;
   border-radius: 50%;
@@ -533,15 +537,10 @@ body:not(:has(:target)) #watchlist {
   height: 28px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: background 0.2s;
 }
 
-.edit-btn:hover {
-  background: #a00000;
-}
-
-.edit-btn.red {
-  background: #a00000;
+.review-card:hover .edit-btn:hover {
+  background-color: var(--color-accent-primary);
 }
 
 /* Scrollbar styling */

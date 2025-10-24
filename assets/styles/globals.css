@@ -10,7 +10,7 @@
   --color-text-primary: #dbeaef;
   --color-text-secondary: #d5b0ac;
   --color-accent-primary: #ea181c;
-  --color-highlight: #d54f00;
+  --color-accent-secondary: #d54f00;
 
   /* Font Sizes */
   --text-xs: 0.75rem; /* 12px */
@@ -103,7 +103,7 @@ p {
 /* ============= 🎛️ COMPONENTS ============= */
 .button {
   display: inline-block;
-  /* background-color: var(--color-accent-primary); */
+  background-color: var(--color-bg-secondary);
   color: var(--color-text-primary);
   font-size: var(--text-base);
   font-weight: 500;
@@ -115,7 +115,7 @@ p {
 }
 
 .button:hover {
-  background-color: var(--color-highlight);
+  background-color: var(--color-accent-primary);
   transform: scale(1.03);
 }
 

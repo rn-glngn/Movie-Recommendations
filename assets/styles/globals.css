@@ -1,4 +1,5 @@
 /* @import fonts here */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 /* ============= 🎨 VARIABLES ============= */
 :root {
@@ -81,7 +82,7 @@ body {
   font-family: 'Poppins', sans-serif;
   font-size: var(--text-base);
   font-weight: 500;
-  /* background: var(--color-bg-gradient); */
+  background: var(--color-bg-gradient);
   color: var(--color-text-secondary);
   line-height: 1.4;
   min-height: 100vh;

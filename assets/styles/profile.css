@@ -5,14 +5,13 @@
 ------------------------------------------------- */
 
 /* Placeholder for header/navigation bar */
-.header {
-  height: 50px;
-}
+
 
 .profile-title {
   text-align: center;
   font-style: italic;
   padding-bottom: 25px;
+  margin-top: 80px;
 }
 
 /* ----------------------------------------------
@@ -39,7 +38,7 @@
   min-height: 120px;
   max-width: 65%;
   padding: 20px 25px 10px;
-  margin: 30px auto;
+  margin: 30px auto 0;
   overflow: visible;
   background-color: var(--color-bg-secondary);
   border-radius: 20px;
@@ -115,6 +114,7 @@
   font-weight: bold;
   text-align: center;
 }
+
 .stat-label {
   line-height: 1.4;
   text-align: center;
@@ -124,6 +124,7 @@
 
 /* Responsiveness */
 @media (max-width: 768px) {
+
   /* General */
   body {
     padding: 20px;
@@ -184,7 +185,7 @@
   padding: 30px 15px;
   gap: 30px;
   max-width: 1300px;
-  margin: 0 auto 50px;
+  margin: 30px auto 50px;
 }
 
 .nav-sections {
@@ -245,6 +246,7 @@ body:has(#settings:target) .nav-sections a[href="#settings"] {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -252,6 +254,9 @@ body:has(#settings:target) .nav-sections a[href="#settings"] {
 
 .profile-sections section:target {
   display: block;
+
+  scroll-margin-top: 80px;
+
 }
 
 body:not(:has(:target)) #watchlist {
@@ -436,20 +441,6 @@ body:not(:has(:target)) #watchlist {
   background: #7f8c8d;
 }
 
-/* Scrollbar styling */
-*::-webkit-scrollbar {
-  width: 9px;
-  background: var(--color-bg-primary);
-}
-*::-webkit-scrollbar-thumb {
-  background: #890000;
-  border-radius: 10px;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background: #a00000;
-}
-
 /* ----------------------------------------------
       Reviews Section
 ------------------------------------------------- */
@@ -458,9 +449,9 @@ body:not(:has(:target)) #watchlist {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
-  max-height: 600px;
+  max-height: 550px;
   overflow-y: auto;
-  padding-right: 5px;
+  padding-right: 20px;
 }
 
 /* Review card layout */
@@ -547,6 +538,7 @@ body:not(:has(:target)) #watchlist {
 .reviews-container::-webkit-scrollbar {
   width: 8px;
 }
+
 .reviews-container::-webkit-scrollbar-thumb {
   background: #a00000;
   border-radius: 10px;
@@ -582,7 +574,7 @@ body:not(:has(:target)) #watchlist {
 ------------------------------------------------- */
 .settings-section .active-section {
   overflow-y: auto;
-  max-height: 610px;
+  max-height: 550px;
 }
 
 .settings-section .active-section h3 {
@@ -730,11 +722,11 @@ body:not(:has(:target)) #watchlist {
   transition: 0.3s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: var(--color-bg-secondary);
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   transform: translateX(22px);
   background-color: var(--color-accent-primary);
 }

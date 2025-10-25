@@ -53,6 +53,21 @@
   padding: 0;
 }
 
+/* Scrollbar styling */
+*::-webkit-scrollbar {
+  width: 9px;
+  background: var(--color-bg-primary);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #890000;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #a00000;
+}
+
 html {
   height: 100%;
   background: var(--color-bg-gradient);

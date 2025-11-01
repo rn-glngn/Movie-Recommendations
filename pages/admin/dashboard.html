@@ -16,7 +16,19 @@
             </div>
             <nav class="nav-menu">
                 <a href="#" class="nav-item active">Dashboard</a>
-                <!-- Add more nav items as needed -->
+                
+                <!-- Lists Dropdown -->
+                <div class="nav-dropdown">
+                    <button class="nav-item dropdown-toggle" onclick="toggleDropdown()">
+                        Lists
+                        <span class="dropdown-arrow">▼</span>
+                    </button>
+                    <div class="dropdown-menu" id="listsDropdown">
+                        <a href="../pages/admin/movies.html" class="dropdown-item">Movies</a>
+                        <a href="../pages/admin/requests.html" class="dropdown-item">Requests</a>
+                        <a href="../pages/admin/users.html" class="dropdown-item">Users</a>
+                    </div>
+                </div>
             </nav>
         </div>
 
@@ -258,5 +270,32 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('listsDropdown');
+            const arrow = document.querySelector('.dropdown-arrow');
+            
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+                arrow.textContent = '▼';
+            } else {
+                dropdown.style.display = 'block';
+                arrow.textContent = '▲';
+            }
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.nav-dropdown');
+            const dropdownMenu = document.getElementById('listsDropdown');
+            const arrow = document.querySelector('.dropdown-arrow');
+            
+            if (!dropdown.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
+                arrow.textContent = '▼';
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* @import fonts here */
+/* Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 /* ============= 🎨 VARIABLES ============= */
@@ -40,9 +40,9 @@
   --space-lg: 4rem;
 
   /* Breakpoints */
-  --bp-mobile: 480px;
+  --bp-mobile: 600px;
   --bp-tablet: 768px;
-  --bp-desktop: 1024px;
+  --bp-desktop: 992px;
 }
 
 /* ============= 🧱 BASE STYLES ============= */

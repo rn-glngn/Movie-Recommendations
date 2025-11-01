@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,39 @@
     <link rel="stylesheet" href="../assets/styles/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
     <header>
         <nav class="navbar">
-            <div class="logo">FILMOPICKS</div>
-            <div class="search-bar">
-                <input type="text" placeholder="Search...">
-                <button type="submit">Search</button>
-            </div>
-            <div class="user-actions">
-                <a href="#">Login</a>
-                <a href="#">Sign Up</a>
+            <div class="header">
+                <div class="logo">
+                    <img src="..\assets\logo\FilmoPicks Large Logo (Dark).svg" alt="FilmoPicks Logo" class="logo-img">
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search Something...">
+                    <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                        </svg></button>
+                </div>
+                <div class="header-right">
+                    <div class="auth-links">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                        </svg>
+                        <a href="#" onclick="alert('Login clicked'); return false;">Login</a>
+                        <span class="separator">|</span>
+                        <a href="login.html" onclick="alert('Sign Up Clicked'); return false;">Signup</a>
+                    </div>
+                    <div class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+                        </svg>
+                    </div>
+                </div>
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
@@ -44,7 +67,7 @@
                             <li>Romance</li>
                             <li>Science Fiction</li>
                             <li>Thriller</li>
-                         </ul>
+                        </ul>
                     </div>
                 </li>
                 <li class="dropdown">
@@ -63,24 +86,29 @@
                         </ul>
                     </div>
                 </li>
+            </ul>
         </nav>
 
         <div class="Trending-now-section" id="trending">
-            <div class="section-header">Trending now</div>
+            <div class="section-header">TRENDING NOW</div>
             <img class="bg-img" src="../assets/images/Alice-In-Borderland.jpg" alt="Alice In Borderland">
             <div class="trending-content">
                 <div class="Titlemovie1">Alice In Borderland</div>
                 <div class="Rating">8.6/10</div>
-                <div class="Description">Arisu - a listless, jobless and video-game-obsessed young man - suddenly finds himself in a strange, emptied-out version of Tokyo in which he and his friends must compete in dangerous games in order to survive.</div>
+                <div class="Description">Arisu - a listless, jobless and video-game-obsessed young man - suddenly finds
+                    himself in a strange, emptied-out version of Tokyo in which he and his friends must compete in
+                    dangerous games in order to survive.</div>
                 <div class="actions">
                     <button class="View-details">View Details</button>
                     <button class="Watch-trailer">Watch Trailer</button>
                 </div>
             </div>
             <div class="poster-strip" aria-hidden="false">
-                <img class="poster-btn" data-movie="1" src="../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
+                <img class="poster-btn" data-movie="1"
+                    src="../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
                 <img class="poster-btn" data-movie="2" src="../assets/images/wednesdayshow.jpg" alt="Wednesday">
-                <img class="poster-btn" data-movie="3" src="../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
+                <img class="poster-btn" data-movie="3" src="../assets/images/breaking-bad-poster.jpg"
+                    alt="Breaking Bad">
             </div>
         </div>
 
@@ -121,70 +149,69 @@
                     <div class="result-meta">
                         <h3 id="resultTitle">Arcane</h3>
                         <p id="resultInfo">2021 &nbsp; Rated SPG &nbsp; 2 Seasons</p>
-                        <p id="resultDesc" class="result-desc">In the cities of Piltover and Zaun, tensions rise as inventors, hooligans, politicians, and crime lords grow increasingly dissatisfied with the constraints of a devastated ...</p>
+                        <p id="resultDesc" class="result-desc">In the cities of Piltover and Zaun, tensions rise as
+                            inventors, hooligans, politicians, and crime lords grow increasingly dissatisfied with the
+                            constraints of a devastated ...</p>
                         <button class="View-details small">View Details</button>
                     </div>
                 </div>
             </div>
         </div>
-    <hr>
-    <div class="recommendations-section" id="home">
-        <h2>RECOMMENDED FOR YOU</h2>
-        <div class="recommendations-grid">
-            <img src="../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
-            <img src="../assets/images/wednesdayshow.jpg" alt="Wednesday">
-            <img src="../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
-            <img src="../assets/images/dandadan-2024.avif" alt="Dandadan">
-            <img src="../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
-            <img src="../assets/images/scott.jpg" alt="Scott">
-            <img src="../assets/images/joker.jpg" alt="Joker">
-            <img src="../assets/images/interstellar.jpg" alt="Interstellar">
-            <img src="../assets/images/dr.stone.jpg" alt="Dr Stone">
-            <img src="../assets/images/moana.jpg" alt="Moana">
-            <img src="../assets/images/kpopdemon.jpg" alt="Kpop">
-            <img src="../assets/images/thehows.jpg" alt="The Hows">
+        <div class="recommendations-section" id="home">
+            <h2>RECOMMENDED FOR YOU</h2>
+            <div class="recommendations-grid">
+                <img src="../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
+                <img src="../assets/images/wednesdayshow.jpg" alt="Wednesday">
+                <img src="../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
+                <img src="../assets/images/dandadan-2024.avif" alt="Dandadan">
+                <img src="../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
+                <img src="../assets/images/scott.jpg" alt="Scott">
+                <img src="../assets/images/joker.jpg" alt="Joker">
+                <img src="../assets/images/interstellar.jpg" alt="Interstellar">
+                <img src="../assets/images/dr.stone.jpg" alt="Dr Stone">
+                <img src="../assets/images/moana.jpg" alt="Moana">
+                <img src="../assets/images/kpopdemon.jpg" alt="Kpop">
+                <img src="../assets/images/thehows.jpg" alt="The Hows">
+            </div>
         </div>
-    </div>
-    <hr>
-    <div class="newly-added-section" id="newly-added">
-        <h2>NEWLY ADDED</h2>
-        <div class="recommendations-grid">
-            <img src="../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
-            <img src="../assets/images/wednesdayshow.jpg" alt="Wednesday">
-            <img src="../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
-            <img src="../assets/images/dandadan-2024.avif" alt="Dandadan">
-            <img src="../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
-            <img src="../assets/images/scott.jpg" alt="Scott">
-            <img src="../assets/images/joker.jpg" alt="Joker">
-            <img src="../assets/images/interstellar.jpg" alt="Interstellar">
-            <img src="../assets/images/dr.stone.jpg" alt="Dr Stone">
-            <img src="../assets/images/moana.jpg" alt="Moana">
-            <img src="../assets/images/kpopdemon.jpg" alt="Kpop">
-            <img src="../assets/images/thehows.jpg" alt="The Hows">
+        <div class="newly-added-section" id="newly-added">
+            <h2>NEWLY ADDED</h2>
+            <div class="recommendations-grid">
+                <img src="../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
+                <img src="../assets/images/wednesdayshow.jpg" alt="Wednesday">
+                <img src="../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
+                <img src="../assets/images/dandadan-2024.avif" alt="Dandadan">
+                <img src="../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
+                <img src="../assets/images/scott.jpg" alt="Scott">
+                <img src="../assets/images/joker.jpg" alt="Joker">
+                <img src="../assets/images/interstellar.jpg" alt="Interstellar">
+                <img src="../assets/images/dr.stone.jpg" alt="Dr Stone">
+                <img src="../assets/images/moana.jpg" alt="Moana">
+                <img src="../assets/images/kpopdemon.jpg" alt="Kpop">
+                <img src="../assets/images/thehows.jpg" alt="The Hows">
+            </div>
         </div>
-    </div>
-    <hr>
-    <div class="browse-by-genre-section" id="genre">
-        <h2>BROWSE BY GENRE</h2>
-        <div class="recommendations-grid">
-            <img src="../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
-            <img src="../assets/images/wednesdayshow.jpg" alt="Wednesday">
-            <img src="../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
-            <img src="../assets/images/dandadan-2024.avif" alt="Dandadan">
-            <img src="../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
-            <img src="../assets/images/scott.jpg" alt="Scott">
-            <img src="../assets/images/joker.jpg" alt="Joker">
-            <img src="../assets/images/interstellar.jpg" alt="Interstellar">
-            <img src="../assets/images/dr.stone.jpg" alt="Dr Stone">
-            <img src="../assets/images/moana.jpg" alt="Moana">
-            <img src="../assets/images/kpopdemon.jpg" alt="Kpop">
-            <img src="../assets/images/thehows.jpg" alt="The Hows">
+        <div class="browse-by-genre-section" id="genre">
+            <h2>BROWSE BY GENRE</h2>
+            <div class="recommendations-grid">
+                <img src="../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
+                <img src="../assets/images/wednesdayshow.jpg" alt="Wednesday">
+                <img src="../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
+                <img src="../assets/images/dandadan-2024.avif" alt="Dandadan">
+                <img src="../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
+                <img src="../assets/images/scott.jpg" alt="Scott">
+                <img src="../assets/images/joker.jpg" alt="Joker">
+                <img src="../assets/images/interstellar.jpg" alt="Interstellar">
+                <img src="../assets/images/dr.stone.jpg" alt="Dr Stone">
+                <img src="../assets/images/moana.jpg" alt="Moana">
+                <img src="../assets/images/kpopdemon.jpg" alt="Kpop">
+                <img src="../assets/images/thehows.jpg" alt="The Hows">
+            </div>
         </div>
-    </div>
 
         <script>
             // Poster strip clickable behavior
-            (function(){
+            (function () {
                 const trendingMovies = {
                     1: {
                         title: "The Fragrant Flower",
@@ -229,7 +256,7 @@
             })();
 
             // Movie roulette behavior
-            (function(){
+            (function () {
                 const movies = [
                     {
                         title: "Arcane",
@@ -365,7 +392,8 @@
 
     </header>
     <footer>
-    <p>&copy; 2025 Movie/TV Shows Recommendation | About | Privacy </p>
-    </footer>   
+        <p>&copy; 2025 Movie/TV Shows Recommendation | About | Privacy </p>
+    </footer>
 </body>
+
 </html>

@@ -1,78 +1,6 @@
-/* ============= 🎨 VARIABLES ============= */
-:root {
-    /* Color Palette */
-    --color-bg: #000000;
-    --color-bg-gradient: linear-gradient(#000000 60%, #1f0603 100%);
-    --color-bg-primary: #1e0000;
-    --color-bg-secondary: #390000;
-    --color-text-primary: #dbeaef;
-    --color-text-secondary: #d5b0ac;
-    --color-accent-primary: #ea181c;
-    --color-highlight: #d54f00;
-
-    /* Font Sizes */
-    --text-xs: 0.75rem;
-    --text-sm: 0.875rem;
-    --text-base: 1rem;
-    --text-lg: 1.125rem;
-    --text-xl: 1.25rem;
-    --text-2xl: 1.5rem;
-    --text-3xl: 1.875rem;
-    --text-4xl: 2.25rem;
-    --text-5xl: 3rem;
-
-    /* Spacing */
-    --space-xs: 0.5rem;
-    --space-sm: 1rem;
-    --space-md: 2rem;
-    --space-lg: 4rem;
-}
-
-/* ============= 🧱 BASE STYLES ============= */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    background: var(--color-bg-gradient);
-    color: var(--color-text-secondary);
-    line-height: 1.4;
-    min-height: 100vh;
-}
+@import url(../styles/globals.css);
 
 /* ============= 🎯 HEADER ============= */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--space-sm) var(--space-md);
-    background-color: var(--color-bg);
-    border-bottom: 1px solid var(--color-bg-secondary);
-}
-
-.logo-section {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-}
-
-.logo img {
-    width: 180px;
-    height: 25px;
-    background-color: var(--color-text-primary);
-}
-
 .user-section {
     display: flex;
     align-items: center;
@@ -80,7 +8,7 @@ body {
 }
 
 .notification {
-    position: relative; /* so the red dot is positioned relative to this box */
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -95,10 +23,21 @@ body {
 }
 
 @keyframes bounce {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.5); }
-    70% { transform: scale(0.9); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    70% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* Red notification dot */
@@ -115,7 +54,7 @@ body {
 }
 
 .notification:hover svg {
-  animation: bounce 0.5s ease;
+    animation: bounce 0.5s ease;
 }
 
 /* Bounce animation on hover */
@@ -169,28 +108,31 @@ h1 {
 }
 
 .back-btn {
-  background: none;
-  border: none;
-  color: #ffffff;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 18px;
-  transition: all 0.3s ease;
-  position: fixed; /* ✅ changed */
-  top: 100px; /* keep same vertical position */
-  left: 80%; /* same horizontal offset */
-  display: flex;
+    background: none;
+    border: none;
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    position: fixed;
+    /* ✅ changed */
+    top: 100px;
+    /* keep same vertical position */
+    left: 80%;
+    /* same horizontal offset */
+    display: flex;
 }
 
 .back-btn:hover {
-  transform: translateX(-5px);
-  color:antiquewhite;
+    transform: translateX(-5px);
+    color: antiquewhite;
 }
 
 .back-btn:active {
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateX(-3px) scale(0.95);
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-3px) scale(0.95);
 }
 
 
@@ -266,7 +208,7 @@ h1 {
 .search-requests input {
     width: 100%;
     padding: var(--space-xs) var(--space-sm);
-    background: linear-gradient(to right,#1f0101 20%, #4f0202);
+    background: linear-gradient(to right, #1f0101 20%, #4f0202);
     border: 1px solid var(--color-bg-secondary);
     border-radius: 5px;
     color: var(--color-text-primary);
@@ -390,8 +332,10 @@ h1 {
     text-align: center;
 
     /* Add white line under header */
-    border-bottom: 2px solid #fff; /* white line */
-    margin-bottom: 0.5rem; /* small spacing before rows */
+    border-bottom: 2px solid #fff;
+    /* white line */
+    margin-bottom: 0.5rem;
+    /* small spacing before rows */
 }
 
 .request-item {
@@ -407,9 +351,11 @@ h1 {
     transition: all 0.3s;
 }
 
-.request-item > *:not(:last-child) {
-    border-right: 1px solid rgba(255, 255, 255, 0.7); /* brighter white */
-    transition: border-color 0.3s ease; /* smooth shine transition */
+.request-item>*:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.7);
+    /* brighter white */
+    transition: border-color 0.3s ease;
+    /* smooth shine transition */
     padding-right: 0.75rem;
     margin-right: 0.75rem;
 }
@@ -417,7 +363,8 @@ h1 {
 .request-item:hover {
     background-color: var(--color-bg-secondary);
     transform: translateX(5px);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* subtle glow */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    /* subtle glow */
 }
 
 .thumbnail {

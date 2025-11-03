@@ -1,5 +1,4 @@
 @import url(../styles/globals.css);
-/* Global Styles */
 
 body {
     min-height: 100vh;
@@ -112,7 +111,7 @@ body {
 /* Trending Section */
 .Trending-now-section {
     position: relative;
-    height: 700px;
+    height: 680px;
     margin: 20px 30px;
     border-radius: 12px;
     overflow: hidden;
@@ -121,6 +120,7 @@ body {
     padding: 0;
     color: #E5F2F2;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    scroll-margin-top: 120px;
 }
 
 .Trending-now-section .bg-img {
@@ -281,25 +281,6 @@ body {
     transform: translateY(-12px) scale(1.08);
     box-shadow: 0 20px 40px rgba(193, 33, 45, 0.5);
     filter: brightness(1.1);
-}
-
-@media (max-width: 1200px) {
-    .Trending-now-section .poster-strip {
-        right: 24px;
-        bottom: 28px;
-        gap: 10px;
-    }
-
-    .Trending-now-section .poster-strip img {
-        width: 96px;
-        height: 136px;
-    }
-}
-
-@media (max-width: 700px) {
-    .Trending-now-section .poster-strip {
-        display: none;
-    }
 }
 
 /* Movie Roulette */
@@ -484,74 +465,12 @@ body {
     transform: translateY(-2px);
 }
 
-@media (max-width: 1200px) {
-    .movie-roulette .roulette-inner {
-        padding: 40px 50px;
-        gap: 40px;
-    }
-
-    #roulettePoster {
-        width: 180px;
-        height: 270px;
-    }
-
-    .result-meta h3 {
-        font-size: 2.2rem;
-    }
-}
-
-@media (max-width: 1000px) {
-    .movie-roulette .roulette-inner {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 36px;
-    }
-
-    .roulette-controls,
-    .roulette-result {
-        width: 100%;
-    }
-
-    #roulettePoster {
-        width: 160px;
-        height: 240px;
-    }
-
-    .result-meta h3 {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 600px) {
-    .movie-roulette {
-        margin: 30px 15px;
-    }
-
-    .movie-roulette .roulette-inner {
-        padding: 24px;
-    }
-
-    .roulette-result {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    #roulettePoster {
-        width: 140px;
-        height: 210px;
-    }
-
-    .result-meta h3 {
-        font-size: 1.6rem;
-    }
-}
-
 /* Recommendations Grid */
 .recommendations-section,
 .newly-added-section,
 .browse-by-genre-section {
     margin: 60px 30px;
+    scroll-margin-top: 100px;
 }
 
 .recommendations-section h2,
@@ -580,18 +499,36 @@ body {
     vertical-align: middle;
 }
 
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    padding: 0 15px;
+}
+
 .recommendations-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 18px;
-    margin-top: 28px;
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 0;
+    scroll-padding: 40px;
+}
+
+.recommendations-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.recommendations-grid {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .recommendations-grid img {
-    width: 100%;
-    height: 240px;
+    flex: 0 0 auto;
+    width: 180px;
+    height: 270px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     transition: transform 240ms ease, box-shadow 240ms ease;
     cursor: pointer;
@@ -603,29 +540,157 @@ body {
     box-shadow: 0 14px 32px rgba(193, 33, 45, 0.4);
 }
 
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.4rem 0.8rem;
+    transition: background 0.3s ease, opacity 0.3s ease;
+    z-index: 5;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.scroll-btn.left {
+    left: 0;
+}
+
+.scroll-btn.right {
+    right: 0;
+}
+
+@media (hover: hover) {
+    .slider-container:hover .scroll-btn {
+        opacity: .8;
+        pointer-events: all;
+    }
+}
+
+.scroll-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.scroll-btn.left {
+    left: 0;
+}
+
+.scroll-btn.right {
+    right: 0;
+}
+
 @media (max-width: 1200px) {
+
+    /* Trending Now */
+    .Trending-now-section .poster-strip {
+        right: 24px;
+        bottom: 28px;
+        gap: 10px;
+    }
+
+    .Trending-now-section .poster-strip img {
+        width: 96px;
+        height: 136px;
+    }
+
+    /* Movie Roulette */
+    .movie-roulette .roulette-inner {
+        padding: 40px 50px;
+        gap: 40px;
+    }
+
+    #roulettePoster {
+        width: 180px;
+        height: 270px;
+    }
+
+    .result-meta h3 {
+        font-size: 2.2rem;
+    }
+
+    /* Recommendation Grid */
     .recommendations-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         gap: 16px;
     }
 
     .recommendations-grid img {
+        width: 140px;
         height: 210px;
     }
 }
 
+@media (max-width: 1000px) {
+
+    /* Movie Roulette */
+    .movie-roulette .roulette-inner {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 36px;
+    }
+
+    .roulette-controls,
+    .roulette-result {
+        width: 100%;
+    }
+
+    #roulettePoster {
+        width: 160px;
+        height: 240px;
+    }
+
+    .result-meta h3 {
+        font-size: 2rem;
+    }
+}
+
 @media (max-width: 768px) {
+
+    /* Trending Now */
+    .Trending-now-section .poster-strip {
+        display: none;
+    }
+
+    /* Recommendation Grid */
     .recommendations-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: 12px;
     }
 
     .recommendations-grid img {
+        width: 120px;
         height: 180px;
     }
 }
 
 @media (max-width: 600px) {
+
+    /* Movie Roulette */
+    .movie-roulette {
+        margin: 30px 15px;
+    }
+
+    .movie-roulette .roulette-inner {
+        padding: 24px;
+    }
+
+    .roulette-result {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #roulettePoster {
+        width: 140px;
+        height: 210px;
+    }
+
+    .result-meta h3 {
+        font-size: 1.6rem;
+    }
 
     .recommendations-section,
     .newly-added-section,
@@ -633,23 +698,13 @@ body {
         margin: 40px 15px;
     }
 
+    /* Recommendation Grid */
     .recommendations-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
         gap: 10px;
     }
 
     .recommendations-grid img {
+        width: 100px;
         height: 150px;
     }
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 15px 10px;
-    background: #341C1C;
-    color: #E5F2F2;
-    font-size: 0.9rem;
-    margin-top: auto;
-    border-top: 1px solid #C1212D;
 }

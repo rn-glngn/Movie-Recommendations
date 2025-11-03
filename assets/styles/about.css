@@ -1,19 +1,5 @@
 @import url(../styles/globals.css);
 
-*::-webkit-scrollbar {
-  width: 9px;
-  background: var(--color-bg-primary);
-}
-
-*::-webkit-scrollbar-thumb {
-  background: #890000;
-  border-radius: 10px;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background: #a00000;
-}
-
 body {
   padding-top: 80px;
 }
@@ -46,6 +32,32 @@ body {
 .about-nav a:hover {
   background-color: var(--color-accent-primary);
   color: var(--color-text-primary);
+}
+
+@media screen and (max-width: 768px) {
+  .about-nav {
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .about-nav a {
+    padding: 9px 30px;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+  .about-nav {
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .about-nav a {
+    padding: 8px 15px;
+  }
+
 }
 
 /* Content Section */
@@ -125,4 +137,99 @@ h3 {
 /* Terms and Conditions */
 .terms-section ol {
   margin: 15px 0 0 100px;
+}
+
+@media screen and (max-width: 1024px) {
+
+  .content-section section p,
+  h3 {
+    padding-left: 40px;
+  }
+
+  .content-section {
+    padding: 0 75px 0 40px;
+  }
+
+  .contact-section div {
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    margin: 15px 0 0 75px;
+  }
+
+  .help-section div p {
+    margin: 10px 0 0 40px;
+  }
+
+  .help-section div div h4,
+  .help-section div div p {
+    margin: 10px 0 0 40px;
+  }
+
+  .terms-section ol {
+    margin: 15px 0 0 75px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .content-section section p,
+  h3 {
+    padding-left: 30px;
+  }
+
+  .content-section {
+    padding: 0 50px 0 30px;
+  }
+
+  .contact-section div {
+    grid-template-columns: auto 1fr;
+    gap: 15px;
+    margin: 15px 0 0 50px;
+  }
+
+  .help-section div p {
+    margin: 10px 0 0 30px;
+  }
+
+  .help-section div div h4,
+  .help-section div div p {
+    margin: 10px 0 0 30px;
+  }
+
+  .terms-section ol {
+    margin: 15px 0 0 50px;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+
+  .content-section section p,
+  h3 {
+    padding-left: 20px;
+  }
+
+  .content-section {
+    padding: 0 25px 0 15px;
+  }
+
+  .contact-section div {
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    margin: 15px 0 0 20px;
+  }
+
+  .help-section div p {
+    margin: 10px 0 0 20px;
+  }
+
+  .help-section div div h4,
+  .help-section div div p {
+    margin: 10px 0 0 20px;
+  }
+
+  .terms-section ol {
+    margin: 15px 0 0 20px;
+  }
+
 }

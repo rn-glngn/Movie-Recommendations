@@ -132,7 +132,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    width: 100%;
+    width: 80%;
   }
 
   .profile-card {
@@ -233,6 +233,61 @@ body:has(#settings:target) .nav-sections a[href="#settings"] {
   border-radius: 20px;
 }
 
+@media screen and (max-width: 768px) {
+  .sections {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 5px;
+    gap: 10px;
+  }
+
+  .nav-sections {
+    position: static;
+    max-width: 95%;
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--color-text-primary);
+    margin: auto;
+  }
+
+  .nav-sections nav {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 6px 0;
+    justify-content: flex-start;
+    scrollbar-width: none;
+    width: 100%;
+  }
+
+  .nav-sections nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-sections a {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+
+  .profile-sections {
+    max-width: 100%;
+    padding: 15px 10px;
+  }
+
+  .profile-sections section:target {
+    scroll-margin-top: 120px;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+  .nav-sections a {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+}
+
 /* For Displaying Active Sections  */
 .profile-sections section {
   display: none;
@@ -302,6 +357,36 @@ body:not(:has(:target)) #watchlist {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--color-accent-primary);
+}
+
+@media screen and (max-width: 768px) {
+  .active-section {
+    height: 450px;
+  }
+
+  .sections {
+    margin-bottom: 0;
+  }
+
+  .watchlist {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 10px;
+  }
+
+  .watchlist h2 {
+    display: none;
+  }
+
+  .watchlist .item {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+  }
+
+  .watchlist .poster img {
+    width: 100px;
+    height: 160px;
+  }
+
 }
 
 /* ----------------------------------------------
@@ -440,6 +525,35 @@ body:not(:has(:target)) #watchlist {
   background: #7f8c8d;
 }
 
+@media screen and (max-width: 768px) {
+  .active-section {
+    height: 450px;
+    overflow-y: hidden;
+  }
+
+  .table-header,
+  .request-card {
+    grid-template-columns: 0.7fr 2.5fr 1fr;
+    gap: 5px;
+  }
+
+  .table-header span,
+  .request-card .details,
+  .request-card .date {
+    display: none;
+  }
+
+  .request-card .details h4 {
+    font-size: 0.9rem;
+  }
+
+  .request-card .poster img {
+    width: 60px;
+    height: 90px;
+  }
+
+}
+
 /* ----------------------------------------------
       Reviews Section
 ------------------------------------------------- */
@@ -544,7 +658,7 @@ body:not(:has(:target)) #watchlist {
 }
 
 /* Responsive (1 column on smaller screens) */
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .reviews {
     width: 95%;
   }
@@ -835,4 +949,51 @@ input:checked+.slider:before {
 .btn-group .btn-save {
   width: 175px;
   font-weight: bold;
+}
+
+@media screen and (max-width: 480px) {
+  .personal-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .label-underline {
+    width: 90%;
+  }
+
+  .personal-info .img-info {
+    margin: auto;
+  }
+
+  .personal-info .info-details {
+    grid-template-columns: 1fr 1fr;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .personal-info .info-details label {
+    text-align: center;
+    padding-right: 0;
+  }
+
+  .preferences,
+  .privacy-security {
+    margin-left: 0;
+  }
+
+  .privacy-security {
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+  }
+
+  .privacy-security label {
+    padding-right: 0;
+  }
+
+  .privacy-security p {
+    width: 100%;
+    text-align: justify;
+  }
+
 }

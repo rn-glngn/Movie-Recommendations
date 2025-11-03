@@ -331,7 +331,8 @@ p {
   background-color: #333;
 }
 
-.nav-submenu-parent:hover>.nav-submenu {
+.nav-submenu-parent:hover>.nav-submenu,
+.nav-submenu-parent:focus>.nav-submenu {
   display: block;
 }
 
@@ -462,19 +463,17 @@ footer {
     max-width: 350px;
     margin: 0 20px;
   }
+
+  .nav-submenu-parent {
+    position: relative;
+  }
+
+  .nav-submenu-parent.open>.nav-submenu {
+    display: block;
+  }
 }
 
 @media (max-width: 900px) {
-  .navbar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .search-bar {
-    margin: 15px 0;
-    max-width: 100%;
-  }
-
   .nav-links {
     flex-wrap: wrap;
     gap: 20px;

@@ -124,6 +124,10 @@ textarea::placeholder {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .page-header {
+    margin-top: 80px;
+  }
+
   .form-container {
     padding: 1.5rem;
   }

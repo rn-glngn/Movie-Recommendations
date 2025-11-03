@@ -274,6 +274,88 @@ p {
   transform: scale(0.9);
 }
 
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 20px 30px 0 30px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 48px 0 0 0;
+  width: 100%;
+  justify-content: center;
+  gap: 35px;
+  position: relative;
+  z-index: 10;
+}
+
+.nav-links li a {
+  color: #E5F2F2;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+
+.nav-links .active,
+.nav-links li a:hover {
+  color: #C1212D;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-bar {
+    margin: 15px 0;
+    max-width: 100%;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+
+
+/* Directory Path */
+.directory-path {
+  color: #ccc;
+  font-size: 16px;
+  font-style: italic;
+  margin-bottom: 20px;
+  word-spacing: 10px;
+}
+
+.directory-path span:last-child {
+  color: var(--color-accent-primary);
+  font-weight: 600;
+}
+
+/* For Footer */
+footer {
+  margin: 0;
+  padding: 0;
+  width: 97vw;
+  position: relative;
+  text-align: center;
+  padding: 20px 10px 0;
+  color: #E5F2F2;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: auto;
+  border-top: 2px solid #890000;
+}
+
 /* ============= 🎛️ COMPONENTS ============= */
 .button {
   display: inline-block;

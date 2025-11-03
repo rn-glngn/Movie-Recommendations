@@ -1,222 +1,10 @@
 @import url(../styles/globals.css);
 
-body,
-html {
-  margin: 0;
-  padding: 0;
-}
-
-.bg-frame {
-  background-image: url("../assets/images/Joker\ bg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  min-height: 585px;
-}
-
-.bg-frame::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  z-index: 0;
-}
-
-.bg-frame * {
-  position: relative;
-  z-index: 1;
-}
-
-.header {
-  width: 100%;
-  height: 80px;
-  background: rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 60px;
-  box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: bold;
-  font-size: 14px;
-  padding-left: 100px;
-}
-
-.logo-circle {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 30px;
-  height: 30px;
-  background: #ffffff;
-  border-radius: 50%;
-}
-
-.site-name {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #f5f5f5;
-  margin: 0;
-}
-
-.search-bar {
-  flex: 1;
-  max-width: 500px;
-  margin: 0 40px;
-  position: relative;
-}
-
-.search-bar input {
-  width: 100%;
-  padding: 10px 40px 10px 15px;
-  background: rgba(139, 1, 1, 0.2);
-  border: 1px solid #660000;
-  border-radius: 8px;
-  border-color: #282222;
-  color: #999;
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
-
-.search-bar input:hover {
-  background: rgba(139, 0, 0, 0.5);
-  border-color: #990000;
-}
-
-.search-bar input:focus {
-  outline: none;
-  background: rgba(139, 1, 1, 0.6);
-  border-color: #cc0000;
-  color: #fff;
-}
-
-.search-bar button {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  color: #999;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-.search-bar button:hover {
-  color: #de3131;
-  transform: translateY(-50%);
-}
-
-.search-bar input ::placeholder {
-  color: #666;
-}
-
-.search-bar input:hover::placeholder {
-  color: #999;
-}
-
-.search-bar input:focus::placeholder {
-  color: #999;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.auth-links {
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.auth-links a {
-  color: #ffffff;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  padding: 5px 8px;
-  border-radius: 4px;
-}
-
-.auth-links a:hover {
-  color: #ff4444;
-  background: rgba(255, 68, 68, 0.1);
-}
-
-.auth-links a:active {
-  transform: scale(0.95);
-  background: rgba(255, 68, 68, 0.2);
-}
-
-.auth-links .separator {
-  color: #666;
-}
-
-.menu-icon {
-  font-size: 24px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 5px;
-}
-
-.menu-icon:hover {
-  color: #ff4444;
-  transform: scale(1.1);
-}
-
-.menu-icon:active {
-  transform: scale(0.9);
-}
-
 .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 40px;
   padding-top: 100px;
-}
-
-.back-btn {
-  background: none;
-  border: none;
-  color: #ffffff;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-bottom: 20px;
-  font-size: 18px;
-  transition: all 0.3s ease;
-  position: absolute;
-  top: 100px;
-  left: 80%;
-  display: flex;
-  z-index: 1000;
-}
-
-.back-btn:hover {
-  transform: translateX(-5px);
-  color: antiquewhite;
-}
-
-.back-btn:active {
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateX(-3px) scale(0.95);
 }
 
 .movie-header {
@@ -372,7 +160,7 @@ html {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 14%;
   margin-top: 20px;
 }
 
@@ -498,7 +286,8 @@ hr {
 
 .avatar-img {
   width: 200px;
-  height: 240px;
+  height: 100%;
+  object-fit: cover;
 }
 
 .cast-avatar {

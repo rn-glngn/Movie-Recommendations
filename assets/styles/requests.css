@@ -1,6 +1,10 @@
-@import url(../../styles/globals.css);
+@import url(../styles/globals.css);
 
 /* ============= 🎯 HEADER ============= */
+.logo {
+    padding-left: 0px;
+}
+
 .user-section {
     display: flex;
     align-items: center;
@@ -169,14 +173,14 @@
 .main-content {
     flex: 1;
     overflow-y: auto;
-    max-height: 700px;
+    max-height: 680px;
 }
 
 /* ============= 📋 MAIN CONTAINER ============= */
 .request-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 20px 40px;
+    padding: 20px 30px 0px;
     max-height: calc(100vh - 150px);
     overflow-y: auto;
 }
@@ -200,47 +204,17 @@
 
 h1 {
     font-size: var(--text-4xl);
-    margin-bottom: var(--space-md);
-    padding-left: var(--space-sm);
+    margin-bottom: 8px;
     color: var(--color-text-primary);
 }
-
-.back-btn {
-    background: none;
-    border: none;
-    color: #ffffff;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: all 0.3s ease;
-    position: fixed;
-    /* ✅ changed */
-    top: 100px;
-    /* keep same vertical position */
-    left: 80%;
-    /* same horizontal offset */
-    display: flex;
-}
-
-.back-btn:hover {
-    transform: translateX(-5px);
-    color: antiquewhite;
-}
-
-.back-btn:active {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateX(-3px) scale(0.95);
-}
-
 
 /* ============= 🎛️ UNIFIED CONTROL PANEL ============= */
 .unified-section {
     background-color: var(--color-bg);
     border: 2px solid var(--color-bg-secondary);
     border-radius: 8px;
-    padding: var(--space-sm);
-    margin-bottom: var(--space-sm);
+    padding: 20px 30px;
+    height: 440px;
 }
 
 /* Tabs inside control panel */
@@ -263,7 +237,7 @@ h1 {
     cursor: pointer;
     font-size: var(--text-sm);
     font-weight: 600;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     letter-spacing: 0.5px;
 }
 
@@ -292,6 +266,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     gap: var(--space-sm);
+    margin-bottom: 10px;
 }
 
 .search-requests {
@@ -409,19 +384,20 @@ h1 {
 
 /* ============= 📊 TABLE VIEW ============= */
 .content-area {
-    padding-top: var(--space-sm);
+    padding: var(--space-sm);
+    height: 350px;
+    overflow-y: auto;
 }
 
 .table-header {
     display: grid;
-    /* Remove the image space */
-    grid-template-columns: 2.5fr 1.5fr 1.2fr 1fr 1.5fr;
+    grid-template-columns: 0.5fr 2.5fr 1.5fr 1.2fr 1.5fr 1.25fr;
     align-items: center;
     gap: var(--space-sm);
     padding: var(--space-sm);
     font-weight: 600;
     font-style: italic;
-    font-size: var(--text-base);
+    font-size: var(--text-sm);
     color: var(--color-text-primary);
     text-align: center;
 
@@ -434,7 +410,7 @@ h1 {
 
 .request-item {
     display: grid;
-    grid-template-columns: 150px 2fr 1.5fr 1fr 1.5fr 1fr;
+    grid-template-columns: 0.5fr 2.5fr 1.5fr 1.2fr 1.5fr 1.25fr;
     gap: var(--space-sm);
     align-items: center;
     padding: var(--space-sm);
@@ -443,6 +419,8 @@ h1 {
     margin-bottom: var(--space-xs);
     border-radius: 10px;
     transition: all 0.3s;
+    height: 120px;
+    text-align: center;
 }
 
 .request-item>*:not(:last-child) {
@@ -462,10 +440,10 @@ h1 {
 }
 
 .thumbnail {
-    width: 100px;
-    height: 140px;
+    width: 65px;
+    height: 80px;
     object-fit: cover;
-    border-radius: 8px;
+    /* border-radius: 8px; */
 }
 
 .status-badge {
@@ -495,7 +473,7 @@ h1 {
 /* ============= 🎴 GRID VIEW ============= */
 .grid-view {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: var(--space-sm);
     margin-top: var(--space-sm);
 }
@@ -515,7 +493,7 @@ h1 {
 
 .grid-thumbnail {
     width: 100%;
-    height: 300px;
+    height: 280px;
     object-fit: cover;
 }
 

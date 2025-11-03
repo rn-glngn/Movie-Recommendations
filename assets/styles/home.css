@@ -183,71 +183,6 @@ body {
   filter: brightness(1.1);
 }
 
-@media screen and (max-width: 1024px) {
-  .Trending-now-section {
-    height: 550px;
-  }
-
-  .Trending-now-section .trending-content {
-    top: 170px;
-    max-width: 65%;
-    padding: 60px 30px 40px 40px;
-  }
-
-  .Trending-now-section .Titlemovie1 {
-    font-size: 60px;
-  }
-
-  .Trending-now-section .Description {
-    font-size: 1rem;
-    width: 90%;
-  }
-
-  .View-details,
-  .Watch-trailer {
-    padding: 18px 20px;
-    font-size: 1rem;
-  }
-
-}
-
-@media screen and (max-width: 768px) {
-  .Trending-now-section {
-    height: 420px;
-    border-radius: 15px;
-  }
-
-  .Trending-now-section .section-header {
-    top: 30px;
-    left: 30px;
-    font-size: 1rem;
-  }
-
-  .Trending-now-section .trending-content {
-    top: 150px;
-    max-width: 70%;
-    padding: 50px 30px 40px 40px;
-  }
-
-  .Trending-now-section .Titlemovie1 {
-    font-size: 36px;
-  }
-
-  .Trending-now-section .Description {
-    font-size: 0.75rem;
-    width: 100%;
-  }
-
-  .Trending-now-section .poster-strip {
-    display: none;
-  }
-
-  .actions .View-details,
-  .actions .Watch-trailer {
-    padding: 16px 20px;
-  }
-}
-
 /* Movie Roulette */
 .movie-roulette {
   margin: 50px 10px;
@@ -430,40 +365,6 @@ body {
   transform: translateY(-2px);
 }
 
-@media screen and (max-width: 768px) {
-  .movie-roulette .roulette-inner {
-    margin: 0 40px;
-    padding: 40px 50px;
-    gap: 40px;
-  }
-
-  .roulette-inner label {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-  }
-
-  #genreSelect {
-    margin-top: 0;
-  }
-
-  .checkboxes label {
-    margin: 0 0 5px;
-    gap: 0;
-  }
-
-  #roulettePoster {
-    width: 180px;
-    height: 270px;
-  }
-
-  .result-meta .View-details {
-    padding: 12px 24px;
-    font-size: 0.9rem;
-  }
-}
-
 /* Recommendations Grid */
 .recommendations-section,
 .newly-added-section,
@@ -625,7 +526,33 @@ body {
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
+
+  /* Trending Now Section */
+  .Trending-now-section {
+    height: 550px;
+  }
+
+  .Trending-now-section .trending-content {
+    top: 170px;
+    max-width: 65%;
+    padding: 60px 30px 40px 40px;
+  }
+
+  .Trending-now-section .Titlemovie1 {
+    font-size: 60px;
+  }
+
+  .Trending-now-section .Description {
+    font-size: 1rem;
+    width: 90%;
+  }
+
+  .View-details,
+  .Watch-trailer {
+    padding: 18px 20px;
+    font-size: 1rem;
+  }
 
   /* Movie Roulette */
   .movie-roulette .roulette-inner {
@@ -651,9 +578,73 @@ body {
 
 @media (max-width: 768px) {
 
-  /* Trending Now */
+  /* Trending Now Section */
+  .Trending-now-section {
+    height: 420px;
+    border-radius: 15px;
+  }
+
+  .Trending-now-section .section-header {
+    top: 30px;
+    left: 30px;
+    font-size: 1rem;
+  }
+
+  .Trending-now-section .trending-content {
+    top: 150px;
+    max-width: 70%;
+    padding: 50px 30px 40px 40px;
+  }
+
+  .Trending-now-section .Titlemovie1 {
+    font-size: 36px;
+  }
+
+  .Trending-now-section .Description {
+    font-size: 0.75rem;
+    width: 100%;
+  }
+
   .Trending-now-section .poster-strip {
     display: none;
+  }
+
+  .actions .View-details,
+  .actions .Watch-trailer {
+    padding: 16px 20px;
+  }
+
+  /* Movie Roulette */
+  .movie-roulette .roulette-inner {
+    margin: 0 40px;
+    padding: 40px 50px;
+    gap: 40px;
+  }
+
+  .roulette-inner label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+  }
+
+  #genreSelect {
+    margin-top: 0;
+  }
+
+  .checkboxes label {
+    margin: 0 0 5px;
+    gap: 0;
+  }
+
+  #roulettePoster {
+    width: 180px;
+    height: 270px;
+  }
+
+  .result-meta .View-details {
+    padding: 12px 24px;
+    font-size: 0.9rem;
   }
 
   /* Recommendation Grid */
@@ -708,4 +699,113 @@ body {
     width: 100px;
     height: 150px;
   }
+}
+
+@media screen and (max-width: 480px) {
+
+  /* Trending Now Section */
+  .Trending-now-section {
+    height: 360px;
+  }
+
+  .Trending-now-section .trending-content {
+    top: 130px;
+    max-width: 80%;
+    padding: 0px 20px 30px 30px;
+  }
+
+  .Trending-now-section .Titlemovie1 {
+    font-size: 28px;
+    margin: 0;
+  }
+
+  .Trending-now-section .Description {
+    font-size: 0.7rem;
+    width: 100%;
+    height: 70px;
+    text-overflow: ellipsis;
+    overflow: scroll;
+    margin: 0 0 10px;
+  }
+
+  .Trending-now-section .Description::-webkit-scrollbar {
+    display: none;
+  }
+
+  .Trending-now-section .Rating {
+    margin: 0;
+  }
+
+  .actions .View-details,
+  .actions .Watch-trailer {
+    padding: 8px 8px;
+    font-size: 0.8rem;
+    border-radius: 10px;
+  }
+
+  /* Movie Roulette */
+  .movie-roulette .roulette-inner {
+    flex-direction: column;
+    align-items: center;
+    padding: 36px 30px;
+    margin: 0 20px;
+    gap: 0px;
+  }
+
+  .movie-roulette h2 {
+    font-size: 2.2rem;
+  }
+
+  .roulette-controls {
+    min-width: 250px;
+    width: 100%;
+  }
+
+  .roulette-controls label,
+  .roulette-result {
+    width: 100%;
+  }
+
+  .roulette-controls select {
+    font-size: 0.8rem;
+    width: 100%;
+  }
+
+  .checkboxes label {
+    font-size: 0.7rem;
+    width: auto;
+  }
+
+  .spin-btn {
+    font-size: 1rem;
+    padding: 14px 20px;
+    margin: 30px auto;
+    width: auto;
+  }
+
+  #roulettePoster {
+    width: 160px;
+    height: 240px;
+    margin: 0 auto;
+    scroll-margin-top: 80px;
+  }
+
+  .result-meta h3 {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+
+  .result-meta .View-details {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* Section Titles */
+  .recommendations-section,
+  .newly-added-section,
+  .browse-by-genre-section {
+    margin: 40px 15px;
+    font-size: 0.9rem;
+  }
+
 }

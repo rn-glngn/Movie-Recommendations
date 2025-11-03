@@ -5,6 +5,11 @@
   padding-left: 0px;
 }
 
+/* ============= 🎯 HEADER ============= */
+.logo {
+  padding-left: 0px;
+}
+
 .user-section {
   display: flex;
   align-items: center;
@@ -173,7 +178,7 @@
 .main-content {
   flex: 1;
   overflow-y: auto;
-  max-height: 700px;
+  max-height: 680px;
 }
 
 /* ============= 📋 MAIN CONTAINER ============= */
@@ -481,21 +486,37 @@
 }
 
 /* ============= 📱 RESPONSIVE DESIGN ============= */
+@media screen and (max-width: 1024px) {
+  .sidebar {
+    width: 200px;
+  }
+}
+
 @media (max-width: 768px) {
+
   .header {
     padding: var(--space-sm);
   }
 
-  .main-content {
-    padding: var(--space-sm);
+  .sidebar {
+    margin-bottom: 0;
   }
 
-  h1 {
-    font-size: var(--text-3xl);
+  .main-content::-webkit-scrollbar {
+    display: none;
+  }
+
+  .content-wrapper {
+    height: 520px;
+  }
+
+  .user-list-container {
+    padding-top: 0;
   }
 
   .users-grid {
     grid-template-columns: repeat(2, 1fr);
+    height: 370px;
   }
 
   .controls {
@@ -547,7 +568,23 @@
     text-align: center;
   }
 
+  .main-content {
+    height: 600px;
+  }
+
+  .content-wrapper {
+    width: 100%;
+    height: 600px;
+  }
+
+  .user-list-container {
+    height: 550px;
+    overflow: hidden;
+    padding: 0;
+  }
+
   .users-grid {
     grid-template-columns: 1fr;
+    height: 700px;
   }
 }

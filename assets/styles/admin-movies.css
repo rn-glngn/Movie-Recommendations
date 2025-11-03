@@ -85,6 +85,49 @@
   margin-top: 80px;
 }
 
+
+@media screen and (max-width: 768px) {
+
+  /* Navigation and Main Container */
+  .notification {
+    width: 25px;
+    height: 25px;
+  }
+
+  .notification svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .avatar {
+    width: 25px;
+    height: 25px;
+  }
+
+  .main-container {
+    margin-top: 60px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  /* Navigation and Main Container */
+  .header {
+    padding: 10px 30px;
+    gap: 10px;
+
+  }
+
+  .main-container {
+    margin-top: 50px;
+  }
+
+  .admin-text {
+    display: none;
+  }
+
+}
+
 /* Sidebar */
 .sidebar {
   width: 250px;
@@ -174,6 +217,48 @@
   flex: 1;
   overflow-y: auto;
   max-height: 700px;
+}
+
+@media screen and (max-width: 1024px) {
+  .sidebar {
+    width: 200px;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    max-height: none;
+    margin-bottom: 20px;
+  }
+
+  .main-content {
+    max-height: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sidebar {
+    padding: 10px 10px 0px;
+    margin-bottom: 0;
+  }
+
+  .nav-item {
+    font-size: medium;
+    padding: 10px 15px;
+  }
+
+  .dropdown-item {
+    font-size: 12px;
+    padding: 8px 15px;
+  }
+
 }
 
 /* ============= 📋 MAIN CONTAINER ============= */
@@ -439,8 +524,24 @@
     padding: var(--space-sm);
   }
 
+  .sidebar {
+    width: 100%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
   .main-content {
     padding: var(--space-sm);
+  }
+
+  .movie-list-section {
+    padding-top: 0;
+    height: 640px;
+  }
+
+  .content-wrapper {
+    height: 550px;
+    padding: var(--space-md);
   }
 
   h1 {
@@ -449,6 +550,7 @@
 
   .movie-grid {
     grid-template-columns: 1fr;
+    height: 400px;
   }
 
   .controls {
@@ -480,6 +582,21 @@
 
   .logo span {
     font-size: var(--text-sm);
+  }
+
+  .movie-list-section {
+    padding: 2px 0;
+    height: 550px;
+  }
+
+  .content-wrapper {
+    padding: 15px 10px 5px;
+    height: auto;
+  }
+
+  .movie-grid {
+    margin-bottom: 15px;
+    height: 325px;
   }
 
   .tabs {

@@ -78,11 +78,52 @@
     border-radius: 50%;
 }
 
-
 .main-container {
     display: flex;
     height: 80vh;
     margin-top: 80px;
+}
+
+@media screen and (max-width: 768px) {
+
+    /* Navigation and Main Container */
+    .notification {
+        width: 25px;
+        height: 25px;
+    }
+
+    .notification svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .avatar {
+        width: 25px;
+        height: 25px;
+    }
+
+    .main-container {
+        margin-top: 60px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    /* Navigation and Main Container */
+    .header {
+        padding: 10px 30px;
+        gap: 10px;
+
+    }
+
+    .main-container {
+        margin-top: 50px;
+    }
+
+    .admin-text {
+        display: none;
+    }
+
 }
 
 /* Sidebar */
@@ -169,6 +210,48 @@
     flex: 1;
     overflow-y: auto;
     max-height: 650px;
+}
+
+@media screen and (max-width: 1024px) {
+    .sidebar {
+        width: 200px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .sidebar {
+        width: 100%;
+        max-height: none;
+        margin-bottom: 20px;
+    }
+
+    .main-content {
+        max-height: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sidebar {
+        padding: 10px 10px 0px;
+        margin-bottom: 0;
+    }
+
+    .nav-item {
+        font-size: medium;
+        padding: 10px 15px;
+    }
+
+    .dropdown-item {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+
 }
 
 /* ============= 📋 MAIN CONTAINER ============= */
@@ -507,16 +590,18 @@
 
 /* Responsive Design */
 @media (max-width: 1200px) {
+
+    .dashboard-sections {
+        width: 100%;
+        height: 64vh;
+    }
+
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
     .analytics-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .stat-card-2nd:last-child {
-        grid-column: span 2;
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .bottom-section-grid {
@@ -526,24 +611,26 @@
 }
 
 @media (max-width: 768px) {
-    .container {
-        flex-direction: column;
+
+    .dashboard-title {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .dashboard-sections {
+        width: 100%;
+        height: 65vh;
+        padding-right: 0;
+    }
+
+    .dashboard-content {
+        padding-top: 0;
     }
 
     .sidebar {
         width: 100%;
         height: auto;
-        padding: 15px;
-    }
-
-    .header {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
-    }
-
-    .search-bar {
-        width: 100%;
+        padding: 15px 15px 0px;
     }
 
     .stats-grid {
@@ -558,10 +645,6 @@
         grid-column: span 1;
     }
 
-    .dashboard-content {
-        padding: 20px;
-    }
-
     .stat-card {
         padding: 15px;
         min-height: 100px;
@@ -571,23 +654,55 @@
         padding: 20px;
         min-height: 200px;
     }
+
+    .analytics-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
 
 @media (max-width: 480px) {
+
+    .dashboard-content {
+        padding: 0px 15px 10px;
+    }
+
+    .dashboard-title {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .dashboard-sections {
+        width: 100%;
+        height: 650px;
+    }
+
+    .sidebar {
+        padding-bottom: 10px;
+    }
+
+    .main-container {
+        margin-top: 60px;
+        gap: 0;
+    }
+
     .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .analytics-grid {
         grid-template-columns: 1fr;
     }
 
     .movies-table-header,
     .movie-row {
-        grid-template-columns: 60px 1fr 100px 60px;
+        grid-template-columns: 60px 1fr 90px 60px;
         gap: 10px;
         padding: 10px 15px;
     }
 
     .reviews-table-header,
     .review-row {
-        grid-template-columns: 70px 80px 50px 1fr 80px;
+        grid-template-columns: 80px 50px 1fr 80px;
         gap: 8px;
         padding: 10px 15px;
     }
@@ -607,5 +722,20 @@
 
     .review-col.date-col {
         font-size: 10px;
+    }
+
+    .recent-movies-container,
+    .recent-reviews-container {
+        width: 100%;
+    }
+
+    .dashboard-sections::-webkit-scrollbar,
+    .movies-table-body::-webkit-scrollbar,
+    .reviews-table-body::-webkit-scrollbar {
+        display: none;
+    }
+
+    .recent-reviews-section .user-col {
+        display: none;
     }
 }

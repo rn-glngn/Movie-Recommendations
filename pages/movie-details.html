@@ -15,7 +15,8 @@
     <!-- NAVIGATION BAR -->
     <div class="header">
       <div class="logo">
-        <img src="..\assets\logo\FilmoPicks Large Logo (Dark).svg" alt="FilmoPicks Logo" class="logo-img">
+        <a href="../pages/index.html"><img src="..\assets\logo\FilmoPicks Large Logo (Dark).svg" alt="FilmoPicks Logo"
+            class="logo-img"></a>
       </div>
       <div class="search-bar">
         <input type="text" placeholder="Search Something...">
@@ -35,11 +36,28 @@
           <span class="separator">|</span>
           <a href="login.html" onclick="alert('Sign Up Clicked'); return false;">Signup</a>
         </div>
-        <div class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-            class="bi bi-list" viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+        <div class="menu-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4
+         a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4
+         a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
           </svg>
+
+          <ul class="nav-dropdown-menu">
+            <li><a href="../pages/profile.html">Profile</a></li>
+            <li><a href="../pages/profile.html#settings">Settings</a></li>
+            <li class="nav-submenu-parent">
+              Request
+              <ul class="nav-submenu">
+                <li><a href="">Add Movie</a></li>
+                <li><a href="">Edit Movie</a></li>
+                <li><a href="">Delete Movie</a></li>
+              </ul>
+            </li>
+            <li><a href="../pages/about.html">About</a></li>
+            <li>Logout</li>
+          </ul>
         </div>
       </div>
     </div>

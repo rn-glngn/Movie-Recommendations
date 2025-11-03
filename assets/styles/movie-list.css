@@ -1,7 +1,6 @@
 @import url(../styles/globals.css);
 
 :root {
-  --panel: #141010;
   --muted: #D8C0C0;
   --accent: #C1122D;
   --accent-2: #E33848;
@@ -36,8 +35,11 @@
   transition: color 0.2s;
 }
 
+.nav-links .active,
 .nav-links li a:hover {
   color: #C1212D;
+  text-decoration: underline;
+  text-underline-offset: 10px;
 }
 
 @media (max-width: 900px) {
@@ -109,9 +111,14 @@
   max-width: 400px;
 }
 
+.directory-path {
+  margin-top: 20px;
+  padding: 0 40px;
+}
+
 .page-title {
   text-align: center;
-  margin: 20px 0 10px 0;
+  margin: 0 0 10px 0;
   color: var(--color-text-primary);
 }
 
@@ -121,7 +128,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
-  padding: 18px 40px;
+  padding: 0px 40px 0px;
 }
 
 .controls label {
@@ -207,12 +214,12 @@ body:not(:has(:target)) .grid-view {
 }
 
 .movie-card {
-  background: var(--panel);
+  background: rgba(39, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
   padding: 10px;
   border-radius: 10px;
   text-align: center;
   transition: transform .18s ease, box-shadow .18s ease;
-  border: 1px solid rgba(255, 255, 255, 0.02);
 }
 
 .card-link {
@@ -223,7 +230,7 @@ body:not(:has(:target)) .grid-view {
 
 .poster {
   width: 100%;
-  height: 220px;
+  height: 300px;
   border-radius: 8px;
   background-size: cover;
   background-position: center;
@@ -296,24 +303,23 @@ th,
 td {
   padding: 12px 14px;
   text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  color: var(--color-text-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(39, 0, 0, 0.2);
 }
 
 th {
-  background: #341C1C;
+  background: var(--color-bg-secondary);
   color: var(--color-text-primary);
   font-weight: 700;
 }
 
-tr:nth-child(even) {
-  background: #1C0D0D;
-}
-
 .td-poster img {
   width: 64px;
-  height: auto;
+  height: 90px;
   border-radius: 6px;
   display: block;
+  object-fit: cover;
 }
 
 .td-title {
@@ -340,17 +346,6 @@ tr:nth-child(even) {
 .pagination .pag:hover {
   background: var(--accent);
 }
-
-/* footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  margin-top: auto;
-  background: #341C1C;
-  border-top: 1px solid var(--accent);
-  color: var(--color-text-primary);
-}
-
 
 /* small screens adjustments */
 @media (max-width:600px) {

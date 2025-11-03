@@ -1,26 +1,26 @@
-const searchInput = document.getElementById('searchInput');
-const sortSelect = document.getElementById('sortSelect');
-const movieGrid = document.getElementById('movieGrid');
-const noResults = document.getElementById('noResults');
-const tabs = document.querySelectorAll('.tab');
+const searchInput = document.getElementById("searchInput");
+const sortSelect = document.getElementById("sortSelect");
+const movieGrid = document.getElementById("movieGrid");
+const noResults = document.getElementById("noResults");
+const tabs = document.querySelectorAll(".tab");
 
-let currentFilter = 'all';
+let currentFilter = "all";
 
 // Search functionality
-searchInput.addEventListener('input', function() {
+searchInput.addEventListener("input", function () {
   filterAndSort();
 });
 
 // Sort functionality
-sortSelect.addEventListener('change', function() {
+sortSelect.addEventListener("change", function () {
   filterAndSort();
 });
 
 // Tab functionality
-tabs.forEach(tab => {
-  tab.addEventListener('click', function() {
-    tabs.forEach(t => t.classList.remove('active'));
-    this.classList.add('active');
+tabs.forEach((tab) => {
+  tab.addEventListener("click", function () {
+    tabs.forEach((t) => t.classList.remove("active"));
+    this.classList.add("active");
     currentFilter = this.dataset.tab;
     filterAndSort();
   });
@@ -29,24 +29,24 @@ tabs.forEach(tab => {
 function filterAndSort() {
   const searchTerm = searchInput.value.toLowerCase();
   const sortBy = sortSelect.value;
-  const cards = Array.from(movieGrid.querySelectorAll('.movie-card'));
+  const cards = Array.from(movieGrid.querySelectorAll(".movie-card"));
 
   // Filter cards
-  let visibleCards = cards.filter(card => {
+  let visibleCards = cards.filter((card) => {
     const title = card.dataset.title.toLowerCase();
     const type = card.dataset.type;
 
     const matchesSearch = title.includes(searchTerm);
     const matchesFilter =
-      currentFilter === 'all' ||
-      (currentFilter === 'movies' && type === 'movie') ||
-      (currentFilter === 'tv' && type === 'tv');
+      currentFilter === "all" ||
+      (currentFilter === "movies" && type === "movie") ||
+      (currentFilter === "tv" && type === "tv");
 
     if (matchesSearch && matchesFilter) {
-      card.classList.remove('hidden');
+      card.classList.remove("hidden");
       return true;
     } else {
-      card.classList.add('hidden');
+      card.classList.add("hidden");
       return false;
     }
   });
@@ -59,13 +59,13 @@ function filterAndSort() {
     const dateB = new Date(b.dataset.date);
 
     switch (sortBy) {
-      case 'az':
+      case "az":
         return titleA.localeCompare(titleB);
-      case 'za':
+      case "za":
         return titleB.localeCompare(titleA);
-      case 'earliest':
+      case "earliest":
         return dateB - dateA;
-      case 'oldest':
+      case "oldest":
         return dateA - dateB;
       default:
         return 0;
@@ -73,14 +73,35 @@ function filterAndSort() {
   });
 
   // Reorder DOM elements
-  visibleCards.forEach(card => {
+  visibleCards.forEach((card) => {
     movieGrid.appendChild(card);
   });
 
   // Show/hide no results message
   if (visibleCards.length === 0) {
-    noResults.style.display = 'block';
+    noResults.style.display = "block";
   } else {
-    noResults.style.display = 'none';
+    noResults.style.display = "none";
   }
+}
+
+// ─── Navigation Dropdown Initialization ─────────────
+function initDropdown() {
+  const dropdown = document.getElementById("listsDropdown");
+  const arrow = document.querySelector(".dropdown-arrow");
+
+  if (!dropdown || !arrow) return;
+
+  dropdown.style.display = "block";
+  arrow.textContent = "▲";
+
+  window.toggleDropdown = function () {
+    if (dropdown.style.display === "block") {
+      dropdown.style.display = "none";
+      arrow.textContent = "▼";
+    } else {
+      dropdown.style.display = "block";
+      arrow.textContent = "▲";
+    }
+  };
 }

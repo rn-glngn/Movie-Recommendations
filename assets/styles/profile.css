@@ -400,7 +400,7 @@ body:not(:has(:target)) #watchlist {
   font-size: 0.85rem;
   text-align: center;
   font-weight: bold;
-  color: var(--color-text-primary);
+  color: var(--color-bg);
 }
 
 /* Status Colors */
@@ -414,10 +414,12 @@ body:not(:has(:target)) #watchlist {
 
 .status.declined {
   background: #b02a37;
+  color: #fff;
 }
 
 .status.draft {
   background: #555;
+  color: #fff;
 }
 
 /* Keep status background color visible while hovering */

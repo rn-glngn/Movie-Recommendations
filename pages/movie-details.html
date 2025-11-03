@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="../assets/styles/globals.css">
   <link rel="stylesheet" href="../assets/styles/movie-details.css">
   <link rel="icon" href="../assets/logo/FilmoPicks Small Logo.svg" type="image/svg+xml">
+  <script src="../assets/scripts/globals.js" defer></script>
+  <script src="../assets/scripts/movie-details.js" defer></script>
   <title>Joker — FilmoPicks: Your Movie TV Show Recommendations</title>
 </head>
 
@@ -56,7 +58,7 @@
               </ul>
             </li>
             <li><a href="../pages/about.html">About</a></li>
-            <li><a href="../pages/index.html">Logout</a></li>
+            <li><a href="../pages/index.html" onclick="alert('LOGOUT. Redirecting to Homepage')">Logout</a></li>
           </ul>
         </div>
       </div>
@@ -70,7 +72,7 @@
     </div>
     <div class="movie-header">
       <div class="poster">
-        <img src="../assets/images/Joker Poster.jpeg" style="width: 280px; height: 420px;" alt="Joker Poster">
+        <img src="../assets/images/Joker Poster.jpeg" alt="Joker Poster">
       </div>
       <div class="movie-info">
         <h1 class="movie-title">
@@ -341,7 +343,9 @@
     </div>
 
   </div>
-  <script src="../assets/scripts/movie-details.js"></script>
+  <footer>
+    <p>&copy; 2025 FilmoPicks: Your Movie-TV Shows Recommendation | About | Privacy </p>
+  </footer>
 </body>
 
 </html>

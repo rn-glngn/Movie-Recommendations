@@ -16,6 +16,7 @@
 .poster {
   width: 280px;
   height: 420px;
+  aspect-ratio: 2 / 3;
   border-radius: 8px;
   overflow: hidden;
   flex-shrink: 0;
@@ -97,7 +98,7 @@
   align-items: center;
   gap: 20px;
   margin-bottom: 25px;
-  margin-top: 50px;
+  margin-top: 25px;
   flex-wrap: wrap;
 }
 
@@ -114,7 +115,6 @@
 .action-buttons {
   display: flex;
   align-items: center;
-  margin-top: 25px;
   margin-left: 25%;
   flex-wrap: wrap;
   gap: 10px;
@@ -351,6 +351,10 @@ hr {
 .director-role {
   font-size: 14px;
   color: #999999;
+}
+
+.director-details p {
+  word-wrap: break-word;
 }
 
 .reviews-section {
@@ -592,19 +596,6 @@ hr {
 
 /* Tablets and smaller laptops (max-width: 1024px) */
 @media screen and (max-width: 1024px) {
-  .header {
-    padding: 0 30px;
-  }
-
-  .logo {
-    padding-left: 0;
-  }
-
-  .search-bar {
-    max-width: 350px;
-    margin: 0 20px;
-  }
-
   .container {
     padding: 30px 20px;
     padding-top: 100px;
@@ -626,6 +617,10 @@ hr {
     max-width: 100%;
   }
 
+  .movie-actions {
+    gap: 25%;
+  }
+
   .action-buttons {
     margin-left: 0;
   }
@@ -635,6 +630,12 @@ hr {
     gap: 25px;
   }
 
+  .director-avatar,
+  .cast-avatar {
+    width: 150px;
+    height: 200px;
+  }
+
   .movie-grid {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }
@@ -642,36 +643,6 @@ hr {
 
 /* Mobile devices (max-width: 768px) */
 @media screen and (max-width: 768px) {
-  .header {
-    padding: 0 15px;
-    height: 70px;
-  }
-
-  .logo {
-    font-size: 12px;
-  }
-
-  .site-name {
-    font-size: 1rem;
-  }
-
-  .logo-circle {
-    width: 25px;
-    height: 25px;
-  }
-
-  .search-bar {
-    display: none;
-  }
-
-  .auth-links {
-    font-size: 11px;
-  }
-
-  .menu-icon {
-    font-size: 20px;
-  }
-
   .bg-frame {
     min-height: auto;
   }
@@ -858,18 +829,6 @@ hr {
 
 /* Small mobile devices (max-width: 480px) */
 @media screen and (max-width: 480px) {
-  .header {
-    padding: 0 10px;
-  }
-
-  .site-name {
-    display: none;
-  }
-
-  .auth-links a {
-    padding: 3px 5px;
-  }
-
   .container {
     padding: 15px 10px;
     padding-top: 85px;
@@ -881,8 +840,8 @@ hr {
   }
 
   .poster img {
-    width: 180px;
-    height: 270px;
+    width: 100%;
+    height: 100%;
   }
 
   .movie-title {
@@ -900,18 +859,28 @@ hr {
 
   .description {
     font-size: 13px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .movie-actions {
+    gap: 0px;
+  }
+
+  .rating-section {
+    margin: 0 0 5px;
   }
 
   .play-btn,
   .heart-btn {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
 
   .play-btn svg,
   .heart-btn svg {
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
   }
 
   .wishlist-btn {
@@ -928,6 +897,15 @@ hr {
   .director-avatar {
     width: 120px;
     height: 150px;
+  }
+
+  .director-details h3 {
+    font-size: 1.2rem;
+  }
+
+  .comment-input-area {
+    flex-direction: row;
+    align-items: flex-start;
   }
 
   .avatar-img {

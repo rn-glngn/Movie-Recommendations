@@ -1,13 +1,7 @@
 @import url(../styles/globals.css);
 
-:root {
-  --muted: #D8C0C0;
-  --accent: #C1122D;
-  --accent-2: #E33848;
-}
-
 .directory-path {
-  margin-top: 20px;
+  margin: 20px 0 5px;
   padding: 0 40px;
 }
 
@@ -29,7 +23,7 @@
 .controls label {
   font-weight: 700;
   margin-right: 8px;
-  color: var(--muted);
+  color: var(--color-text-primary);
 }
 
 .controls select {
@@ -62,7 +56,7 @@
 }
 
 .view-icons .icon:hover {
-  color: var(--accent-2);
+  color: var(--color-accent-primary);
   transform: translateY(-2px);
 }
 
@@ -87,7 +81,7 @@ body:not(:has(:target)) .grid-view {
 
 :target~a[href="#grid"],
 :target~a[href="#rows"] {
-  color: var(--accent-2);
+  color: var(--color-accent-primary);
 }
 
 .view-icons .filter {
@@ -147,7 +141,7 @@ body:not(:has(:target)) .grid-view {
 .movie-title {
   margin: 10px 6px 0 6px;
   font-size: 0.95rem;
-  color: var(--muted);
+  color: var(--color-text-primary);
 }
 
 /* GRID PAGINATION */
@@ -168,12 +162,10 @@ body:not(:has(:target)) .grid-view {
 
 .grid-pagination .page.active,
 .grid-pagination .page:hover {
-  background: var(--accent);
+  background: var(--color-accent-primary);
 }
 
 /* ROW VIEW */
-
-
 .movie-list {
   padding: 28px 36px 80px 36px;
   background: transparent;
@@ -200,13 +192,22 @@ td {
   text-align: left;
   color: var(--color-text-primary);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(39, 0, 0, 0.2);
+  background: rgba(39, 0, 0, 0.7);
 }
 
 th {
   background: var(--color-bg-secondary);
   color: var(--color-text-primary);
   font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+tr:hover {
+  background: rgba(193, 18, 45, 0.1);
+  cursor: pointer;
+  transform: scale(1.01);
+
 }
 
 .td-poster img {
@@ -215,6 +216,7 @@ th {
   border-radius: 6px;
   display: block;
   object-fit: cover;
+  margin: auto;
 }
 
 .td-title {
@@ -239,35 +241,164 @@ th {
 
 .pagination .pag.active,
 .pagination .pag:hover {
-  background: var(--accent);
+  background: var(--color-accent-primary);
 }
 
-/* small screens adjustments */
+@media screen and (max-width: 1024px) {
+
+  /* Controls and Filter */
+  .right-controls {
+    gap: 30px;
+  }
+
+  /* Movie Grid View */
+  .movie-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .poster {
+    height: 230px;
+  }
+
+  /* Movie List View */
+  table {
+    min-width: 700px;
+  }
+
+  th,
+  td {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    width: auto;
+    text-align: center;
+  }
+
+  .td-poster img {
+    width: 70px;
+    height: 100px;
+  }
+
+  .td-title {
+    font-size: 1.2rem;
+    text-align: left;
+    width: 200px;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+
+  /* Directory Path and Title */
+  .page-title {
+    font-size: 36px;
+  }
+
+  /* Controls and Filter */
+  .right-controls {
+    gap: 20px;
+  }
+
+  /* Movie Grid View */
+  .movie-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .poster {
+    height: 220px;
+  }
+
+  /* Movie List View */
+  .movie-list {
+    padding: 20px 25px 60px;
+  }
+
+  table {
+    min-width: 600px;
+  }
+
+  th {
+    font-size: 0.85rem;
+    margin: auto 0;
+  }
+
+  tr th:nth-child(3),
+  tr td:nth-child(3) {
+    display: none;
+  }
+
+  td {
+    text-align: center;
+  }
+
+  .td-poster img {
+    width: 60px;
+    height: 90px;
+  }
+
+  .td-title {
+    font-size: 1.2rem;
+    text-align: left;
+    width: 200px;
+  }
+}
+
 @media (max-width:600px) {
-  body {
-    padding: 10px;
-  }
-
-  .nav-links {
-    gap: 12px;
-    padding: 8px 10px;
-    font-size: 0.95rem;
-  }
-
-  .search-bar {
-    max-width: unset;
-    width: 100%;
-    margin: 10px 0;
-  }
-
   .controls {
     padding: 12px 14px;
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
   }
+}
 
+@media screen and (max-width: 480px) {
+
+  /* Directory Path and Title */
+  .directory-path {
+    padding: 0 12px;
+    margin-bottom: 0;
+  }
+
+  .page-title {
+    font-size: 30px;
+  }
+
+  /* Controls and Filter */
+  .controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .right-controls {
+    margin: auto;
+  }
+
+  /* Movie Grid View */
   .movie-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .poster {
+    height: 200px;
+  }
+
+  /* Movie List View */
+  .movie-list {
+    padding: 10px 15px 60px;
+  }
+
+  table {
+    min-width: 250px;
+  }
+
+  tr th:nth-child(5),
+  tr td:nth-child(5) {
+    display: none;
+  }
+
+  .td-poster img {
+    width: 50px;
+    height: 75px;
   }
 }

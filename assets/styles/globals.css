@@ -423,7 +423,7 @@ p {
 /* Directory Path */
 .directory-path {
   color: #ccc;
-  font-size: 16px;
+  font-size: 1rem;
   font-style: italic;
   margin-bottom: 20px;
   word-spacing: 10px;

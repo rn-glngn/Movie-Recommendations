@@ -34,32 +34,6 @@ body {
   color: var(--color-text-primary);
 }
 
-@media screen and (max-width: 768px) {
-  .about-nav {
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .about-nav a {
-    padding: 9px 30px;
-  }
-
-}
-
-@media screen and (max-width: 480px) {
-  .about-nav {
-    flex-direction: row;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .about-nav a {
-    padding: 8px 15px;
-  }
-
-}
-
 /* Content Section */
 .content-section {
   max-width: 1000px;
@@ -171,6 +145,15 @@ h3 {
 }
 
 @media screen and (max-width: 768px) {
+  .about-nav {
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .about-nav a {
+    padding: 9px 30px;
+  }
 
   .content-section section p,
   h3 {
@@ -203,6 +186,15 @@ h3 {
 }
 
 @media screen and (max-width: 480px) {
+  .about-nav {
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .about-nav a {
+    padding: 8px 15px;
+  }
 
   .content-section section p,
   h3 {

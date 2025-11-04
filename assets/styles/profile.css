@@ -119,62 +119,6 @@
   opacity: 0.8;
 }
 
-/* Responsiveness */
-@media (max-width: 768px) {
-
-  /* General */
-  body {
-    padding: 20px;
-  }
-
-  /* Account Profile Section */
-  .profile-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    width: 80%;
-  }
-
-  .profile-card {
-    width: 100%;
-    max-width: 100%;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 80px 25px 25px;
-    min-height: auto;
-    margin: 70px auto 0px;
-    height: 100%;
-  }
-
-  .profile-img {
-    position: absolute;
-    top: -75px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .profile-info {
-    margin-left: 0;
-    align-items: center;
-    width: 100%;
-    gap: 4px;
-    margin-top: 10px;
-  }
-
-  .profile-stats {
-    width: 100%;
-    justify-content: space-evenly;
-    padding: 20px 15px;
-    min-height: auto;
-    margin: 0;
-  }
-
-  .stat {
-    gap: 2px;
-  }
-}
-
 .sections {
   display: flex;
   justify-content: center;
@@ -233,61 +177,6 @@ body:has(#settings:target) .nav-sections a[href="#settings"] {
   border-radius: 20px;
 }
 
-@media screen and (max-width: 768px) {
-  .sections {
-    display: flex;
-    flex-direction: column;
-    padding: 20px 5px;
-    gap: 10px;
-  }
-
-  .nav-sections {
-    position: static;
-    max-width: 95%;
-    padding-right: 0;
-    border-right: none;
-    border-bottom: 1px solid var(--color-text-primary);
-    margin: auto;
-  }
-
-  .nav-sections nav {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    gap: 10px;
-    padding: 6px 0;
-    justify-content: flex-start;
-    scrollbar-width: none;
-    width: 100%;
-  }
-
-  .nav-sections nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  .nav-sections a {
-    padding: 8px 15px;
-    font-size: 0.9rem;
-  }
-
-  .profile-sections {
-    max-width: 100%;
-    padding: 15px 10px;
-  }
-
-  .profile-sections section:target {
-    scroll-margin-top: 120px;
-  }
-
-}
-
-@media screen and (max-width: 480px) {
-  .nav-sections a {
-    padding: 6px 10px;
-    font-size: 0.85rem;
-  }
-}
-
 /* For Displaying Active Sections  */
 .profile-sections section {
   display: none;
@@ -330,7 +219,9 @@ body:not(:has(:target)) #watchlist {
   padding: 20px;
 }
 
-/* Profile Sections Styling: Watchlist */
+/* ----------------------------------------------
+      Watchlist Section
+------------------------------------------------- */
 .watchlist {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 5fr));
@@ -357,36 +248,6 @@ body:not(:has(:target)) #watchlist {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--color-accent-primary);
-}
-
-@media screen and (max-width: 768px) {
-  .active-section {
-    height: 450px;
-  }
-
-  .sections {
-    margin-bottom: 0;
-  }
-
-  .watchlist {
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 10px;
-  }
-
-  .watchlist h2 {
-    display: none;
-  }
-
-  .watchlist .item {
-    margin-bottom: 20px;
-    font-size: 0.9rem;
-  }
-
-  .watchlist .poster img {
-    width: 100px;
-    height: 160px;
-  }
-
 }
 
 /* ----------------------------------------------
@@ -525,35 +386,6 @@ body:not(:has(:target)) #watchlist {
   background: #7f8c8d;
 }
 
-@media screen and (max-width: 768px) {
-  .active-section {
-    height: 450px;
-    overflow-y: hidden;
-  }
-
-  .table-header,
-  .request-card {
-    grid-template-columns: 0.7fr 2.5fr 1fr;
-    gap: 5px;
-  }
-
-  .table-header span,
-  .request-card .details,
-  .request-card .date {
-    display: none;
-  }
-
-  .request-card .details h4 {
-    font-size: 0.9rem;
-  }
-
-  .request-card .poster img {
-    width: 60px;
-    height: 90px;
-  }
-
-}
-
 /* ----------------------------------------------
       Reviews Section
 ------------------------------------------------- */
@@ -655,31 +487,6 @@ body:not(:has(:target)) #watchlist {
 .reviews-container::-webkit-scrollbar-thumb {
   background: #a00000;
   border-radius: 10px;
-}
-
-/* Responsive (1 column on smaller screens) */
-@media (max-width: 768px) {
-  .reviews {
-    width: 95%;
-  }
-
-  .reviews-container {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .poster {
-    width: 60px;
-    height: 90px;
-  }
-
-  .review-details h3 {
-    font-size: 0.9rem;
-  }
-
-  .review-details p {
-    font-size: 0.75rem;
-  }
 }
 
 /* ----------------------------------------------
@@ -951,7 +758,181 @@ input:checked+.slider:before {
   font-weight: bold;
 }
 
+/* ======= Responsiveness ======= */
+@media (max-width: 768px) {
+
+  /* General */
+  body {
+    padding: 20px;
+  }
+
+  /* Account Profile Section */
+  .profile-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 80%;
+  }
+
+  .profile-card {
+    width: 100%;
+    max-width: 100%;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 80px 25px 25px;
+    min-height: auto;
+    margin: 70px auto 0px;
+    height: 100%;
+  }
+
+  .profile-img {
+    position: absolute;
+    top: -75px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .profile-info {
+    margin-left: 0;
+    align-items: center;
+    width: 100%;
+    gap: 4px;
+    margin-top: 10px;
+  }
+
+  .profile-stats {
+    width: 100%;
+    justify-content: space-evenly;
+    padding: 20px 15px;
+    min-height: auto;
+    margin: 0;
+  }
+
+  .stat {
+    gap: 2px;
+  }
+
+  .sections {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 5px;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+
+  .nav-sections {
+    position: static;
+    max-width: 95%;
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--color-text-primary);
+    margin: auto;
+  }
+
+  .nav-sections nav {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 6px 0;
+    justify-content: flex-start;
+    scrollbar-width: none;
+    width: 100%;
+  }
+
+  .nav-sections nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-sections a {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+
+  .profile-sections {
+    max-width: 100%;
+    padding: 15px 10px;
+  }
+
+  .profile-sections section:target {
+    scroll-margin-top: 120px;
+  }
+
+  .watchlist {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 10px;
+  }
+
+  .watchlist h2 {
+    display: none;
+  }
+
+  .watchlist .item {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+  }
+
+  .watchlist .poster img {
+    width: 100px;
+    height: 160px;
+  }
+
+  .active-section {
+    height: 450px;
+    overflow-y: hidden;
+  }
+
+  .table-header,
+  .request-card {
+    grid-template-columns: 0.7fr 2.5fr 1fr;
+    gap: 5px;
+  }
+
+  .table-header span,
+  .request-card .details,
+  .request-card .date {
+    display: none;
+  }
+
+  .request-card .details h4 {
+    font-size: 0.9rem;
+  }
+
+  .request-card .poster img {
+    width: 60px;
+    height: 90px;
+  }
+
+  .reviews {
+    width: 95%;
+  }
+
+  .reviews-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .poster {
+    width: 60px;
+    height: 90px;
+  }
+
+  .review-details h3 {
+    font-size: 0.9rem;
+  }
+
+  .review-details p {
+    font-size: 0.75rem;
+  }
+}
+
 @media screen and (max-width: 480px) {
+  .nav-sections a {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+
   .personal-info {
     flex-direction: column;
     align-items: center;

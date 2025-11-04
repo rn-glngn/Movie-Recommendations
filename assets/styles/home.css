@@ -1,0 +1,811 @@
+@import url(../styles/globals.css);
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+/* Trending Section */
+.Trending-now-section {
+  position: relative;
+  height: 680px;
+  margin: 20px 30px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  padding: 0;
+  color: #E5F2F2;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  scroll-margin-top: 120px;
+}
+
+.Trending-now-section .bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+  filter: contrast(0.98) saturate(0.95);
+  pointer-events: none;
+}
+
+.Trending-now-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.12) 30%, rgba(0, 0, 0, 0.45) 60%, rgba(0, 0, 0, 0.75) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.Trending-now-section .section-header {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 50px;
+  left: 56px;
+  color: #C1212D;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  font-size: 1.15rem;
+  z-index: 4;
+}
+
+.Trending-now-section .section-header::before {
+  content: "";
+  width: 4px;
+  height: 20px;
+  background: #C1212D;
+  border-radius: 2px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.Trending-now-section .trending-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  max-width: 54%;
+  padding: 70px 40px 56px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.Trending-now-section .Titlemovie1 {
+  font-size: 76px;
+  font-weight: 800;
+  margin: 0 0 12px 0;
+  line-height: 1.02;
+  color: #FFFFFF;
+  text-shadow: 0 6px 22px rgba(0, 0, 0, 0.55);
+}
+
+.Trending-now-section .Rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0 14px 0;
+  font-weight: 700;
+  color: #FFD34D;
+  font-size: 1.1rem;
+}
+
+.Trending-now-section .Rating::before {
+  content: "★★★★★";
+  letter-spacing: 2px;
+  color: #FFD34D;
+  font-size: 1rem;
+  opacity: 0.98;
+}
+
+.Trending-now-section .Description {
+  max-width: 100%;
+  color: rgba(229, 242, 242, 0.95);
+  line-height: 1.48;
+  margin-bottom: 18px;
+  font-size: 1.05rem;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.Trending-now-section .actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.Trending-now-section .View-details,
+.Trending-now-section .Watch-trailer {
+  padding: 20px 50px;
+  border-radius: 20px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+}
+
+.Trending-now-section .View-details {
+  background: rgba(255, 255, 255, 0.95);
+  color: #0D0000;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.Trending-now-section .Watch-trailer {
+  background: linear-gradient(180deg, #C1212D, #950F1A);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(193, 33, 45, 0.25);
+}
+
+.Trending-now-section .poster-strip {
+  position: absolute;
+  right: 36px;
+  bottom: 42px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+  z-index: 4;
+  pointer-events: auto;
+}
+
+.Trending-now-section .poster-strip img {
+  width: 170px;
+  height: 240px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+  border: 4px solid rgba(255, 255, 255, 0.06);
+  transition: transform 220ms ease, box-shadow 220ms ease, filter 220ms ease;
+  cursor: pointer;
+}
+
+.Trending-now-section .poster-strip img:nth-child(1) {
+  transform: translateY(4px);
+}
+
+.Trending-now-section .poster-strip img:nth-child(2) {
+  transform: translateY(2px);
+}
+
+.Trending-now-section .poster-strip img:nth-child(3) {
+  transform: translateY(2px);
+}
+
+.Trending-now-section .poster-strip img:hover {
+  transform: translateY(-12px) scale(1.08);
+  box-shadow: 0 20px 40px rgba(193, 33, 45, 0.5);
+  filter: brightness(1.1);
+}
+
+/* Movie Roulette */
+.movie-roulette {
+  margin: 50px 10px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.movie-roulette h2 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #E5F2F2;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.movie-roulette .find-something {
+  color: #D8C0C0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.movie-roulette .roulette-inner {
+  background: linear-gradient(180deg, #341C1C, #0D0000);
+  padding: 50px 60px;
+  border-radius: 16px;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  color: #E5F2F2;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+  min-height: 400px;
+  border: 1px solid #950F1A;
+}
+
+.roulette-controls {
+  width: 42%;
+  min-width: 320px;
+}
+
+.roulette-controls label {
+  display: block;
+  margin: 16px 0;
+  font-size: 1rem;
+  color: #E5F2F2;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.roulette-controls select {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: none;
+  background: #341C1C;
+  color: #E5F2F2;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 8px;
+  border: 1px solid #950F1A;
+}
+
+.checkboxes {
+  margin-top: 10px;
+}
+
+.checkboxes label {
+  display: inline-block;
+  margin-right: 20px;
+  font-weight: 600;
+  color: #E5F2F2;
+  font-size: 1rem;
+}
+
+.checkboxes input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  vertical-align: middle;
+  accent-color: #C1212D;
+}
+
+.spin-btn {
+  margin-top: 24px;
+  width: 100%;
+  display: block;
+  background: linear-gradient(180deg, #C1212D, #950F1A);
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 32px;
+  border: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(193, 33, 45, 0.3);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.spin-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(193, 33, 45, 0.4);
+}
+
+.spin-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.roulette-result {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  width: 58%;
+  flex: 1;
+}
+
+#roulettePoster {
+  width: 220px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+  border: 5px solid rgba(255, 255, 255, 0.08);
+  transition: opacity 220ms ease, transform 220ms ease;
+  flex-shrink: 0;
+}
+
+#roulettePoster.fade {
+  opacity: 0.2;
+  transform: scale(0.96);
+}
+
+.result-meta {
+  color: #E5F2F2;
+  flex: 1;
+  padding-top: 8px;
+}
+
+.result-meta h3 {
+  margin: 0 0 10px 0;
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #FFFFFF;
+}
+
+.result-meta #resultInfo {
+  color: #D8C0C0;
+  font-size: 1.05rem;
+  margin-bottom: 16px;
+}
+
+.result-meta .result-desc {
+  color: #E5F2F2;
+  max-width: 100%;
+  margin-top: 12px;
+  line-height: 1.55;
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+}
+
+.result-meta .View-details {
+  padding: 14px 28px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #0D0000;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transition: transform 160ms ease;
+}
+
+.result-meta .View-details:hover {
+  transform: translateY(-2px);
+}
+
+/* Recommendations Grid */
+.recommendations-section,
+.newly-added-section,
+.browse-by-genre-section {
+  margin: 60px 30px;
+  scroll-margin-top: 100px;
+}
+
+.recommendations-section h2,
+.newly-added-section h2,
+.browse-by-genre-section h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #E5F2F2;
+  margin: 0 0 24px 0;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.8px;
+  position: relative;
+}
+
+.recommendations-section h2::before,
+.newly-added-section h2::before,
+.browse-by-genre-section h2::before {
+  content: "";
+  width: 4px;
+  height: 20px;
+  background: #C1212D;
+  border-radius: 2px;
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* Scrollable Sections */
+.slider-container {
+  position: relative;
+  overflow: hidden;
+  padding: 0 15px;
+}
+
+.recommendations-grid {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+  scroll-padding: 40px;
+}
+
+.recommendations-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.recommendations-grid {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.recommendations-grid img {
+  flex: 0 0 auto;
+  width: 180px;
+  height: 270px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 240ms ease, box-shadow 240ms ease;
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.06);
+}
+
+.recommendations-grid img:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 14px 32px rgba(193, 33, 45, 0.4);
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  transition: background 0.3s ease, opacity 0.3s ease;
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-btn.left {
+  left: 0;
+}
+
+.scroll-btn.right {
+  right: 0;
+}
+
+@media (hover: hover) {
+  .slider-container:hover .scroll-btn {
+    opacity: .8;
+    pointer-events: all;
+  }
+
+
+  .scroll-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .scroll-btn.left {
+    left: 0;
+  }
+
+  .scroll-btn.right {
+    right: 0;
+  }
+}
+
+@media (max-width: 1200px) {
+
+  /* Trending Now */
+  .Trending-now-section .poster-strip {
+    right: 24px;
+    bottom: 28px;
+    gap: 10px;
+  }
+
+  .Trending-now-section .poster-strip img {
+    width: 100px;
+    height: 150px;
+  }
+
+  /* Movie Roulette */
+  .movie-roulette .roulette-inner {
+    padding: 40px 50px;
+    gap: 40px;
+  }
+
+  #roulettePoster {
+    width: 180px;
+    height: 270px;
+  }
+
+  .result-meta h3 {
+    font-size: 2.2rem;
+  }
+
+  /* Recommendation Grid */
+  .recommendations-grid {
+    gap: 16px;
+  }
+
+  .recommendations-grid img {
+    width: 140px;
+    height: 210px;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  /* Trending Now Section */
+  .Trending-now-section {
+    height: 550px;
+  }
+
+  .Trending-now-section .trending-content {
+    top: 170px;
+    max-width: 65%;
+    padding: 60px 30px 40px 40px;
+  }
+
+  .Trending-now-section .Titlemovie1 {
+    font-size: 60px;
+  }
+
+  .Trending-now-section .Description {
+    font-size: 1rem;
+    width: 90%;
+  }
+
+  .View-details,
+  .Watch-trailer {
+    padding: 18px 20px;
+    font-size: 1rem;
+  }
+
+  /* Movie Roulette */
+  .movie-roulette .roulette-inner {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 36px;
+  }
+
+  .roulette-controls,
+  .roulette-result {
+    width: 100%;
+  }
+
+  #roulettePoster {
+    width: 160px;
+    height: 240px;
+  }
+
+  .result-meta h3 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* Trending Now Section */
+  .Trending-now-section {
+    height: 420px;
+    border-radius: 15px;
+  }
+
+  .Trending-now-section .section-header {
+    top: 30px;
+    left: 30px;
+    font-size: 1rem;
+  }
+
+  .Trending-now-section .trending-content {
+    top: 150px;
+    max-width: 70%;
+    padding: 50px 30px 40px 40px;
+  }
+
+  .Trending-now-section .Titlemovie1 {
+    font-size: 36px;
+  }
+
+  .Trending-now-section .Description {
+    font-size: 0.75rem;
+    width: 100%;
+  }
+
+  .Trending-now-section .poster-strip {
+    display: none;
+  }
+
+  .actions .View-details,
+  .actions .Watch-trailer {
+    padding: 16px 20px;
+  }
+
+  /* Movie Roulette */
+  .movie-roulette .roulette-inner {
+    margin: 0 40px;
+    padding: 40px 50px;
+    gap: 40px;
+  }
+
+  .roulette-inner label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+  }
+
+  #genreSelect {
+    margin-top: 0;
+  }
+
+  .checkboxes label {
+    margin: 0 0 5px;
+    gap: 0;
+  }
+
+  #roulettePoster {
+    width: 180px;
+    height: 270px;
+  }
+
+  .result-meta .View-details {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+
+  /* Recommendation Grid */
+  .recommendations-grid {
+    gap: 12px;
+  }
+
+  .recommendations-grid img {
+    width: 120px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  /* Movie Roulette */
+  .movie-roulette {
+    margin: 30px 15px;
+  }
+
+  .movie-roulette .roulette-inner {
+    padding: 24px;
+  }
+
+  .roulette-result {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #roulettePoster {
+    width: 140px;
+    height: 210px;
+  }
+
+  .result-meta h3 {
+    font-size: 1.6rem;
+  }
+
+  .recommendations-section,
+  .newly-added-section,
+  .browse-by-genre-section {
+    margin: 40px 15px;
+  }
+
+  /* Recommendation Grid */
+  .recommendations-grid {
+    gap: 10px;
+  }
+
+  .recommendations-grid img {
+    width: 100px;
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  /* Trending Now Section */
+  .Trending-now-section {
+    height: 360px;
+  }
+
+  .Trending-now-section .trending-content {
+    top: 130px;
+    max-width: 80%;
+    padding: 0px 20px 30px 30px;
+  }
+
+  .Trending-now-section .Titlemovie1 {
+    font-size: 28px;
+    margin: 0;
+  }
+
+  .Trending-now-section .Description {
+    font-size: 0.7rem;
+    width: 100%;
+    height: 70px;
+    text-overflow: ellipsis;
+    overflow: scroll;
+    margin: 0 0 10px;
+  }
+
+  .Trending-now-section .Description::-webkit-scrollbar {
+    display: none;
+  }
+
+  .Trending-now-section .Rating {
+    margin: 0;
+  }
+
+  .actions .View-details,
+  .actions .Watch-trailer {
+    padding: 8px 8px;
+    font-size: 0.8rem;
+    border-radius: 10px;
+  }
+
+  /* Movie Roulette */
+  .movie-roulette .roulette-inner {
+    flex-direction: column;
+    align-items: center;
+    padding: 36px 30px;
+    margin: 0 20px;
+    gap: 0px;
+  }
+
+  .movie-roulette h2 {
+    font-size: 2.2rem;
+  }
+
+  .roulette-controls {
+    min-width: 250px;
+    width: 100%;
+  }
+
+  .roulette-controls label,
+  .roulette-result {
+    width: 100%;
+  }
+
+  .roulette-controls select {
+    font-size: 0.8rem;
+    width: 100%;
+  }
+
+  .checkboxes label {
+    font-size: 0.7rem;
+    width: auto;
+  }
+
+  .spin-btn {
+    font-size: 1rem;
+    padding: 14px 20px;
+    margin: 30px auto;
+    width: auto;
+  }
+
+  #roulettePoster {
+    width: 160px;
+    height: 240px;
+    margin: 0 auto;
+    scroll-margin-top: 80px;
+  }
+
+  .result-meta h3 {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+
+  .result-meta .View-details {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* Section Titles */
+  .recommendations-section,
+  .newly-added-section,
+  .browse-by-genre-section {
+    margin: 40px 15px;
+    font-size: 0.9rem;
+  }
+
+}

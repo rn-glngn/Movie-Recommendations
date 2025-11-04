@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../assets/styles/globals.css">
+  <link rel="stylesheet" href="../assets/styles/profile.css">
+  <link rel="icon" href="../assets/logo/FilmoPicks Small Logo.svg" type="image/svg+xml">
+  <script src="../assets/scripts/globals.js" defer></script>
+  <title> User Profile — FilmoPicks: Your Movie TV Show Recommendations</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">
+      <a href="../pages/index.html"><img src="..\assets\logo\FilmoPicks Large Logo (Dark).svg" alt="FilmoPicks Logo"
+          class="logo-img"></a>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search Something...">
+      <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+          viewBox="0 0 16 16">
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+        </svg></button>
+    </div>
+    <div class="header-right">
+      <div class="auth-links">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill"
+          viewBox="0 0 16 16">
+          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+        </svg>
+        <a href="#" onclick="alert('Login clicked'); return false;">Login</a>
+        <span class="separator">|</span>
+        <a href="login.html" onclick="alert('Sign Up Clicked'); return false;">Signup</a>
+      </div>
+      <div class="menu-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4
+         a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4
+         a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+        </svg>
+
+        <ul class="nav-dropdown-menu">
+          <li><a href="../pages/profile.html">Profile</a></li>
+          <li><a href="../pages/profile.html#settings">Settings</a></li>
+          <li class="nav-submenu-parent">
+            Request
+            <ul class="nav-submenu">
+              <li><a href="../pages/forms/add-movie.html">Add Movie</a></li>
+              <li><a href="../pages/forms/edit-movie.html">Edit Movie</a></li>
+              <li><a href="../pages/forms/delete-movie.html">Delete Movie</a></li>
+            </ul>
+          </li>
+          <li><a href="../pages/about.html">About</a></li>
+          <li><a href="../pages/index.html">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Title -->
+  <h1 class="profile-title">User Profile</h1>
+
+  <!-- Account Profile Section -->
+  <div class="profile-container">
+    <div class="profile-card">
+      <img class="profile-img"
+        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+        alt="Account profile picture">
+      <div class="profile-info">
+        <h3>Juan Dela Cruz</h3>
+        <h4 class="handle">@juan_dc</h4>
+        <p class="date">Joined since September 2025</p>
+      </div>
+    </div>
+    <div class="profile-stats">
+      <div class="stat">
+        <p class="stat-number">0</p>
+        <p class="stat-label">Watchlist</p>
+      </div>
+      <div class="stat">
+        <p class="stat-number">0</p>
+        <p class="stat-label">Reviews</p>
+      </div>
+      <div class="stat">
+        <p class="stat-number">0</p>
+        <p class="stat-label">Requests</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sections">
+    <div class="nav-sections">
+      <nav>
+        <a href="#watchlist">Watchlist</a>
+        <a href="#req-history">Request History</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#settings">Settings</a>
+      </nav>
+    </div>
+    <main class="profile-sections">
+      <section class="watchlist-section" id="watchlist">
+        <h2>Watchlist</h2>
+        <div class="active-section watchlist">
+          <div class="item">
+            <div class="poster">
+              <img src="https://lipsum.app/175x250/" alt="">
+            </div>
+            <div class="details">
+              <h4>Movie Title</h4>
+            </div>
+          </div>
+          <div class="item">
+            <div class="poster">
+              <img src="https://lipsum.app/175x250/" alt="">
+            </div>
+            <div class="details">
+              <h4>Movie Title</h4>
+            </div>
+          </div>
+          <div class="item">
+            <div class="poster">
+              <img src="https://lipsum.app/175x250/" alt="">
+            </div>
+            <div class="details">
+              <h4>Movie Title</h4>
+            </div>
+          </div>
+          <div class="item">
+            <div class="poster">
+              <img src="https://lipsum.app/175x250/" alt="">
+            </div>
+            <div class="details">
+              <h4>Movie Title</h4>
+            </div>
+          </div>
+          <div class="item">
+            <div class="poster">
+              <img src="https://lipsum.app/175x250/" alt="">
+            </div>
+            <div class="details">
+              <h4>Movie Title</h4>
+            </div>
+          </div>
+          <div class="item">
+            <div class="poster">
+              <img src="https://lipsum.app/175x250/" alt="">
+            </div>
+            <div class="details">
+              <h4>Movie Title</h4>
+            </div>
+          </div>
+          <div class="item">
+            <div class="poster">
+              <img src="https://lipsum.app/175x250/" alt="">
+            </div>
+            <div class="details">
+              <h4>Movie Title</h4>
+            </div>
+          </div>
+          <div class="item">
+            <div class="poster">
+              <img src="https://lipsum.app/175x250/" alt="">
+            </div>
+            <div class="details">
+              <h4>Movie Title</h4>
+            </div>
+          </div>
+          <div class="item">
+            <div class="poster">
+              <img src="https://lipsum.app/175x250/" alt="">
+            </div>
+            <div class="details">
+              <h4>Movie Title</h4>
+            </div>
+          </div>
+          <div class="item">
+            <div class="poster">
+              <img src="https://lipsum.app/175x250/" alt="">
+            </div>
+            <div class="details">
+              <h4>Movie Title</h4>
+            </div>
+          </div>
+          <div class="item">
+            <div class="poster">
+              <img src="https://lipsum.app/175x250/" alt="">
+            </div>
+            <div class="details">
+              <h4>Movie Title</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="req-history-section" id="req-history">
+        <h2>Request History</h2>
+        <div class="active-section">
+          <div class="table-header">
+            <span>Poster</span>
+            <span>Details</span>
+            <span>Type</span>
+            <span>Date</span>
+            <span>Status</span>
+          </div>
+          <div class="table-body">
+            <div class="request-card">
+              <div class="poster">
+                <img src="https://lipsum.app/50x70/" alt="poster">
+              </div>
+              <div class="details">
+                <h4>Movie Title</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+              <div class="type">Add</div>
+              <div class="date">01/01/2025</div>
+              <div class="status approved">Approved</div>
+            </div>
+
+            <div class="request-card">
+              <div class="poster">
+                <img src="https://lipsum.app/50x70/" alt="poster">
+              </div>
+              <div class="details">
+                <h4>Movie Title</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+              <div class="type">Edit</div>
+              <div class="date">01/01/2025</div>
+              <div class="status pending">Pending</div>
+            </div>
+
+            <div class="request-card">
+              <div class="poster">
+                <img src="https://lipsum.app/50x70/" alt="poster">
+              </div>
+              <div class="details">
+                <h4>Movie Title</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+              <div class="type">Delete</div>
+              <div class="date">01/01/2025</div>
+              <div class="status declined">Declined</div>
+            </div>
+
+            <div class="request-card">
+              <div class="poster">
+                <img src="https://lipsum.app/50x70/" alt="poster">
+              </div>
+              <div class="details">
+                <h4>Movie Title</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+              <div class="type">Edit</div>
+              <div class="date">01/01/2025</div>
+              <div class="status draft">Draft</div>
+            </div>
+
+            <div class="request-card">
+              <div class="poster">
+                <img src="https://lipsum.app/50x70/" alt="poster">
+              </div>
+              <div class="details">
+                <h4>Movie Title</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+              <div class="type">Add</div>
+              <div class="date">01/01/2025</div>
+              <div class="status approved">Approved</div>
+            </div>
+
+            <div class="request-card">
+              <div class="poster">
+                <img src="https://lipsum.app/50x70/" alt="poster">
+              </div>
+              <div class="details">
+                <h4>Movie Title</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+              <div class="type">Add</div>
+              <div class="date">01/01/2025</div>
+              <div class="status approved">Approved</div>
+            </div>
+
+            <div class="request-card">
+              <div class="poster">
+                <img src="https://lipsum.app/50x70/" alt="poster">
+              </div>
+              <div class="details">
+                <h4>Movie Title</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+              <div class="type">Add</div>
+              <div class="date">01/01/2025</div>
+              <div class="status approved">Approved</div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      <section class="reviews-section" id="reviews">
+        <h2>Reviews</h2>
+        <div class="active-section reviews-container">
+          <!-- Card 1 -->
+          <div class="review-card">
+            <img src="https://lipsum.app/70x100/" alt="poster" class="poster">
+            <div class="review-details">
+              <div class="review-header">
+                <h3>Joker</h3>
+                <div class="stars">★★★★★</div>
+              </div>
+              <p>Great movie! Highly recommended!!</p>
+            </div>
+            <button class="edit-btn">✏️</button>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="review-card">
+            <img src="https://lipsum.app/70x100/" alt="poster" class="poster">
+            <div class="review-details">
+              <div class="review-header">
+                <h3>Arcane</h3>
+                <div class="stars">★★★★★</div>
+              </div>
+              <p>Huraw</p>
+            </div>
+            <button class="edit-btn">✏️</button>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="review-card">
+            <img src="https://lipsum.app/70x100/" alt="poster" class="poster">
+            <div class="review-details">
+              <div class="review-header">
+                <h3>Dan Da Dan</h3>
+                <div class="stars">★★★★★</div>
+              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <button class="edit-btn">✏️</button>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="review-card">
+            <img src="https://lipsum.app/70x100/" alt="poster" class="poster">
+            <div class="review-details">
+              <div class="review-header">
+                <h3>High Potential</h3>
+                <div class="stars">★★★★☆</div>
+              </div>
+              <p>Lorem ipsum dolor.</p>
+            </div>
+            <button class="edit-btn">✏️</button>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="review-card">
+            <img src="https://lipsum.app/70x100/" alt="poster" class="poster">
+            <div class="review-details">
+              <div class="review-header">
+                <h3>Breaking Bad</h3>
+                <div class="stars">★★★★★</div>
+              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <button class="edit-btn">✏️</button>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="review-card">
+            <img src="https://lipsum.app/70x100/" alt="poster" class="poster">
+            <div class="review-details">
+              <div class="review-header">
+                <h3>The Fragrant Fl...</h3>
+                <div class="stars">★★★★★</div>
+              </div>
+              <p>Gr8t. Amazing 🌸🌸</p>
+            </div>
+            <button class="edit-btn">✏️</button>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="review-card">
+            <img src="https://lipsum.app/70x100/" alt="poster" class="poster">
+            <div class="review-details">
+              <div class="review-header">
+                <h3>Weapons</h3>
+                <div class="stars">★★★★☆</div>
+              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. fdfad fdafda dfdafae fdafdea
+                dfadfa fdfadf dfaewfaf fedfeef feaefa fea...</p>
+            </div>
+            <button class="edit-btn">✏️</button>
+          </div>
+
+          <!-- Card 8 -->
+          <div class="review-card">
+            <img src="https://lipsum.app/70x100/" alt="poster" class="poster">
+            <div class="review-details">
+              <div class="review-header">
+                <h3>Weapons</h3>
+                <div class="stars">★★★★☆</div>
+              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <button class="edit-btn">✏️</button>
+          </div>
+
+          <!-- Card 9 -->
+          <div class="review-card">
+            <img src="https://lipsum.app/70x100/" alt="poster" class="poster">
+            <div class="review-details">
+              <div class="review-header">
+                <h3>Weapons</h3>
+                <div class="stars">★★★★☆</div>
+              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <button class="edit-btn">✏️</button>
+          </div>
+        </div>
+      </section>
+      <section class="settings-section" id="settings">
+        <h2>Settings</h2>
+        <div class="active-section">
+          <h3 class="label-underline">Personal Information</h3>
+          <div class="personal-info">
+            <div class="img-info">
+              <img src="https://lipsum.app/120x120/" alt="profile picture" class="profile-pic">
+              <button class="change-pic-btn">Edit</button>
+            </div>
+            <form class="info-details">
+              <label for="name">Display Name</label>
+              <input type="text" id="name" name="name" value="Juan Dela Cruz">
+
+              <label for="handle">Username</label>
+              <input type="text" id="handle" name="handle" value="@juan_dc">
+
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" value="juan.dc@example.com">
+
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" value="juandc" visible="false">
+            </form>
+          </div>
+
+          <h3 class="label-underline">Preferences</h3>
+          <div class="preferences">
+            <div class="theme-toggle">
+              <label>Theme</label>
+              <div>
+                <span>Light</span>
+                <label class="theme-switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+                <span>Dark</span>
+              </div>
+            </div>
+
+            <div class="notifications">
+              <span>Notifications</span>
+              <div>
+                <label><input type="checkbox" checked> In-App Notification</label>
+                <label><input type="checkbox"> Email Notification</label>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="label-underline">Privacy and Security</h3>
+          <form class="privacy-security">
+            <label>Account Privacy</label>
+            <select>
+              <option>Public</option>
+              <option>Private</option>
+            </select>
+            <label>Logout</label>
+            <button class="btn btn-logout">Logout</button>
+            <label>Delete Account</label>
+            <button class="btn btn-delete">Delete Account</button>
+            <label></label>
+            <p>Deleting your account will remove your profile, watchlist, and all pending requests. This
+              action cannot be undone.</p>
+          </form>
+
+          <div class="btn-group">
+            <button class="btn btn-cancel">CANCEL</button>
+            <button class="btn btn-save" onclick="alert('Changes Saved.')">SAVE CHANGES</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <footer>
+    <p>&copy; 2025 FilmoPicks: Your Movie-TV Shows Recommendation | About | Privacy </p>
+  </footer>
+</body>
+
+</html>

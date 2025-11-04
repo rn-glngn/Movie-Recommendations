@@ -542,12 +542,36 @@
     font-size: var(--text-sm);
   }
 
-  .user-section .admin-text {
-    display: none;
+  .sidebar {
+    padding: 10px 10px 0px;
+    margin-bottom: 0;
+    width: 100%;
   }
 
-  .logo span {
-    font-size: var(--text-sm);
+  .nav-item {
+    font-size: medium;
+    padding: 10px 15px;
+  }
+
+  .dropdown-item {
+    font-size: 12px;
+    padding: 8px 15px;
+  }
+
+  .header {
+    padding: 10px 30px;
+    gap: 10px;
+
+  }
+
+  .main-container {
+    flex-direction: column;
+    height: auto;
+    margin-top: 70px;
+  }
+
+  .user-section .admin-text {
+    display: none;
   }
 
   .tabs {

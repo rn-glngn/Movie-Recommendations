@@ -329,3 +329,20 @@ function renderPendingView(data) {
 
 // ─── Initial Render ──────────────────────
 renderRequests();
+
+// ─── Bulk Actions ────────────────────────
+document.querySelector(".approve-all-btn").addEventListener("click", () => {
+  const pendingRequests = requests.filter((req) => req.status === "pending");
+  pendingRequests.forEach((req) => {
+    req.status = "approved";
+  });
+  renderRequests();
+});
+
+document.querySelector(".reject-all-btn").addEventListener("click", () => {
+  const pendingRequests = requests.filter((req) => req.status === "pending");
+  pendingRequests.forEach((req) => {
+    req.status = "rejected";
+  });
+  renderRequests();
+});

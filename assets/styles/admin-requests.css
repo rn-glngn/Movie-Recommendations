@@ -269,23 +269,72 @@ h1 {
   margin-bottom: 10px;
 }
 
+/* 🔍 Search Requests */
 .search-requests {
   flex: 1;
-  max-width: 400px;
+  max-width: 500px;
+  position: relative;
 }
 
 .search-requests input {
   width: 100%;
-  padding: var(--space-xs) var(--space-sm);
-  background: linear-gradient(to right, #1f0101 20%, #4f0202);
-  border: 1px solid var(--color-bg-secondary);
-  border-radius: 5px;
-  color: var(--color-text-primary);
-  font-size: var(--text-sm);
+  padding: 10px 40px 10px 15px;
+  background: rgba(139, 1, 1, 0.2);
+  border: 1px solid #660000;
+  border-radius: 8px;
+  border-color: #282222;
+  color: #999;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.search-requests input:hover {
+  background: rgba(139, 0, 0, 0.5);
+  border-color: #990000;
+}
+
+.search-requests input:focus {
+  outline: none;
+  background: rgba(139, 1, 1, 0.6);
+  border-color: #cc0000;
+  color: #fff;
+}
+
+.search-requests button {
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  color: #999;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.search-requests button:hover {
+  color: #de3131;
+  transform: translateY(-50%);
 }
 
 .search-requests input::placeholder {
   color: #666;
+}
+
+.search-requests input:hover::placeholder {
+  color: #999;
+}
+
+.search-requests input:focus::placeholder {
+  color: #999;
+}
+
+.search-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
 }
 
 .controls-right {
@@ -299,6 +348,27 @@ h1 {
   align-items: center;
   gap: var(--space-xs);
   color: var(--color-text-primary);
+}
+
+.sort-arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+
+.arrow-up {
+  border-bottom: 5px solid var(--color-accent-primary);
+}
+
+.arrow-down {
+  border-top: 5px solid var(--color-accent-primary);
 }
 
 .sort-icon {
@@ -433,10 +503,9 @@ h1 {
 }
 
 .request-item:hover {
+  border-color: var(--color-accent-primary);
   background-color: var(--color-bg-secondary);
   transform: translateX(5px);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-  /* subtle glow */
 }
 
 .thumbnail {

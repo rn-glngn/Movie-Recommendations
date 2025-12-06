@@ -351,15 +351,15 @@ body:not(:has(:target)) #watchlist {
 
 /* Status Colors */
 .status.approved {
-  background: #1d9a65;
+  background-color: #00cc66;
 }
 
 .status.pending {
-  background: #e4a11b;
+  background-color: #ffaa00;
 }
 
 .status.declined {
-  background: #b02a37;
+  background-color: var(--color-accent-primary);
   color: #fff;
 }
 

@@ -347,7 +347,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--color-accent-primary);
+  color: var(--color-text-primary);
   font-size: var(--text-sm);
 }
 
@@ -425,7 +425,8 @@
 
 .user-card:hover {
   border-color: var(--color-accent-primary);
-  transform: translateY(-2px);
+  background-color: var(--color-bg-secondary);
+  transform: translateX(5px);
 }
 
 .user-card.hidden {

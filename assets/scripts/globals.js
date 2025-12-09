@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const navHasSubmenu = document.querySelector(".nav-has-submenu");
 
   // Enable click-to-open submenu for devices <= 1024px
-  if (window.matchMedia("(max-width: 1024px)").matches) {
+  if (navHasSubmenu && window.matchMedia("(max-width: 1024px)").matches) {
     navHasSubmenu.addEventListener("click", (e) => {
       e.stopPropagation();
       navHasSubmenu.classList.toggle("open");
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const submenuParent = document.querySelector(".nav-submenu-parent");
 
-  if (window.matchMedia("(max-width: 1024px)").matches) {
+  if (submenuParent && window.matchMedia("(max-width: 1024px)").matches) {
     submenuParent.addEventListener("click", (e) => {
       e.stopPropagation(); // prevent click bubbling
       submenuParent.classList.toggle("open");

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../assets/styles/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="icon" href="../assets/logo/FilmoPicks Small Logo.svg" type="image/svg+xml">
+  <script src="../assets/scripts/movie-data.js" defer></script>
   <script src="../assets/scripts/globals.js" defer></script>
   <script src="../assets/scripts/home.js" defer></script>
   <title>FilmoPicks: Your Movie & TV Show Recommendations</title>
@@ -122,16 +123,11 @@
           himself in a strange, emptied-out version of Tokyo in which he and his friends must compete in
           dangerous games in order to survive.</div>
         <div class="actions">
-          <button class="View-details">View Details</button>
+          <button class="View-details" id="trendingViewDetails">View Details</button>
           <button class="Watch-trailer">Watch Trailer</button>
         </div>
       </div>
-      <div class="poster-strip slider-container recommendations-grid" aria-hidden="false">
-        <img class="poster-btn" data-movie="1" src="../assets/images/the-fragrant-flower-blooms-with-dignity.jpg"
-          alt="The Fragrant Flower">
-        <img class="poster-btn" data-movie="2" src="../assets/images/wednesdayshow.jpg" alt="Wednesday">
-        <img class="poster-btn" data-movie="3" src="../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
-      </div>
+      <div class="poster-strip slider-container" id="posterStrip" aria-hidden="false"></div>
     </div>
     <div class="movie-roulette" id="movies">
       <h2>Movie Roulette</h2>
@@ -169,7 +165,7 @@
             <p id="resultDesc" class="result-desc">In the cities of Piltover and Zaun, tensions rise as
               inventors, hooligans, politicians, and crime lords grow increasingly dissatisfied with the
               constraints of a devastated ...</p>
-            <button class="View-details small">View Details</button>
+            <button class="View-details" id="rouletteViewDetails">View Details</button>
           </div>
         </div>
       </div>
@@ -178,20 +174,7 @@
       <h2>RECOMMENDED FOR YOU</h2>
       <div class="slider-container">
         <button class="scroll-btn left">❮</button>
-        <div class="recommendations-grid">
-          <img src="../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
-          <img src="../assets/images/wednesdayshow.jpg" alt="Wednesday">
-          <img src="../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
-          <img src="../assets/images/dandadan-2024.avif" alt="Dandadan">
-          <img src="../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
-          <img src="../assets/images/scott.jpg" alt="Scott">
-          <img src="../assets/images/joker.jpg" alt="Joker">
-          <img src="../assets/images/interstellar.jpg" alt="Interstellar">
-          <img src="../assets/images/dr.stone.jpg" alt="Dr Stone">
-          <img src="../assets/images/moana.jpg" alt="Moana">
-          <img src="../assets/images/kpopdemon.jpg" alt="Kpop">
-          <img src="../assets/images/thehows.jpg" alt="The Hows">
-        </div>
+        <div class="recommendations-grid" id="recommendedGrid"></div>
         <button class="scroll-btn right">❯</button>
       </div>
     </div>
@@ -199,20 +182,7 @@
       <h2>NEWLY ADDED</h2>
       <div class="slider-container">
         <button class="scroll-btn left">❮</button>
-        <div class="recommendations-grid">
-          <img src="../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
-          <img src="../assets/images/wednesdayshow.jpg" alt="Wednesday">
-          <img src="../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
-          <img src="../assets/images/dandadan-2024.avif" alt="Dandadan">
-          <img src="../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
-          <img src="../assets/images/scott.jpg" alt="Scott">
-          <img src="../assets/images/joker.jpg" alt="Joker">
-          <img src="../assets/images/interstellar.jpg" alt="Interstellar">
-          <img src="../assets/images/dr.stone.jpg" alt="Dr Stone">
-          <img src="../assets/images/moana.jpg" alt="Moana">
-          <img src="../assets/images/kpopdemon.jpg" alt="Kpop">
-          <img src="../assets/images/thehows.jpg" alt="The Hows">
-        </div>
+        <div class="recommendations-grid" id="newlyAddedGrid"></div>
         <button class="scroll-btn right">❯</button>
       </div>
     </div>
@@ -220,20 +190,7 @@
       <h2>BROWSE BY GENRE</h2>
       <div class="slider-container">
         <button class="scroll-btn left">❮</button>
-        <div class="recommendations-grid">
-          <img src="../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
-          <img src="../assets/images/wednesdayshow.jpg" alt="Wednesday">
-          <img src="../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
-          <img src="../assets/images/dandadan-2024.avif" alt="Dandadan">
-          <img src="../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
-          <img src="../assets/images/scott.jpg" alt="Scott">
-          <img src="../assets/images/joker.jpg" alt="Joker">
-          <img src="../assets/images/interstellar.jpg" alt="Interstellar">
-          <img src="../assets/images/dr.stone.jpg" alt="Dr Stone">
-          <img src="../assets/images/moana.jpg" alt="Moana">
-          <img src="../assets/images/kpopdemon.jpg" alt="Kpop">
-          <img src="../assets/images/thehows.jpg" alt="The Hows">
-        </div>
+        <div class="recommendations-grid" id="genreGrid"></div>
         <button class="scroll-btn right">❯</button>
       </div>
     </div>

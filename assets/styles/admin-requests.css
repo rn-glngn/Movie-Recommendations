@@ -827,6 +827,7 @@ h1 {
 
   .request-container {
     padding: 0px;
+    height: 550px;
   }
 
   .main-container {
@@ -839,6 +840,7 @@ h1 {
 
   .unified-section {
     padding: 0px;
+    height: auto;
   }
 
   .tabs {

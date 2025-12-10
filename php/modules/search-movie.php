@@ -2,6 +2,7 @@
 include "../config/db.php";
 
 $q = $_GET['q'] ?? "";
+$q = $conn->real_escape_string($q);
 
 if ($q === "") {
   echo json_encode([]);

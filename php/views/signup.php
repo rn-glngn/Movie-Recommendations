@@ -1,6 +1,4 @@
-<?php
-header('Content-Type: application/json');
-require_once '../../config/db.php';
+<?php include '../config/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get and sanitize form data
@@ -9,86 +7,83 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim(htmlspecialchars($_POST['email']));
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm-password'];
-    
+
     // Validation
-    if(empty($fullname) || empty($username) || empty($email) || empty($password)) {
+    if (empty($fullname) || empty($username) || empty($email) || empty($password)) {
         echo json_encode([
-            'success' => false, 
+            'success' => false,
             'message' => 'All fields are required'
         ]);
         exit();
     }
-    
+
     // Validate email
-    if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo json_encode([
-            'success' => false, 
+            'success' => false,
             'message' => 'Invalid email address'
         ]);
         exit();
     }
-    
-    if(strlen($password) < 8) {
+
+    if (strlen($password) < 8) {
         echo json_encode([
-            'success' => false, 
+            'success' => false,
             'message' => 'Password must be at least 8 characters'
         ]);
         exit();
     }
-    
-    if($password !== $confirmPassword) {
+
+    if ($password !== $confirmPassword) {
         echo json_encode([
-            'success' => false, 
+            'success' => false,
             'message' => 'Passwords do not match'
         ]);
         exit();
     }
-    
+
     try {
-        $database = new Database();
-        $conn = $database->getConnection();
-        
         // Check if email or username exists
         $stmt = $conn->prepare("SELECT user_id FROM users WHERE email = :email OR username = :username");
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':username', $username);
+        $stmt->bind_param(':email', $email);
+        $stmt->bind_param(':username', $username);
         $stmt->execute();
-        
-        if($stmt->rowCount() > 0) {
+
+        if ($stmt->num_rows > 0) {
             echo json_encode([
-                'success' => false, 
+                'success' => false,
                 'message' => 'Email or username already exists'
             ]);
             exit();
         }
-        
+
         // Hash password
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        
+
         // Insert user
         $stmt = $conn->prepare("
             INSERT INTO users (fullname, username, email, password, role) 
             VALUES (:fullname, :username, :email, :password, 'user')
         ");
-        $stmt->bindParam(':fullname', $fullname);
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $hashedPassword);
-        
-        if($stmt->execute()) {
+        $stmt->bind_param(':fullname', $fullname);
+        $stmt->bind_param(':username', $username);
+        $stmt->bind_param(':email', $email);
+        $stmt->bind_param(':password', $hashedPassword);
+
+        if ($stmt->execute()) {
             echo json_encode([
-                'success' => true, 
+                'success' => true,
                 'message' => 'Account created successfully!'
             ]);
         } else {
             echo json_encode([
-                'success' => false, 
+                'success' => false,
                 'message' => 'Registration failed. Please try again.'
             ]);
         }
-    } catch(Exception $e) {
+    } catch (Exception $e) {
         echo json_encode([
-            'success' => false, 
+            'success' => false,
             'message' => 'Error: ' . $e->getMessage()
         ]);
     }
@@ -97,20 +92,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../assets/logo/FilmoPicks Large Logo (Dark).svg" type="image/svg+xml">
-    <link rel="stylesheet" href="../assets/styles/globals.css">
-    <link rel="stylesheet" href="../assets/styles/signup.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="../assets/scripts/signup.js" defer></script>
+    <link rel="icon" href="../../assets/logo/FilmoPicks Large Logo (Dark).svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../assets/styles/globals.css">
+    <link rel="stylesheet" href="../../assets/styles/signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <script src="../../assets/scripts/signup.js" defer></script>
     <title>Sign Up - FilmoPicks</title>
 </head>
+
 <body>
     <div class="signup-container">
         <div class="logo-container">
-            <img src="../assets/logo/FilmoPicks Large Logo (Dark).svg" alt="FilmoPicks Logo">
+            <img src="../../assets/logo/FilmoPicks Large Logo (Dark).svg" alt="FilmoPicks Logo">
         </div>
 
         <h1 class="signup-title">Create Account</h1>
@@ -119,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Success/Error Message -->
         <div id="message" style="display:none; padding:10px; margin:10px 0; border-radius:5px;"></div>
 
-        <form action="../api/auth/signup.php" method="POST" id="signupForm">
+        <form action="signup.php" method="POST" id="signupForm">
             <div class="form-group">
                 <label for="fullname" class="form-label">Full Name</label>
                 <input type="text" id="fullname" name="fullname" class="form-input" placeholder="Enter your full name"
@@ -165,12 +162,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         <div class="login-link">
-            Already have an account? <a href="login.html">Log In</a>
+            Already have an account? <a href="login.php">Log In</a>
         </div>
 
         <div class="back-home">
-            <a href="index.html">← Back to Home</a>
+            <a href="index.php">← Back to Home</a>
         </div>
     </div>
 </body>
+
 </html>

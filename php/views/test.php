@@ -14,10 +14,16 @@
   <script src="../../assets/scripts/home.js" defer></script>
   <title>FilmoPicks: Your Movie & TV Show Recommendations</title>
 </head>
+
 <body>
-  <?php include "../includes/header.php"; ?>
+  <?php include "../includes/header."; ?>
   test
 
+  <?php
+  $password = 'adminpassword'; // Your desired password
+  echo password_hash($password, PASSWORD_DEFAULT);
+  ?>
   <?php include "../includes/footer.php"; ?>
 </body>
+
 </html>

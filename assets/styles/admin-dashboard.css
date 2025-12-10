@@ -208,7 +208,7 @@
 /* Main Content */
 .main-content {
     flex: 1;
-    overflow-y: auto;
+    overflow-y: hidden;
     max-height: 650px;
 }
 
@@ -275,7 +275,7 @@
 /* Stats Grid - Top Row (smaller cards) */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     max-width: 1550px;
     width: 100%;
@@ -413,11 +413,13 @@
 /* Bottom Section Grid - Side by Side Layout */
 .bottom-section-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.9fr;
+    justify-content: center;
     gap: 20px;
     margin-top: 30px;
     max-width: 1550px;
     width: 100%;
+
 }
 
 /* Recent Movies Added Section */

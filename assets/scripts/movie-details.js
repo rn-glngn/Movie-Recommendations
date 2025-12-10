@@ -1,4 +1,11 @@
 // --- FUNCTION TO LOAD MOVIE DATA DYNAMICALLY ---
+<<<<<<< Updated upstream
+=======
+
+console.log("alert alert")
+
+
+>>>>>>> Stashed changes
 function loadMovieData(movie) {
   // Update title and breadcrumb
   document.querySelector(".movie-title").textContent = movie.title + " 🔖";

@@ -38,7 +38,7 @@
               </ul>
             </li>
             <li><a href="about.html">About</a></li>
-            <li><a href="api/auth/logout.php">Logout</a></li>
+            <li><a href="logout.php">Logout</a></li>
           `;
           
           if(data.role === 'admin') {
@@ -77,7 +77,7 @@
     // Load genres from database
     async function loadGenres() {
       try {
-        const response = await fetch('../api/movies/get-genres.php');
+        const response = await fetch('get-genres.php');
         const data = await response.json();
         
         if(data.success && data.genres) {
@@ -97,7 +97,7 @@
 
     async function loadServices() {
     try {
-      const response = await fetch('api/services/get-services.php');
+      //const response = await fetch('api/services/get-services.php');
       const data = await response.json();
 
       const serviceList = document.getElementById('serviceList');
@@ -120,7 +120,7 @@
 
    async function loadMovies(sortBy = 'latest') {
   try {
-    let url = `../api/movies/get-movies.php?sort=${sortBy}`;
+    let url = `get-movies.php?sort=${sortBy}`;
     if (typeFilter !== 'all') url += `&type=${typeFilter}`;
     if (searchQuery) url += `&search=${encodeURIComponent(searchQuery)}`;
     if (genreFilter) url += `&genre=${genreFilter}`;

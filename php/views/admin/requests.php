@@ -1,60 +1,26 @@
+<?php include "../../config/db.php"; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../assets/styles/globals.css">
-  <link rel="stylesheet" href="../../assets/styles/admin-requests.css">
-  <link rel="icon" href="../../assets/logo/FilmoPicks Small Logo.svg" type="image/svg+xml">
-  <script src="../../assets/scripts/globals.js" defer></script>
-  <script src="../../assets/scripts/requests.js" defer></script>
+  <link rel="stylesheet" href="../../../assets/styles/globals.css">
+  <link rel="stylesheet" href="../../../assets/styles/admin-requests.css">
+  <link rel="icon" href="../../../assets/logo/FilmoPicks Small Logo.svg" type="image/svg+xml">
+  <script src="../../../assets/scripts/globals.js" defer></script>
+  <script src="../../../assets/scripts/requests.js" defer></script>
   <title>FilmoPicks: Admin — Request List</title>
 </head>
 
 <body>
   <!-- Navigation bar -->
-  <div class="header">
-    <div class="logo">
-      <img src="../../assets/logo/FilmoPicks Large Logo (Dark).svg" alt="FilmoPicks Logo" class="logo-img">
-    </div>
-    <div class="user-section">
-      <div class="notification">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill"
-          viewBox="0 0 16 16">
-          <path
-            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
-        </svg>
-      </div>
-      <span class="admin-text">Admin</span>
-      <div class="avatar menu-icon">
-        <ul class="nav-dropdown-menu">
-          <li><a href="../index.html">Logout</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <?php include "../../includes/header-admin.php"; ?>
 
   <div class="main-container">
     <!-- Sidebar -->
-    <div class="sidebar">
-      <nav class="nav-menu">
-        <a href="../admin/dashboard.html" class="nav-item">Dashboard</a>
-
-        <!-- Lists Dropdown -->
-        <div class="nav-dropdown">
-          <button class="nav-item dropdown-toggle">
-            Lists
-            <span class="dropdown-arrow">▼</span>
-          </button>
-          <div class="dropdown-menu" id="listsDropdown">
-            <a href="../admin/movies.html" class="dropdown-item">Movies</a>
-            <a href="../admin/requests.html" class="dropdown-item active">Requests</a>
-            <a href="../admin/users.html" class="dropdown-item">Users</a>
-          </div>
-        </div>
-      </nav>
-    </div>
+    <?php include "../../includes/sidebar-admin.php"; ?>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -76,17 +42,17 @@
               <div class="search-requests">
                 <input type="text" placeholder="Search requests..." id="searchInput">
                 <span class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                  fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                  <path
-                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                </svg></span>
+                    fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path
+                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                  </svg></span>
               </div>
               <div class="controls-right">
                 <div class="sort-section">
                   <div class="sort-arrows">
-                  <div class="arrow arrow-up"></div>
-                  <div class="arrow arrow-down"></div>
-                </div>
+                    <div class="arrow arrow-up"></div>
+                    <div class="arrow arrow-down"></div>
+                  </div>
                   <span>Sort by:</span>
                   <div class="sort-dropdown">
                     <button class="sort-button" id="sortButton">Earliest</button>

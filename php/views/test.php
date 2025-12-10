@@ -2,7 +2,8 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../assets/styles/globals.css">
@@ -13,9 +14,10 @@
   <script src="../../assets/scripts/home.js" defer></script>
   <title>FilmoPicks: Your Movie & TV Show Recommendations</title>
 </head>
-  <body>
-    <?php include "../includes/header.php"; ?>
-    test
-  
+<body>
+  <?php include "../includes/header.php"; ?>
+  test
+
+  <?php include "../includes/footer.php"; ?>
 </body>
 </html>

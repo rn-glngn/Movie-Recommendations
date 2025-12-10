@@ -442,12 +442,49 @@ footer {
   width: 97vw;
   position: relative;
   text-align: center;
-  padding: 20px 10px 0;
+  padding: 20px 50px 0;
   color: #E5F2F2;
   font-size: 0.9rem;
   font-style: italic;
   margin-top: auto;
   border-top: 2px solid #890000;
+
+  display: grid;
+  grid-template-columns: .75fr 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.footer-left {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.footer-logo {
+  width: 400px;
+  height: auto;
+}
+
+.footer-right {
+  text-align: right;
+  padding-right: 50px;
+  gap: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.footer-right a {
+  color: #E5F2F2;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-left: 15px;
+  transition: color 0.3s ease;
+}
+
+.footer-right a:hover {
+  color: #ff4444;
+  font-weight: 600;
 }
 
 @media screen and (max-width: 1024px) {

@@ -1,121 +1,31 @@
+<?php include "../config/db.php"; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/styles/globals.css">
-  <link rel="stylesheet" href="../assets/styles/home.css">
+  <link rel="stylesheet" href="../../assets/styles/globals.css">
+  <link rel="stylesheet" href="../../assets/styles/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="icon" href="../assets/logo/FilmoPicks Small Logo.svg" type="image/svg+xml">
-  <script src="../assets/scripts/globals.js" defer></script>
-  <script src="../assets/scripts/home.js" defer></script>
+  <link rel="icon" href="../../assets/logo/FilmoPicks Small Logo.svg" type="image/svg+xml">
+  <script src="../../assets/scripts/globals.js" defer></script>
+  <script src="../../assets/scripts/home.js" defer></script>
   <title>FilmoPicks: Your Movie & TV Show Recommendations</title>
 </head>
 
 <body>
   <header>
     <nav class="navbar">
-      <div class="header">
-        <div class="logo">
-          <a href="../pages/index.html"><img src="..\assets\logo\FilmoPicks Large Logo (Dark).svg" alt="FilmoPicks Logo"
-              class="logo-img"></a>
-        </div>
-        <div class="search-bar">
-          <input type="text" placeholder="Search Something...">
-          <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-              class="bi bi-search" viewBox="0 0 16 16">
-              <path
-                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-            </svg></button>
-        </div>
-        <div class="header-right">
-          <div class="auth-links">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill"
-              viewBox="0 0 16 16">
-              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-            </svg>
-            <a href="#" onclick="alert('Login clicked'); return false;">Login</a>
-            <span class="separator">|</span>
-            <a href="../pages/login.html">Login</a>
-            <a href="../pages/signup.html">Signup</a>
-          </div>
-          <div class="menu-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list"
-              viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4
-         a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4
-         a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
-            </svg>
-
-            <ul class="nav-dropdown-menu">
-              <li><a href="../pages/profile.html">Profile</a></li>
-              <li><a href="../pages/profile.html#settings">Settings</a></li>
-              <li class="nav-submenu-parent">
-                Request
-                <ul class="nav-submenu">
-                  <li><a href="../pages/forms/add-movie.html">Add Movie</a></li>
-                  <li><a href="../pages/forms/edit-movie.html">Edit Movie</a></li>
-                  <li><a href="../pages/forms/delete-movie.html">Delete Movie</a></li>
-                </ul>
-              </li>
-              <li><a href="../pages/about.html">About</a></li>
-              <li><a href="../pages/index.html" onclick="alert('LOGOUT. Redirecting to Homepage')">Logout</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <ul class="nav-links">
-        <li><a href="../pages/index.html" class="active">Home</a></li>
-        <li><a href="../pages/movie-list.html">TV shows</a></li>
-        <li><a href="../pages/movie-list.html">Movies</a></li>
-        <li><a href="../pages/index.html#newly-added">Newly Added</a></li>
-        <li><a href="../pages/index.html#trending">Trending</a></li>
-        <li class="dropdown">
-          <a href="../pages/index.html#genre">Genre</a>
-          <div class="dropdown-content genre-dropdown">
-            <strong>TOP GENRES &amp; TAGS</strong>
-            <ul>
-              <li>Action &amp; Adventure</li>
-              <li>Animation</li>
-              <li>Comedy</li>
-              <li>Crime</li>
-              <li>Documentary</li>
-              <li>Drama</li>
-              <li>Family</li>
-              <li>Fantasy</li>
-              <li>Horror</li>
-              <li>LGBTQ</li>
-              <li>Mystery</li>
-              <li>Romance</li>
-              <li>Science Fiction</li>
-              <li>Thriller</li>
-            </ul>
-          </div>
-        </li>
-        <li class="dropdown">
-          <a href="#">Services</a>
-          <div class="dropdown-content">
-            <strong>SERVICES</strong>
-            <ul>
-              <li>Amazon Prime Video</li>
-              <li>Disney+</li>
-              <li>HBO Max</li>
-              <li>Hulu</li>
-              <li>iQiyi</li>
-              <li>Netflix</li>
-              <li>Viki</li>
-              <li>YouTube Movies</li>
-            </ul>
-          </div>
-        </li>
-      </ul>
+      <?php include "../includes/header.php"; ?>
+      <?php include "../includes/navbar.php"; ?>
     </nav>
   </header>
   <div class="main-container">
     <div class="Trending-now-section" id="trending">
       <div class="section-header">TRENDING NOW</div>
-      <img class="bg-img" src="../assets/images/Alice-In-Borderland.jpg" alt="Alice In Borderland">
+      <img class="bg-img" src="../../assets/images/Alice-In-Borderland.jpg" alt="Alice In Borderland">
       <div class="trending-content">
         <div class="Titlemovie1">Alice In Borderland</div>
         <div class="Rating">8.6/10</div>
@@ -128,10 +38,10 @@
         </div>
       </div>
       <div class="poster-strip slider-container recommendations-grid" aria-hidden="false">
-        <img class="poster-btn" data-movie="1" src="../assets/images/the-fragrant-flower-blooms-with-dignity.jpg"
+        <img class="poster-btn" data-movie="1" src="../../assets/images/the-fragrant-flower-blooms-with-dignity.jpg"
           alt="The Fragrant Flower">
-        <img class="poster-btn" data-movie="2" src="../assets/images/wednesdayshow.jpg" alt="Wednesday">
-        <img class="poster-btn" data-movie="3" src="../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
+        <img class="poster-btn" data-movie="2" src="../../assets/images/wednesdayshow.jpg" alt="Wednesday">
+        <img class="poster-btn" data-movie="3" src="../../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
       </div>
     </div>
     <div class="movie-roulette" id="movies">
@@ -163,7 +73,7 @@
           <button id="spinBtn" class="spin-btn">Spin now</button>
         </div>
         <div class="roulette-result">
-          <img id="roulettePoster" src="../assets/images/arcane.jpg" alt="Poster">
+          <img id="roulettePoster" src="../../assets/images/arcane.jpg" alt="Poster">
           <div class="result-meta">
             <h3 id="resultTitle">Arcane</h3>
             <p id="resultInfo">2021 &nbsp; Rated SPG &nbsp; 2 Seasons</p>
@@ -180,18 +90,18 @@
       <div class="slider-container">
         <button class="scroll-btn left">❮</button>
         <div class="recommendations-grid">
-          <img src="../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
-          <img src="../assets/images/wednesdayshow.jpg" alt="Wednesday">
-          <img src="../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
-          <img src="../assets/images/dandadan-2024.avif" alt="Dandadan">
-          <img src="../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
-          <img src="../assets/images/scott.jpg" alt="Scott">
-          <img src="../assets/images/joker.jpg" alt="Joker">
-          <img src="../assets/images/interstellar.jpg" alt="Interstellar">
-          <img src="../assets/images/dr.stone.jpg" alt="Dr Stone">
-          <img src="../assets/images/moana.jpg" alt="Moana">
-          <img src="../assets/images/kpopdemon.jpg" alt="Kpop">
-          <img src="../assets/images/thehows.jpg" alt="The Hows">
+          <img src="../../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
+          <img src="../../assets/images/wednesdayshow.jpg" alt="Wednesday">
+          <img src="../../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
+          <img src="../../assets/images/dandadan-2024.avif" alt="Dandadan">
+          <img src="../../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
+          <img src="../../assets/images/scott.jpg" alt="Scott">
+          <img src="../../assets/images/joker.jpg" alt="Joker">
+          <img src="../../assets/images/interstellar.jpg" alt="Interstellar">
+          <img src="../../assets/images/dr.stone.jpg" alt="Dr Stone">
+          <img src="../../assets/images/moana.jpg" alt="Moana">
+          <img src="../../assets/images/kpopdemon.jpg" alt="Kpop">
+          <img src="../../assets/images/thehows.jpg" alt="The Hows">
         </div>
         <button class="scroll-btn right">❯</button>
       </div>
@@ -201,18 +111,18 @@
       <div class="slider-container">
         <button class="scroll-btn left">❮</button>
         <div class="recommendations-grid">
-          <img src="../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
-          <img src="../assets/images/wednesdayshow.jpg" alt="Wednesday">
-          <img src="../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
-          <img src="../assets/images/dandadan-2024.avif" alt="Dandadan">
-          <img src="../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
-          <img src="../assets/images/scott.jpg" alt="Scott">
-          <img src="../assets/images/joker.jpg" alt="Joker">
-          <img src="../assets/images/interstellar.jpg" alt="Interstellar">
-          <img src="../assets/images/dr.stone.jpg" alt="Dr Stone">
-          <img src="../assets/images/moana.jpg" alt="Moana">
-          <img src="../assets/images/kpopdemon.jpg" alt="Kpop">
-          <img src="../assets/images/thehows.jpg" alt="The Hows">
+          <img src="../../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
+          <img src="../../assets/images/wednesdayshow.jpg" alt="Wednesday">
+          <img src="../../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
+          <img src="../../assets/images/dandadan-2024.avif" alt="Dandadan">
+          <img src="../../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
+          <img src="../../assets/images/scott.jpg" alt="Scott">
+          <img src="../../assets/images/joker.jpg" alt="Joker">
+          <img src="../../assets/images/interstellar.jpg" alt="Interstellar">
+          <img src="../../assets/images/dr.stone.jpg" alt="Dr Stone">
+          <img src="../../assets/images/moana.jpg" alt="Moana">
+          <img src="../../assets/images/kpopdemon.jpg" alt="Kpop">
+          <img src="../../assets/images/thehows.jpg" alt="The Hows">
         </div>
         <button class="scroll-btn right">❯</button>
       </div>
@@ -222,26 +132,24 @@
       <div class="slider-container">
         <button class="scroll-btn left">❮</button>
         <div class="recommendations-grid">
-          <img src="../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
-          <img src="../assets/images/wednesdayshow.jpg" alt="Wednesday">
-          <img src="../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
-          <img src="../assets/images/dandadan-2024.avif" alt="Dandadan">
-          <img src="../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
-          <img src="../assets/images/scott.jpg" alt="Scott">
-          <img src="../assets/images/joker.jpg" alt="Joker">
-          <img src="../assets/images/interstellar.jpg" alt="Interstellar">
-          <img src="../assets/images/dr.stone.jpg" alt="Dr Stone">
-          <img src="../assets/images/moana.jpg" alt="Moana">
-          <img src="../assets/images/kpopdemon.jpg" alt="Kpop">
-          <img src="../assets/images/thehows.jpg" alt="The Hows">
+          <img src="../../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
+          <img src="../../assets/images/wednesdayshow.jpg" alt="Wednesday">
+          <img src="../../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
+          <img src="../../assets/images/dandadan-2024.avif" alt="Dandadan">
+          <img src="../../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
+          <img src="../../assets/images/scott.jpg" alt="Scott">
+          <img src="../../assets/images/joker.jpg" alt="Joker">
+          <img src="../../assets/images/interstellar.jpg" alt="Interstellar">
+          <img src="../../assets/images/dr.stone.jpg" alt="Dr Stone">
+          <img src="../../assets/images/moana.jpg" alt="Moana">
+          <img src="../../assets/images/kpopdemon.jpg" alt="Kpop">
+          <img src="../../assets/images/thehows.jpg" alt="The Hows">
         </div>
         <button class="scroll-btn right">❯</button>
       </div>
     </div>
   </div>
-  <footer>
-    <p>&copy; 2025 FilmoPicks: Your Movie-TV Shows Recommendation | About | Privacy </p>
-  </footer>
+  <?php include "../includes/footer.php"; ?>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 <header>
   <div class="header">
     <div class="logo">
-      <a href= "/php/views/index.php"><img src="/assets/logo/FilmoPicks Large Logo (Dark).svg" alt="FilmoPicks Logo"
+      <a href= "/php/views/index.php"><img src="../../assets/logo/FilmoPicks Large Logo (Dark).svg" alt="FilmoPicks Logo"
           class="logo-img"></a>
     </div>
     <div class="search-bar">

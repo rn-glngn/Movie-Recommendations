@@ -1,15 +1,15 @@
 <?php
 $servername = "localhost";
-$username   = "root";  // change if needed
+$username   = "root";  
 $password   = "";
-$dbname     = "movie_matabase";
+$dbname     = "filmopicks_db"; // database name
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+try{
+    $conn = new mysqli($servername, $username, $password, $dbname);
+}
+catch(mysqli_sql_exception $e){
+    // Connection failed - handle silently or log error
+    error_log("Database connection failed: " . $e->getMessage());
+}
 
-if ($conn){
-    echo"You are connected";
-}
-else{
-    echo"You are not connected";
-}
 ?>

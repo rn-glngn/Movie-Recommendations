@@ -52,9 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// OPTIONAL: Enhanced search function with text highlighting
-// Replace the performSearch function in edit-movie.js with this version
-
 function performSearch(query) {
   const resultsBox = document.getElementById("searchResults");
 

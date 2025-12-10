@@ -1,47 +1,57 @@
 // --- FUNCTION TO LOAD MOVIE DATA DYNAMICALLY ---
-<<<<<<< Updated upstream
-=======
-
-console.log("alert alert")
-
-
->>>>>>> Stashed changes
 function loadMovieData(movie) {
+  // Handle both old and new field names for compatibility
+  const title = movie.title || '';
+  const posterUrl = movie.poster_url || movie.posterImage || '';
+  const releaseDate = movie.release_date || movie.date || '';
+  const rated = movie.type || movie.rated || 'N/A';
+  const duration = movie.duration || '';
+  const language = movie.language || '';
+  const description = movie.description || '';
+  const rating = movie.rating || 'N/A';
+  const synopsis = movie.synopsis || '';
+  const genres = movie.genres || [];
+  const directors = movie.directors || [];
+  const cast = movie.cast || [];
+  const comments = movie.comments || [];
+
   // Update title and breadcrumb
-  document.querySelector(".movie-title").textContent = movie.title + " 🔖";
+  document.querySelector(".movie-title").textContent = title + " 🔖";
   document.querySelector(".directory-path").innerHTML = `
-    <span><a href="../pages/index.html">Home</a></span> &gt; <span><a href="../pages/movie-list.html">Movies</a></span> &gt; <span>${movie.title}</span>
+    <span><a href="../pages/index.html">Home</a></span> &gt; <span><a href="../pages/movie-list.html">Movies</a></span> &gt; <span>${title}</span>
   `;
 
   // Update poster image
-  document.querySelector(".poster img").src = movie.posterImage;
-  document.querySelector(".poster img").alt = movie.title + " Poster";
+  const posterImg = document.querySelector(".poster img");
+  posterImg.src = posterUrl;
+  posterImg.alt = title + " Poster";
 
   // Update meta info
   const metaInfo = document.querySelector(".meta-info");
   metaInfo.innerHTML = `
-    <span>${movie.date}</span>
-    <span>• ${movie.rated}</span>
-    <span>• <u>${movie.duration}</u></span>
-    <span>• ${movie.language}</span>
+    <span>${releaseDate}</span>
+    <span>• ${rated}</span>
+    <span>• <u>${duration}</u></span>
+    <span>• ${language}</span>
   `;
 
   // Update genres
   const genresDiv = document.querySelector(".genres");
-  genresDiv.innerHTML = movie.genres.map(genre => `<span class="genre-tag">${genre}</span>`).join('');
+  genresDiv.innerHTML = (Array.isArray(genres) ? genres : []).map(genre => `<span class="genre-tag">${genre}</span>`).join('');
 
   // Update description
-  document.querySelector(".description").textContent = movie.description;
+  document.querySelector(".description").textContent = description;
 
   // Update rating
-  document.querySelector(".rating-text").textContent = `${movie.rating}/${movie.maxRating}`;
+  const ratingMax = movie.maxRating || 10;
+  document.querySelector(".rating-text").textContent = `${rating}/${ratingMax}`;
 
   // Update synopsis
-  document.querySelector(".synopsis-box").innerHTML = `<p>${movie.synopsis}</p>`;
+  document.querySelector(".synopsis-box").innerHTML = `<p>${synopsis}</p>`;
 
   // Update directors
   const directorSection = document.querySelector(".director-section");
-  directorSection.innerHTML = movie.directors.map(director => `
+  directorSection.innerHTML = (Array.isArray(directors) ? directors : []).map(director => `
     <div class="director-info">
       <div class="director-avatar"><img src="${director.avatar}" alt="${director.name}" class="avatar-img"></div>
       <div class="director-details">
@@ -53,7 +63,7 @@ function loadMovieData(movie) {
 
   // Update cast
   const castGrid = document.querySelector(".cast-grid");
-  castGrid.innerHTML = movie.cast.map(actor => `
+  castGrid.innerHTML = (Array.isArray(cast) ? cast : []).map(actor => `
     <div class="cast-member">
       <div class="cast-avatar"><img src="${actor.avatar}" alt="${actor.name}" class="avatar-img"></div>
       <div class="cast-name">${actor.name}</div>
@@ -63,7 +73,7 @@ function loadMovieData(movie) {
 
   // Update comments
   const commentsContainer = document.querySelector(".comments-container");
-  commentsContainer.innerHTML = movie.comments.map(comment => `
+  commentsContainer.innerHTML = (Array.isArray(comments) ? comments : []).map(comment => `
     <div class="comment" data-date="${comment.date}">
       <div class="avatar">👤</div>
       <div class="comment-content">
@@ -78,14 +88,14 @@ function loadMovieData(movie) {
 
   // Update comment count
   const commentCount = document.querySelector(".comment-count");
-  commentCount.innerHTML = `<i class="fa-regular fa-comment"></i> ${movie.comments.length} comments`;
+  commentCount.innerHTML = `<i class="fa-regular fa-comment"></i> ${comments.length} comments`;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   // --- GET MOVIE ID FROM URL ---
   const urlParams = new URLSearchParams(window.location.search);
   const movieId = parseInt(urlParams.get("id")) || 1; // Default to movie 1
-  const currentMovie = getMovieById(movieId);
+  const currentMovie = await getMovieById(movieId);
 
   // --- LOAD MOVIE DATA DYNAMICALLY ---
   if (currentMovie) {
@@ -174,46 +184,3 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const viewMoreSpan = document.getElementById("viewMoreRecommendations");
-  const movieCards = document.querySelectorAll(".movie-grid .movie-card");
-  let showingAll = false;
-
-  // function to determine how many cards to show
-  function getInitialVisible() {
-    if (window.innerWidth >= 1024) return 4; // desktop
-    if (window.innerWidth >= 600) return 3; // tablet
-    return 2; // mobile
-  }
-
-  // function to apply visibility
-  function showInitialCards() {
-    const initialVisible = getInitialVisible();
-    movieCards.forEach((card, index) => {
-      card.classList.toggle("hidden", index >= initialVisible);
-    });
-    viewMoreSpan.textContent = "view more ▼";
-    showingAll = false;
-  }
-
-  // initial setup
-  showInitialCards();
-
-  // toggle button click
-  viewMoreSpan.addEventListener("click", () => {
-    if (showingAll) {
-      // collapse view
-      showInitialCards();
-    } else {
-      // show all
-      movieCards.forEach((card) => card.classList.remove("hidden"));
-      viewMoreSpan.textContent = "see less ▲";
-      showingAll = true;
-    }
-  });
-
-  // reapply on resize (only when collapsed)
-  window.addEventListener("resize", () => {
-    if (!showingAll) showInitialCards();
-  });
-});

@@ -1,8 +1,23 @@
+async function loadMovies() {
+    try {
+        const res = await fetch("../backend/fetchmovies.php"); // no http, just filename
+        const data = await res.json();
+        return data.data
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+async function getAllMovies() {
+  const movies = await loadMovies()
+  return movies;
+}
+
 // Movie List Page - Dynamic Grid and Table Generation
 (function () {
-  document.addEventListener("DOMContentLoaded", () => {
-    const movies = typeof moviesData !== 'undefined' ? moviesData : [];
-
+  document.addEventListener("DOMContentLoaded", async () => {
+    const movies = await getAllMovies();
+    console.log(movies)
     if (movies.length === 0) return;
 
     const moviesPerPage = 12;
@@ -17,9 +32,9 @@
 
       movieGrid.innerHTML = paginatedMovies.map(movie => `
         <article class="movie-card">
-          <a href="../pages/movie-details.html?id=${movie.id}" class="card-link" title="View details for ${movie.title}">
-            <div class="poster" style="background-image:url('${movie.thumbnailImage || movie.posterImage}')" role="img"
-              aria-label="Poster ${movie.id}"></div>
+          <a href="../pages/movie-details.html?id=${movie.movie_id || movie.id}" class="card-link" title="View details for ${movie.title}">
+            <div class="poster" style="background-image:url('${movie.poster_url || movie.posterImage}')" role="img"
+              aria-label="Poster ${movie.movie_id || movie.id}"></div>
             <h3 class="movie-title">${movie.title}</h3>
           </a>
         </article>
@@ -63,14 +78,14 @@
       movieTableBody.innerHTML = paginatedMovies.map(movie => `
         <tr>
           <td class="td-poster">
-            <a href="../pages/movie-details.html?id=${movie.id}">
-              <img src="${movie.thumbnailImage || movie.posterImage}" alt="${movie.title}">
+            <a href="../pages/movie-details.html?id=${movie.movie_id || movie.id}">
+              <img src="${movie.poster_url || movie.posterImage}" alt="${movie.title}">
             </a>
           </td>
-          <td class="td-title"><a href="../pages/movie-details.html?id=${movie.id}">${movie.title}</a></td>
-          <td>${movie.date}</td>
-          <td>${movie.rating}/${movie.maxRating}</td>
-          <td>${(movie.rating * 10).toFixed(1)}</td>
+          <td class="td-title"><a href="../pages/movie-details.html?id=${movie.movie_id || movie.id}">${movie.title}</a></td>
+          <td>${movie.release_date || movie.date || 'N/A'}</td>
+          <td>${movie.rating || 'N/A'}</td>
+          <td>${movie.rating ? (movie.rating * 10).toFixed(1) : 'N/A'}</td>
         </tr>
       `).join('');
 

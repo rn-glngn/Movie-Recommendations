@@ -1,8 +1,11 @@
 // Poster strip clickable behavior - Dynamic
 (function () {
-  document.addEventListener("DOMContentLoaded", () => {
-    // Use first 3 movies from moviesData for trending
-    const trendingMovies = typeof moviesData !== 'undefined' ? moviesData.slice(0, 3) : [];
+  document.addEventListener("DOMContentLoaded", async (
+    ) => {
+      console.log("alert laert")
+    // Fetch trending movies from database
+    const allMovies = await getAllMovies();
+    const trendingMovies = allMovies.slice(0, 3);
     
     if (trendingMovies.length === 0) return;
 
@@ -13,11 +16,11 @@
     const descEl = document.querySelector(".Trending-now-section .Description");
     const viewDetailsBtn = document.getElementById("trendingViewDetails");
 
-    let currentTrendingMovieId = trendingMovies[0].id;
+    let currentTrendingMovieId = trendingMovies[0].movie_id || trendingMovies[0].id;
 
     // Generate poster buttons dynamically
     posterStrip.innerHTML = trendingMovies.map(movie => `
-      <img class="poster-btn" data-movie="${movie.id}" src="${movie.thumbnailImage}" alt="${movie.title}">
+      <img class="poster-btn" data-movie="${movie.movie_id || movie.id}" src="${movie.poster_url || movie.thumbnailImage}" alt="${movie.title}">
     `).join('');
 
     // Add recommendations-grid class for styling
@@ -25,24 +28,24 @@
 
     // Populate initial trending display
     if (bgImg && titleEl && ratingEl && descEl) {
-      bgImg.src = trendingMovies[0].posterImage;
+      bgImg.src = trendingMovies[0].poster_url || trendingMovies[0].posterImage;
       titleEl.textContent = trendingMovies[0].title;
-      ratingEl.textContent = `${trendingMovies[0].rating}/${trendingMovies[0].maxRating}`;
+      ratingEl.textContent = trendingMovies[0].rating || 'N/A';
       descEl.textContent = trendingMovies[0].description;
     }
 
     // Add click handlers to poster buttons
     const posterBtns = posterStrip.querySelectorAll(".poster-btn");
     posterBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
+      btn.addEventListener("click", async () => {
         const movieId = parseInt(btn.dataset.movie);
-        const movie = getMovieById(movieId);
+        const movie = await getMovieById(movieId);
         
         if (movie) {
-          currentTrendingMovieId = movie.id;
-          bgImg.src = movie.posterImage;
+          currentTrendingMovieId = movie.movie_id || movie.id;
+          bgImg.src = movie.poster_url || movie.posterImage;
           titleEl.textContent = movie.title;
-          ratingEl.textContent = `${movie.rating}/${movie.maxRating}`;
+          ratingEl.textContent = movie.rating || 'N/A';
           descEl.textContent = movie.description;
 
           document.querySelector("#trending").scrollIntoView({ behavior: "smooth" });
@@ -79,8 +82,8 @@
 
 // Movie roulette behavior - Dynamic
 (function () {
-  document.addEventListener("DOMContentLoaded", () => {
-    const movies = typeof moviesData !== 'undefined' ? moviesData : [];
+  document.addEventListener("DOMContentLoaded", async () => {
+    const movies = await getAllMovies();
     
     if (movies.length === 0) return;
 
@@ -91,7 +94,7 @@
     const descEl = document.getElementById("resultDesc");
     const viewDetailsBtn = document.getElementById("rouletteViewDetails");
 
-    let currentRouletteMovieId = movies[0].id;
+    let currentRouletteMovieId = movies[0].movie_id || movies[0].id;
 
     function pickRandom() {
       const idx = Math.floor(Math.random() * movies.length);
@@ -105,10 +108,10 @@
       descEl.classList.add("fade");
 
       setTimeout(() => {
-        currentRouletteMovieId = movie.id;
-        poster.src = movie.thumbnailImage;
+        currentRouletteMovieId = movie.movie_id || movie.id;
+        poster.src = movie.poster_url || movie.thumbnailImage;
         titleEl.textContent = movie.title;
-        infoEl.textContent = `${movie.date} • Rated ${movie.rated} • ${movie.duration}`;
+        infoEl.textContent = `${movie.release_date || movie.date} • ${movie.duration}`;
         descEl.textContent = movie.description;
 
         poster.classList.remove("fade");
@@ -127,7 +130,7 @@
       let spins = 12;
       const interval = setInterval(() => {
         const m = pickRandom();
-        poster.src = m.thumbnailImage;
+        poster.src = m.poster_url || m.thumbnailImage;
         spins--;
         if (spins <= 0) {
           clearInterval(interval);
@@ -156,36 +159,22 @@
     if (!gridElement) return;
 
     gridElement.innerHTML = movies.map(movie => `
-      <a href="../pages/movie-details.html?id=${movie.id}">
-        <img src="${movie.thumbnailImage}" alt="${movie.title}">
+      <a href="../pages/movie-details.html?id=${movie.movie_id || movie.id}">
+        <img src="${movie.poster_url || movie.thumbnailImage}" alt="${movie.title}">
       </a>
     `).join('');
   }
 
-  async function fetchMovies() {
-    try {
-        const response = await fetch("../api/fetch_movies.php");
-        const movies = await response.json();
-
-        console.log(movies); // just to verify data
-
-       
-    } catch (error) {
-        console.error("Error fetching movies:", error);
-    }
-}
-
-// Call the function when page loads
-fetchMovies();
-
-  // Wait for DOM to be fully loaded and moviesData to be available
-  document.addEventListener("DOMContentLoaded", () => {
-    // Check if moviesData is available
-    if (typeof moviesData !== 'undefined' && moviesData.length > 0) {
+  // Wait for DOM to be fully loaded and fetch movies from database
+  document.addEventListener("DOMContentLoaded", async () => {
+    // Fetch all movies from database
+    const movies = await getAllMovies();
+    
+    if (movies && movies.length > 0) {
       // Generate all three recommendation grids with all available movies
-      generateRecommendationGrid('recommendedGrid', moviesData);
-      generateRecommendationGrid('newlyAddedGrid', moviesData);
-      generateRecommendationGrid('genreGrid', moviesData);
+      generateRecommendationGrid('recommendedGrid', movies);
+      generateRecommendationGrid('newlyAddedGrid', movies);
+      generateRecommendationGrid('genreGrid', movies);
 
       // Re-initialize slider scroll buttons after grid is populated
       const sliders = document.querySelectorAll(".slider-container");

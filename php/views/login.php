@@ -1,77 +1,132 @@
+<?php
+session_start();
+header('Content-Type: application/json');
+require_once '../../config/db.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get and sanitize form data
+    $email = trim(htmlspecialchars($_POST['email']));
+    $password = $_POST['password'];
+    
+    // Validation
+    if(empty($email) || empty($password)) {
+        echo json_encode([
+            'success' => false, 
+            'message' => 'All fields are required'
+        ]);
+        exit();
+    }
+    
+    try {
+        $database = new Database();
+        $conn = $database->getConnection();
+        
+        // Find user by email
+        $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        
+        if($stmt->rowCount() > 0) {
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            // Verify password
+            if(password_verify($password, $user['password'])) {
+                // Set session variables
+                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['fullname'] = $user['fullname'];
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['role'] = $user['role'];
+                
+                // Check if admin or regular user
+                if($user['role'] === 'admin') {
+                    echo json_encode([
+                        'success' => true, 
+                        'message' => 'Login successful!',
+                        'redirect' => '../admin/dashboard.html'
+                    ]);
+                } else {
+                    echo json_encode([
+                        'success' => true, 
+                        'message' => 'Login successful!',
+                        'redirect' => '../pages/index.html'
+                    ]);
+                }
+            } else {
+                echo json_encode([
+                    'success' => false, 
+                    'message' => 'Invalid email or password'
+                ]);
+            }
+        } else {
+            echo json_encode([
+                'success' => false, 
+                'message' => 'Invalid email or password'
+            ]);
+        }
+    } catch(Exception $e) {
+        echo json_encode([
+            'success' => false, 
+            'message' => 'Error: ' . $e->getMessage()
+        ]);
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/logo/FilmoPicks Large Logo (Dark).svg" type="image/svg+xml">
     <link rel="stylesheet" href="../assets/styles/globals.css">
     <link rel="stylesheet" href="../assets/styles/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="../assets/scripts/login.js" defer></script>
     <title>Login - FilmoPicks</title>
 </head>
-
 <body>
     <div class="login-container">
         <div class="logo-container">
             <img src="../assets/logo/FilmoPicks Large Logo (Dark).svg" alt="FilmoPicks Logo">
         </div>
-
         <h1 class="login-title">Welcome Back!</h1>
         <p class="login-subtitle">Log in to continue your movie journey</p>
-
-        <form action="#" method="POST">
+        
+        <!-- Success/Error Message -->
+        <div id="message" style="display:none; padding:10px; margin:10px 0; border-radius:5px;"></div>
+        
+        <form id="loginForm" method="POST">
             <div class="form-group">
                 <label for="email" class="form-label">Email Address</label>
                 <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group password-wrapper">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" id="password" name="password" class="form-input"
-                    placeholder="Enter your password" required>
+                <div class="input-with-icon">
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Create a password" required minlength="8">
+                    <i class="fa-solid fa-eye-slash toggle-icon" id="togglePassword" style="display: none;"></i>
+                </div>
             </div>
 
             <div class="forgot-password">
-                <a href="../pages/reset-password.html">Forgot Password?</a>
+                <a href="reset-password.html">Forgot Password?</a>
             </div>
-
             <button type="submit" class="btn-login">Log In</button>
         </form>
-
-        <div class="divider">OR</div>
-
-        <div class="social-login">
-            <button type="button" class="btn-social">
-                <svg viewBox="0 0 24 24">
-                    <path fill="#4285F4"
-                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                    <path fill="#34A853"
-                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                    <path fill="#FBBC05"
-                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
-                    <path fill="#EA4335"
-                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-                </svg>
-                Continue with Google
-            </button>
-
-            <button type="button" class="btn-social">
-                <svg viewBox="0 0 24 24">
-                    <path fill="#1877F2"
-                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                </svg>
-                Continue with Facebook
-            </button>
-        </div>
-
+    
         <div class="signup-link">
-            Don't have an account? <a href="../pages/signup.html">Sign Up</a>
+            Don't have an account? <a href="signup.html">Sign Up</a>
         </div>
-
         <div class="back-home">
-            <a href="../pages/index.html">← Back to Home</a>
+            <a href="index.html">← Back to Home</a>
         </div>
     </div>
-</body>
 
+    <script>
+
+        
+    </script>
+</body>
 </html>

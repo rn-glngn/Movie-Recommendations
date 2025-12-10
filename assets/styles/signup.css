@@ -1,4 +1,4 @@
-@import url(styles/globals.css);
+@import url(assets/styles/globals.css);
 
 * {
     margin: 0;
@@ -294,6 +294,26 @@ body {
 .strength-strong .strength-fill {
     width: 100%;
     background-color: #4caf50;
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #888;
+  display: none;
 }
 
 @media (max-width: 600px) {

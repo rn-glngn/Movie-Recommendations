@@ -77,7 +77,7 @@
     // Load genres from database
     async function loadGenres() {
       try {
-        const response = await fetch('get-genres.php');
+        const response = await fetch('../php/get-genres.php');
         const data = await response.json();
         
         if(data.success && data.genres) {
@@ -120,7 +120,7 @@
 
    async function loadMovies(sortBy = 'latest') {
   try {
-    let url = `get-movies.php?sort=${sortBy}`;
+    let url = `../php/get-movies.php?sort=${sortBy}`;
     if (typeFilter !== 'all') url += `&type=${typeFilter}`;
     if (searchQuery) url += `&search=${encodeURIComponent(searchQuery)}`;
     if (genreFilter) url += `&genre=${genreFilter}`;
@@ -309,5 +309,5 @@
       checkAuth();
       loadGenres();
       updatePageTitle();
-      loadMovies(currentPage, 'popularity');
+      loadMovies(currentPage, 'latest');
     });

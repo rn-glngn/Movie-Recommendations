@@ -1,7 +1,7 @@
 <header>
   <div class="header">
     <div class="logo">
-      <a href= "/php/views/index.php"><img src="../../assets/logo/FilmoPicks Large Logo (Dark).svg" alt="FilmoPicks Logo"
+      <a href="/Movie-Recommendations/php/views/index.php"><img src="/Movie-Recommendations/assets/logo/FilmoPicks Large Logo (Dark).svg" alt="FilmoPicks Logo"
           class="logo-img"></a>
     </div>
     <div class="search-bar">
@@ -18,8 +18,8 @@
           viewBox="0 0 16 16">
           <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
         </svg>
-        <a href="/php/views/login.php">Login</a>
-        <a href="/php/views/signup.php">Signup</a>
+        <a href="/Movie-Recommendations/php/views/login.php">Login</a>
+        <a href="/Movie-Recommendations/php/views/signup.php">Signup</a>
       </div>
       <div class="menu-icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list"
@@ -30,18 +30,18 @@
         </svg>
 
         <ul class="nav-dropdown-menu">
-          <li><a href="/php/views/profile.php">Profile</a></li>
-          <li><a href="/php/views/profile.php#settings">Settings</a></li>
+          <li><a href="/Movie-Recommendations/php/views/profile.php">Profile</a></li>
+          <li><a href="/Movie-Recommendations/php/views/profile.php#settings">Settings</a></li>
           <li class="nav-submenu-parent">
             Request
             <ul class="nav-submenu">
-              <li><a href="/php/views/forms/add-movie.php">Add Movie</a></li>
-              <li><a href="/php/views/forms/edit-movie.php">Edit Movie</a></li>
-              <li><a href="/php/views/forms/delete-movie.php">Delete Movie</a></li>
+              <li><a href="/Movie-Recommendations/php/views/forms/add-movie.php">Add Movie</a></li>
+              <li><a href="/Movie-Recommendations/php/views/forms/edit-movie.php">Edit Movie</a></li>
+              <li><a href="/Movie-Recommendations/php/views/forms/delete-movie.php">Delete Movie</a></li>
             </ul>
           </li>
-          <li><a href="/php/views/about.php">About</a></li>
-          <li><a href="/php/views/index.php" onclick="alert('LOGOUT. Redirecting to Homepage')">Logout</a></li>
+          <li><a href="/Movie-Recommendations/php/views/about.php">About</a></li>
+          <li><a href="/Movie-Recommendations/php/views/index.php" onclick="alert('LOGOUT. Redirecting to Homepage')">Logout</a></li>
         </ul>
       </div>
     </div>

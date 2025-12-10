@@ -1,11 +1,11 @@
 <ul class="nav-links">
-  <li><a href="/php/views/index.php" class="active">Home</a></li>
-  <li><a href="/php/views/movie-list.php">TV shows</a></li>
-  <li><a href="/php/views/movie-list.php">Movies</a></li>
-  <li><a href="/php/views/index.php#newly-added">Newly Added</a></li>
-  <li><a href="/php/views/index.php#trending">Trending</a></li>
+  <li><a href="/Movie-Recommendations/php/views/index.php" class="active">Home</a></li>
+  <li><a href="/Movie-Recommendations/php/views/movie-list.php">TV shows</a></li>
+  <li><a href="/Movie-Recommendations/php/views/movie-list.php">Movies</a></li>
+  <li><a href="/Movie-Recommendations/php/views/index.php#newly-added">Newly Added</a></li>
+  <li><a href="/Movie-Recommendations/php/views/index.php#trending">Trending</a></li>
   <li class="dropdown">
-    <a href="/php/views/index.php#genre">Genre</a>
+    <a href="/Movie-Recommendations/php/views/index.php#genre">Genre</a>
     <div class="dropdown-content genre-dropdown">
       <strong>TOP GENRES &amp; TAGS</strong>
       <ul>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,237 +8,98 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="icon" href="../assets/logo/FilmoPicks Small Logo.svg" type="image/svg+xml">
   <script src="../assets/scripts/globals.js" defer></script>
-  <title>Movie Lists — FilmoPicks: Your Movie TV Show Recommendations</title>
+  <script src="../assets/scripts/movie-list.js" defer></script>
+  <title>Movie Lists — FilmoPicks</title>
 </head>
-
 <body>
   <header>
     <nav class="navbar">
       <div class="header">
         <div class="logo">
-          <a href="../pages/index.html"><img src="..\assets\logo\FilmoPicks Large Logo (Dark).svg" alt="FilmoPicks Logo"
-              class="logo-img"></a>
+          <a href="index.html"><img src="../assets/logo/FilmoPicks Large Logo (Dark).svg" alt="FilmoPicks Logo" class="logo-img"></a>
         </div>
         <div class="search-bar">
-          <input type="text" placeholder="Search Something...">
-          <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-              class="bi bi-search" viewBox="0 0 16 16">
-              <path
-                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+          <input type="text" id="searchInput" placeholder="Search Something...">
+          <button id="searchBtn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
             </svg></button>
         </div>
         <div class="header-right">
-          <div class="auth-links">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill"
-              viewBox="0 0 16 16">
-              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-            </svg>
-            <a href="#" onclick="alert('Login clicked'); return false;">Login</a>
-            <span class="separator">|</span>
-            <a href="../pages/login.html">Login</a>
-            <a href="../pages/signup.html">Signup</a>
+          <div class="auth-links" id="authLinks">
+        
           </div>
           <div class="menu-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list"
-              viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4
-         a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4
-         a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4 a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4 a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
             </svg>
-
-            <ul class="nav-dropdown-menu">
-              <li><a href="../pages/profile.html">Profile</a></li>
-              <li><a href="../pages/profile.html#settings">Settings</a></li>
-              <li class="nav-submenu-parent">
-                Request
-                <ul class="nav-submenu">
-                  <li><a href="../pages/forms/add-movie.html">Add Movie</a></li>
-                  <li><a href="../pages/forms/edit-movie.html">Edit Movie</a></li>
-                  <li><a href="../pages/forms/delete-movie.html">Delete Movie</a></li>
-                </ul>
-              </li>
-              <li><a href="../pages/about.html">About</a></li>
-              <li><a href="../pages/index.html">Logout</a></li>
+            <ul class="nav-dropdown-menu" id="navDropdown">
+    
             </ul>
           </div>
         </div>
       </div>
       <ul class="nav-links">
-        <li><a href="../pages/index.html">Home</a></li>
-        <li><a href="../pages/movie-list.html">TV shows</a></li>
-        <li><a href="../pages/movie-list.html" class="active">Movies</a></li>
-        <li><a href="../pages/index.html#newly-added">Newly Added</a></li>
-        <li><a href="../pages/index.html#trending">Trending</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="movie-list.html?type=series">TV shows</a></li>
+        <li><a href="movie-list.html?type=movie" class="active">Movies</a></li>
+        <li><a href="index.html#newly-added">Newly Added</a></li>
+        <li><a href="index.html#trending">Trending</a></li>
         <li class="dropdown">
-          <a href="../pages/index.html#genre">Genre</a>
+          <a href="index.html#genre">Genre</a>
           <div class="dropdown-content genre-dropdown">
-            <strong>TOP GENRES &amp; TAGS</strong>
-            <ul>
-              <li>Action &amp; Adventure</li>
-              <li>Animation</li>
-              <li>Comedy</li>
-              <li>Crime</li>
-              <li>Documentary</li>
-              <li>Drama</li>
-              <li>Family</li>
-              <li>Fantasy</li>
-              <li>Horror</li>
-              <li>LGBTQ</li>
-              <li>Mystery</li>
-              <li>Romance</li>
-              <li>Science Fiction</li>
-              <li>Thriller</li>
+            <strong>TOP GENRES</strong>
+            <ul id="genreList">
+              <!-- Dynamically populated from database -->
             </ul>
           </div>
         </li>
-        <li class="dropdown">
+        <!-- <li class="dropdown">
           <a href="#">Services</a>
           <div class="dropdown-content">
             <strong>SERVICES</strong>
-            <ul>
-              <li>Amazon Prime Video</li>
-              <li>Disney+</li>
-              <li>HBO Max</li>
-              <li>Hulu</li>
-              <li>iQiyi</li>
-              <li>Netflix</li>
-              <li>Viki</li>
-              <li>YouTube Movies</li>
+            <ul id="serviceList">
+              <li>Loading...</li>
             </ul>
           </div>
-        </li>
+        </li> -->
       </ul>
     </nav>
   </header>
 
   <main>
     <div class="directory-path">
-      <span><a href="../pages/index.html">Home</a></span> &gt; <span>Movies</span>
+      <span><a href="index.html">Home</a></span> &gt; <span id="breadcrumb">Movies</span>
     </div>
+    
     <section class="controls">
-      <h1 class="page-title">Movie List</h1>
-
+      <h1 class="page-title" id="pageTitle">Movie List</h1>
       <div class="right-controls">
         <div class="left-controls">
           <label for="sort">Sort by</label>
           <select id="sort" aria-label="Sort movies">
-            <option value="popularity">Popularity</option>
-            <option value="rating">Rating</option>
             <option value="latest">Latest</option>
             <option value="oldest">Oldest</option>
             <option value="az">A - Z</option>
             <option value="za">Z - A</option>
           </select>
         </div>
-
         <div class="view-icons">
-          <a href="#grid" title="Grid view" class="icon active"><i class="fas fa-th"></i></a>
-          <a href="#rows" title="Row view" class="icon"><i class="fas fa-list"></i></a>
-          <button class="filter" title="Filter (placeholder)"><i class="fas fa-filter"></i></button>
+          <a href="#grid" title="Grid view" class="icon active" id="gridViewBtn"><i class="fas fa-th"></i></a>
+          <a href="#rows" title="Row view" class="icon" id="rowViewBtn"><i class="fas fa-list"></i></a>
         </div>
       </div>
     </section>
 
-
+    <!-- GRID VIEW -->
     <div class="grid-view" id="grid">
-      <section class="movie-grid" aria-label="Movie posters grid">
-        <article class="movie-card">
-          <a href="../pages/movie-details.html" class="card-link" title="View details for Joker">
-            <div class="poster" style="background-image:url('../assets/images/Joker Poster.jpeg')" role="img"
-              aria-label="Poster 1"></div>
-            <h3 class="movie-title">Joker</h3>
-          </a>
-        </article>
-        <article class="movie-card">
-          <a href="#" class="card-link" title="View details for Arcane">
-            <div class="poster" style="background-image:url('../assets/images/arcane.jpg')" role="img"
-              aria-label="Poster 2"></div>
-            <h3 class="movie-title">Arcane</h3>
-          </a>
-        </article>
-        <article class="movie-card">
-          <a href="#" class="card-link" title="View details for Breaking Bad">
-            <div class="poster" style="background-image:url('../assets/images/BreakingBadPoster.jpg')" role="img"
-              aria-label="Poster 3"></div>
-            <h3 class="movie-title">Breaking Bad</h3>
-          </a>
-        </article>
-        <article class="movie-card">
-          <a href="#" class="card-link" title="View details for Dr. Stone">
-            <div class="poster" style="background-image:url('../assets/images/Dr.StonePoster.webp')" role="img"
-              aria-label="Poster 4"></div>
-            <h3 class="movie-title">Dr. Stone</h3>
-          </a>
-        </article>
-        <article class="movie-card">
-          <a href="#" class="card-link" title="View details for Dandadan">
-            <div class="poster" style="background-image:url('../assets/images/DandadanPoster.jpg')" role="img"
-              aria-label="Poster 5"></div>
-            <h3 class="movie-title">Dandadan</h3>
-          </a>
-        </article>
-        <article class="movie-card">
-          <a href="#" class="card-link" title="View details for Interstellar">
-            <div class="poster" style="background-image:url('../assets/images/interstellar.jpg')" role="img"
-              aria-label="Poster 6"></div>
-            <h3 class="movie-title">Interstellar</h3>
-          </a>
-        </article>
-        <article class="movie-card">
-          <a href="#rows" class="card-link" title="View details for Moana">
-            <div class="poster" style="background-image:url('../assets/images/MoanaPoster.webp')" role="img"
-              aria-label="Poster 7"></div>
-            <h3 class="movie-title">Moana</h3>
-          </a>
-        </article>
-        <article class="movie-card">
-          <a href="#" class="card-link" title="View details for KPOP Demon Hunters">
-            <div class="poster" style="background-image:url('../assets/images/kpopdemon.jpg')" role="img"
-              aria-label="Poster 8"></div>
-            <h3 class="movie-title">KPOP Demon Hunters</h3>
-          </a>
-        </article>
-        <article class="movie-card">
-          <a href="#" class="card-link" title="View details for Divergent">
-            <div class="poster" style="background-image:url('../assets/images/Divergent.jpg')" role="img"
-              aria-label="Poster 9"></div>
-            <h3 class="movie-title">Divergent</h3>
-          </a>
-        </article>
-        <article class="movie-card">
-          <a href="#" class="card-link" title="View details for The Hows of Us">
-            <div class="poster" style="background-image:url('../assets/images/thehows.jpg')" role="img"
-              aria-label="Poster 10"></div>
-            <h3 class="movie-title">The Hows of Us</h3>
-          </a>
-        </article>
-        <article class="movie-card">
-          <a href="#" class="card-link" title="View details for Spirited Away">
-            <div class="poster" style="background-image:url('../assets/images/Weapons-2025-horror-movie-review.jpg')"
-              role="img" aria-label="Poster 11"></div>
-            <h3 class="movie-title">Weapons</h3>
-          </a>
-        </article>
-        <article class="movie-card">
-          <a href="#" class="card-link" title="View details for Scott Pilgrim vs. the World">
-            <div class="poster" style="background-image:url('../assets/images/scott.jpg')" role="img"
-              aria-label="Poster 12"></div>
-            <h3 class="movie-title">Scott Pilgrim vs. the World</h3>
-          </a>
-        </article>
+      <section class="movie-grid" id="movieGrid" aria-label="Movie posters grid">
+        <p style="text-align: center; grid-column: 1/-1;">Loading movies...</p>
       </section>
 
-      <!-- pagination for grid -->
-      <div class="grid-pagination">
-        <a href="#" class="page active">1</a>
-        <a href="#" class="page">2</a>
-        <a href="#" class="page">3</a>
-        <a href="#" class="page">»</a>
-      </div>
     </div>
 
     <!-- ROW VIEW -->
-    <section id="rows" class="movie-list" aria-label="Movie list table">
+    <section id="rows" class="movie-list" style="display:none;" aria-label="Movie list table">
       <div class="table-wrap">
         <table>
           <thead>
@@ -247,119 +107,14 @@
               <th>Poster</th>
               <th>Title</th>
               <th>Release Date</th>
-              <th>Rating</th>
-              <th>Popularity</th>
+              <th>Type</th>
+              <th>Duration</th>
             </tr>
           </thead>
-          <tbody>
-
-            <tr>
-              <td class="td-poster"><img src="../assets/images/Joker Poster.jpeg" alt="Poster 1"></td>
-              <td class="td-title">Joker</td>
-              <td>1994-09-23</td>
-              <td>9.3</td>
-              <td>95.0</td>
-            </tr>
-
-            <tr>
-              <td class="td-poster"><img src="../assets/images/arcane.jpg" alt="Poster 2"></td>
-              <td class="td-title">Arcane</td>
-              <td>1972-03-24</td>
-              <td>9.2</td>
-              <td>88.5</td>
-            </tr>
-
-            <tr>
-              <td class="td-poster"><img src="../assets/images/BreakingBadPoster.jpg" alt="Poster 3"></td>
-              <td class="td-title">Breaking Bad</td>
-              <td>2008-07-18</td>
-              <td>9.0</td>
-              <td>92.1</td>
-            </tr>
-
-            <tr>
-              <td class="td-poster"><img src="../assets/images/Dr.StonePoster.webp" alt="Poster 4"></td>
-              <td class="td-title">Dr. Stone</td>
-              <td>1994-10-14</td>
-              <td>8.9</td>
-              <td>85.3</td>
-            </tr>
-
-            <tr>
-              <td class="td-poster"><img src="../assets/images/DandadanPoster.jpg" alt="Poster 5"></td>
-              <td class="td-title">Dandadan</td>
-              <td>2003-12-17</td>
-              <td>8.9</td>
-              <td>80.7</td>
-            </tr>
-
-            <tr>
-              <td class="td-poster"><img src="../assets/images/interstellar.jpg" alt="Poster 6"></td>
-              <td class="td-title">Interstellar</td>
-              <td>1994-07-06</td>
-              <td>8.8</td>
-              <td>78.5</td>
-            </tr>
-
-            <tr>
-              <td class="td-poster"><img src="../assets/images/MoanaPoster.webp" alt="Poster 7"></td>
-              <td class="td-title">Moana</td>
-              <td>2010-07-16</td>
-              <td>8.8</td>
-              <td>90.9</td>
-            </tr>
-
-            <tr>
-              <td class="td-poster"><img src="../assets/images/kpopdemon.jpg" alt="Poster 8"></td>
-              <td class="td-title">KPOP Demon Hunters</td>
-              <td>1999-10-15</td>
-              <td>8.8</td>
-              <td>83.2</td>
-            </tr>
-
-            <tr>
-              <td class="td-poster"><img src="../assets/images/Divergent.jpg" alt="Poster 9"></td>
-              <td class="td-title">Divergent</td>
-              <td>1999-03-31</td>
-              <td>8.7</td>
-              <td>75.1</td>
-            </tr>
-
-            <tr>
-              <td class="td-poster"><img src="../assets/images/thehows.jpg" alt="Poster 10"></td>
-              <td class="td-title">The Hows of Us</td>
-              <td>1980-05-21</td>
-              <td>8.7</td>
-              <td>70.4</td>
-            </tr>
-
-            <tr>
-              <td class="td-poster"><img src="../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Poster 11">
-              </td>
-              <td class="td-title">Weapons</td>
-              <td>2001-07-20</td>
-              <td>8.6</td>
-              <td>65.8</td>
-            </tr>
-
-            <tr>
-              <td class="td-poster"><img src="../assets/images/scott.jpg" alt="Poster 12"></td>
-              <td class="td-title">Scott Pilgrim vs. the World</td>
-              <td>2014-11-07</td>
-              <td>8.6</td>
-              <td>93.5</td>
-            </tr>
-
+          <tbody id="movieTable">
+            <tr><td colspan="5" style="text-align:center;">Loading movies...</td></tr>
           </tbody>
         </table>
-      </div>
-
-      <div class="pagination">
-        <a href="#rows" class="pag">&laquo;</a>
-        <a href="#rows" class="pag active">1</a>
-        <a href="#rows" class="pag">2</a>
-        <a href="#rows" class="pag">3</a>
-        <a href="#rows" class="pag">&raquo;</a>
       </div>
     </section>
   </main>
@@ -367,6 +122,7 @@
   <footer>
     <p>&copy; 2025 FilmoPicks: Your Movie-TV Shows Recommendation | About | Privacy </p>
   </footer>
-</body>
 
+  
+</body>
 </html>

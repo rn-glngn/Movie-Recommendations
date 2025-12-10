@@ -1,429 +1,144 @@
-// Poster strip clickable behavior
-(function () {
-  document.addEventListener("DOMContentLoaded", async () => {
-    console.log("alert laert");
-    // Fetch trending movies from database
-    const allMovies = await getAllMovies();
-    const trendingMovies = allMovies.slice(0, 3);
+// ---------- Utility Functions ----------
+async function getAllMovies() {
+  const res = await fetch("../modules/fetch-movies.php"); // Endpoint returning all movies as JSON
+  return await res.json();
+}
 
-    if (trendingMovies.length === 0) return;
+async function getMovieById(id) {
+  const movies = await getAllMovies();
+  return movies.find((m) => m.movie_id == id);
+}
 
-    const posterBtns = document.querySelectorAll(".poster-btn");
-    const bgImg = document.querySelector(".Trending-now-section .bg-img");
-    const titleEl = document.querySelector(
-      ".Trending-now-section .Titlemovie1"
-    );
-    const ratingEl = document.querySelector(".Trending-now-section .Rating");
-    const descEl = document.querySelector(".Trending-now-section .Description");
+// ---------- Trending Section ----------
+(async function () {
+  const trendingContainer = document.querySelector(".Trending-now-section");
+  const posterStrip = trendingContainer.querySelector(".poster-strip");
+  const bgImg = trendingContainer.querySelector(".bg-img");
+  const titleEl = trendingContainer.querySelector(".Titlemovie1");
+  const descEl = trendingContainer.querySelector(".Description");
 
-    let currentTrendingMovieId =
-      trendingMovies[0].movie_id || trendingMovies[0].id;
+  const movies = await getAllMovies();
+  if (!movies.length) return;
 
-    // Generate poster buttons dynamically
-    posterStrip.innerHTML = trendingMovies
-      .map(
-        (movie) => `
-      <img class="poster-btn" data-movie="${movie.movie_id || movie.id}" src="${
-          movie.poster_url || movie.thumbnailImage
-        }" alt="${movie.title}">
-    `
-      )
-      .join("");
+  const trendingMovies = movies.slice(0, 3); // Top 3 latest movies
 
-    // Add recommendations-grid class for styling
-    posterStrip.classList.add("recommendations-grid");
+  // Populate poster strip
+  posterStrip.innerHTML = trendingMovies
+    .map(
+      (m) =>
+        `<img class="poster-btn" data-movie="${m.movie_id}" src="${m.poster_url}" alt="${m.title}">`
+    )
+    .join("");
 
-    // Populate initial trending display
-    if (bgImg && titleEl && ratingEl && descEl) {
-      bgImg.src = trendingMovies[0].poster_url || trendingMovies[0].posterImage;
-      titleEl.textContent = trendingMovies[0].title;
-      ratingEl.textContent = trendingMovies[0].rating || "N/A";
-      descEl.textContent = trendingMovies[0].description;
-    }
+  const displayMovie = (movie) => {
+    bgImg.src = movie.background_url || movie.poster_url;
+    titleEl.textContent = movie.title;
+    descEl.textContent = movie.description;
+  };
 
-    // Add click handlers to poster buttons
-    const posterBtns = posterStrip.querySelectorAll(".poster-btn");
-    posterBtns.forEach((btn) => {
-      btn.addEventListener("click", async () => {
-        const movieId = parseInt(btn.dataset.movie);
-        const movie = await getMovieById(movieId);
+  displayMovie(trendingMovies[0]);
 
-        if (movie) {
-          currentTrendingMovieId = movie.movie_id || movie.id;
-          bgImg.src = movie.poster_url || movie.posterImage;
-          titleEl.textContent = movie.title;
-          ratingEl.textContent = movie.rating || "N/A";
-          descEl.textContent = movie.description;
-
-          document
-            .querySelector("#trending")
-            .scrollIntoView({ behavior: "smooth" });
-        }
-      });
+  posterStrip.querySelectorAll(".poster-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const movieId = parseInt(btn.dataset.movie);
+      const movie = await getMovieById(movieId);
+      if (movie) displayMovie(movie);
     });
   });
 })();
 
-// Movie roulette behavior
-(function () {
-  document.addEventListener("DOMContentLoaded", async () => {
-    const movies = await getAllMovies();
+// ---------- Movie Roulette ----------
+document.addEventListener("DOMContentLoaded", async () => {
+  const spinBtn = document.getElementById("spinBtn");
+  const poster = document.getElementById("roulettePoster");
+  const titleEl = document.getElementById("resultTitle");
+  const infoEl = document.getElementById("resultInfo");
+  const descEl = document.getElementById("resultDesc");
+  const viewDetailsBtn = document.querySelector(".View-details.small a");
 
-    if (movies.length === 0) return;
+  const genreSelect = document.getElementById("genreSelect");
+  const typeMovies = document.getElementById("typeMovies");
+  const typeSeries = document.getElementById("typeSeries");
 
-    const spinBtn = document.getElementById("spinBtn");
-    const poster = document.getElementById("roulettePoster");
-    const titleEl = document.getElementById("resultTitle");
-    const infoEl = document.getElementById("resultInfo");
-    const descEl = document.getElementById("resultDesc");
+  const movies = await getAllMovies();
+  if (!movies.length) return;
 
-    let currentRouletteMovieId = movies[0].movie_id || movies[0].id;
+  let currentRouletteId = movies[0].movie_id;
 
-    function pickRandom() {
-      const idx = Math.floor(Math.random() * movies.length);
-      return movies[idx];
-    }
-
-    function showMovie(movie) {
-      poster.classList.add("fade");
-      titleEl.classList.add("fade");
-      infoEl.classList.add("fade");
-      descEl.classList.add("fade");
-
-      setTimeout(() => {
-        currentRouletteMovieId = movie.movie_id || movie.id;
-        poster.src = movie.poster_url || movie.thumbnailImage;
-        titleEl.textContent = movie.title;
-        infoEl.textContent = `${movie.release_date || movie.date} • ${
-          movie.duration
-        }`;
-        descEl.textContent = movie.description;
-
-        poster.classList.remove("fade");
-        titleEl.classList.remove("fade");
-        infoEl.classList.remove("fade");
-        descEl.classList.remove("fade");
-      }, 220);
-    }
-
-    // Show first movie initially
-    showMovie(movies[0]);
-
-    spinBtn.addEventListener("click", () => {
-      spinBtn.disabled = true;
-      spinBtn.textContent = "Spinning...";
-      let spins = 12;
-      const interval = setInterval(() => {
-        const m = pickRandom();
-        poster.src = m.poster_url || m.thumbnailImage;
-        spins--;
-        if (spins <= 0) {
-          clearInterval(interval);
-          const final = pickRandom();
-          showMovie(final);
-          spinBtn.disabled = false;
-          spinBtn.textContent = "Spin now";
-        }
-      }, 80);
+  // Filter movies based on genre and type
+  const getFilteredMovies = () => {
+    return movies.filter((m) => {
+      const genreMatch =
+        genreSelect.value === "any" || m.genre === genreSelect.value;
+      const typeMatch =
+        (typeMovies.checked && m.type === "Movie") ||
+        (typeSeries.checked && m.type === "Series");
+      return genreMatch && typeMatch;
     });
+  };
 
-    // Add click handler to roulette View Details button
-    if (viewDetailsBtn) {
-      viewDetailsBtn.addEventListener("click", () => {
-        window.location.href = `../pages/movie-details.html?id=${currentRouletteMovieId}`;
-      });
-    }
-  });
-});
+  const pickRandom = () => {
+    const filtered = getFilteredMovies();
+    if (!filtered.length) return null;
+    return filtered[Math.floor(Math.random() * filtered.length)];
+  };
 
-// Dynamic Recommendation Grids Generator
-(function () {
-  // Function to generate recommendation grid HTML from movie data
-  function generateRecommendationGrid(gridId, movies) {
-    const gridElement = document.getElementById(gridId);
-    if (!gridElement) return;
+  const showMovie = (movie) => {
+    if (!movie) return;
+    currentRouletteId = movie.movie_id;
+    poster.classList.add("fade");
+    titleEl.classList.add("fade");
+    infoEl.classList.add("fade");
+    descEl.classList.add("fade");
 
-    gridElement.innerHTML = movies
-      .map(
-        (movie) => `
-      <a href="../pages/movie-details.html?id=${movie.movie_id || movie.id}">
-        <img src="${movie.poster_url || movie.thumbnailImage}" alt="${
-          movie.title
-        }">
-      </a>
-    `
-      )
-      .join("");
-  }
+    setTimeout(() => {
+      poster.src = movie.poster_url;
+      titleEl.textContent = movie.title;
+      infoEl.textContent = `${movie.release_date || movie.date || "N/A"} • ${
+        movie.duration || ""
+      }`;
+      descEl.textContent = movie.description;
 
-  // Wait for DOM to be fully loaded and fetch movies from database
-  document.addEventListener("DOMContentLoaded", async () => {
-    // Fetch all movies from database
-    const movies = await getAllMovies();
+      poster.classList.remove("fade");
+      titleEl.classList.remove("fade");
+      infoEl.classList.remove("fade");
+      descEl.classList.remove("fade");
 
-    if (movies && movies.length > 0) {
-      // Generate all three recommendation grids with all available movies
-      generateRecommendationGrid("recommendedGrid", movies);
-      generateRecommendationGrid("newlyAddedGrid", movies);
-      generateRecommendationGrid("genreGrid", movies);
+      // Update "View Details" link dynamically
+      if (viewDetailsBtn)
+        viewDetailsBtn.href = `movie-details.php?id=${currentRouletteId}`;
+    }, 200);
+  };
 
-      setTimeout(() => {
-        poster.src = movie.img;
-        titleEl.textContent = movie.title;
-        infoEl.textContent = movie.info;
-        descEl.textContent = movie.desc;
+  // Show first movie
+  showMovie(pickRandom() || movies[0]);
 
-        poster.classList.remove("fade");
-        titleEl.classList.remove("fade");
-        infoEl.classList.remove("fade");
-        descEl.classList.remove("fade");
-      }, 220);
-    }
-
-    showMovie(movies[0]);
-
-    spinBtn.addEventListener("click", () => {
-      spinBtn.disabled = true;
-      spinBtn.textContent = "Spinning...";
-      let spins = 12;
-      const interval = setInterval(() => {
-        const m = pickRandom();
-        poster.src = m.img;
-        spins--;
-        if (spins <= 0) {
-          clearInterval(interval);
-          const final = pickRandom();
-          showMovie(final);
-          spinBtn.disabled = false;
-          spinBtn.textContent = "Spin now";
-        }
-      }, 80);
-    });
-  });
-});
-
-const sliders = document.querySelectorAll(".slider-container");
-
-sliders.forEach((container) => {
-  const grid = container.querySelector(".recommendations-grid");
-  const leftBtn = container.querySelector(".scroll-btn.left");
-  const rightBtn = container.querySelector(".scroll-btn.right");
-
-  if (!leftBtn || !rightBtn || !grid) return;
-
-  function getScrollAmount() {
-    const img = grid.querySelector("img");
-    if (!img) return 258;
-    const imgWidth = img.offsetWidth;
-    const gap = 8;
-    return imgWidth + gap;
-  }
-
-  rightBtn.addEventListener("click", () => {
-    grid.scrollBy({
-      left: getScrollAmount(),
-      behavior: "smooth",
-    });
-  });
-
-  leftBtn.addEventListener("click", () => {
-    grid.scrollBy({
-      left: -getScrollAmount(),
-      behavior: "smooth",
-    });
-  });
-
-  function updateButtons() {
-    const isAtStart = grid.scrollLeft <= 0;
-    const isAtEnd = grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 1;
-
-    if (isAtStart) {
-      leftBtn.style.opacity = "0";
-      leftBtn.style.pointerEvents = "none";
-    } else {
-      leftBtn.style.opacity = "";
-      leftBtn.style.pointerEvents = "";
-    }
-
-    if (isAtEnd) {
-      rightBtn.style.opacity = "0";
-      rightBtn.style.pointerEvents = "none";
-    } else {
-      rightBtn.style.opacity = "";
-      rightBtn.style.pointerEvents = "";
-    }
-  }
-
-  grid.addEventListener("scroll", updateButtons);
-
-  updateButtons();
-
-  window.addEventListener("resize", updateButtons);
-});
-
-// Search Bar Functionality
-document.addEventListener("DOMContentLoaded", function () {
-  const searchInput = document.querySelector(".search-bar input");
-  const searchButton = document.querySelector(".search-bar button");
-  const searchBar = document.querySelector(".search-bar");
-
-  // Create search results dropdown
-  const searchResults = document.createElement("div");
-  searchResults.className = "search-results";
-  searchBar.appendChild(searchResults);
-
-  // Sample movie/TV show data (replace with your actual data or API)
-  const mediaData = [
-    {
-      title: "Alice In Borderland",
-      type: "TV Show",
-      rating: "8.6",
-      image: "../assets/images/Alice-In-Borderland.jpg",
-    },
-    {
-      title: "The Fragrant Flower Blooms with Dignity",
-      type: "TV Show",
-      rating: "8.2",
-      image: "../assets/images/the-fragrant-flower-blooms-with-dignity.jpg",
-    },
-    {
-      title: "Wednesday",
-      type: "TV Show",
-      rating: "8.1",
-      image: "../assets/images/wednesdayshow.jpg",
-    },
-    {
-      title: "Breaking Bad",
-      type: "TV Show",
-      rating: "9.5",
-      image: "../assets/images/breaking-bad-poster.jpg",
-    },
-    {
-      title: "Dandadan",
-      type: "TV Show",
-      rating: "8.4",
-      image: "../assets/images/dandadan-2024.avif",
-    },
-    {
-      title: "Weapons",
-      type: "Movie",
-      rating: "7.3",
-      image: "../assets/images/Weapons-2025-horror-movie-review.jpg",
-    },
-    {
-      title: "Scott Pilgrim",
-      type: "Movie",
-      rating: "7.6",
-      image: "../assets/images/scott.jpg",
-    },
-    {
-      title: "Joker",
-      type: "Movie",
-      rating: "8.4",
-      image: "../assets/images/joker.jpg",
-    },
-    {
-      title: "Interstellar",
-      type: "Movie",
-      rating: "8.7",
-      image: "../assets/images/interstellar.jpg",
-    },
-    {
-      title: "Dr. Stone",
-      type: "TV Show",
-      rating: "8.3",
-      image: "../assets/images/dr.stone.jpg",
-    },
-    {
-      title: "Moana",
-      type: "Movie",
-      rating: "7.6",
-      image: "../assets/images/moana.jpg",
-    },
-    {
-      title: "Arcane",
-      type: "TV Show",
-      rating: "9.0",
-      image: "../assets/images/arcane.jpg",
-    },
-  ];
-
-  // Search function
-  function performSearch(query) {
-    if (query.trim() === "") {
-      searchResults.style.display = "none";
+  // Spin button
+  spinBtn.addEventListener("click", () => {
+    const filtered = getFilteredMovies();
+    if (!filtered.length) {
+      alert("No movies found for the selected genre/type.");
       return;
     }
 
-    const filtered = mediaData.filter((item) =>
-      item.title.toLowerCase().includes(query.toLowerCase())
-    );
-
-    displayResults(filtered, query);
-  }
-
-  // Display search results
-  function displayResults(results, query) {
-    if (results.length === 0) {
-      searchResults.innerHTML = `
-        <div class="search-no-results">
-          No results found for "${query}"
-        </div>
-      `;
-      searchResults.style.display = "block";
-      return;
-    }
-
-    searchResults.innerHTML = results
-      .map(
-        (item) => `
-      <div class="search-result-item">
-        <img src="${item.image}" alt="${item.title}" onerror="this.style.display='none'">
-        <div class="search-result-info">
-          <div class="search-result-title">${item.title}</div>
-          <div class="search-result-meta">${item.type} • ⭐ ${item.rating}</div>
-        </div>
-      </div>
-    `
-      )
-      .join("");
-
-    searchResults.style.display = "block";
-
-    // Add click handlers to results
-    document.querySelectorAll(".search-result-item").forEach((item, index) => {
-      item.addEventListener("click", () => {
-        window.location.href = "../pages/movie-details.html";
-      });
-    });
-  }
-
-  // Input event listener
-  searchInput.addEventListener("input", (e) => {
-    performSearch(e.target.value);
+    spinBtn.disabled = true;
+    spinBtn.textContent = "Spinning...";
+    let spins = 12;
+    const interval = setInterval(() => {
+      const movie = pickRandom();
+      if (movie) poster.src = movie.poster_url;
+      spins--;
+      if (spins <= 0) {
+        clearInterval(interval);
+        showMovie(pickRandom());
+        spinBtn.disabled = false;
+        spinBtn.textContent = "Spin now";
+      }
+    }, 80);
   });
 
-  // Search button click
-  searchButton.addEventListener("click", () => {
-    performSearch(searchInput.value);
-  });
-
-  // Enter key to search
-  searchInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      performSearch(searchInput.value);
-    }
-  });
-
-  // Close search results when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!searchBar.contains(e.target)) {
-      searchResults.style.display = "none";
-    }
-  });
-
-  // Keep search results open when clicking inside search bar
-  searchBar.addEventListener("click", (e) => {
-    e.stopPropagation();
+  // Update roulette when filters change
+  [genreSelect, typeMovies, typeSeries].forEach((el) => {
+    el.addEventListener("change", () => showMovie(pickRandom()));
   });
 });

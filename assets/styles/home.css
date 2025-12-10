@@ -229,9 +229,11 @@ body {
   color: #fff;
   box-shadow: 0 6px 18px rgba(193, 33, 45, 0.25);
 }
+
 .Watch-trailer:hover {
   transform: translateY(-2px);
 }
+
 .Watch-trailer:active {
   transform: translateY(0px);
 }
@@ -279,6 +281,7 @@ body {
 
 /* Movie Roulette */
 .movie-roulette {
+  display: block;
   margin: 50px 10px;
   max-width: 1400px;
   margin-left: auto;

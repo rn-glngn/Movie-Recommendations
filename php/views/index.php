@@ -22,28 +22,43 @@
       <?php include "../includes/navbar.php"; ?>
     </nav>
   </header>
+
   <div class="main-container">
+
+    <!-- TRENDING NOW -->
     <div class="Trending-now-section" id="trending">
       <div class="section-header">TRENDING NOW</div>
-      <img class="bg-img" src="../../assets/images/Alice-In-Borderland.jpg" alt="Alice In Borderland">
-      <div class="trending-content">
-        <div class="Titlemovie1">Alice In Borderland</div>
-        <div class="Rating">8.6/10</div>
-        <div class="Description">Arisu - a listless, jobless and video-game-obsessed young man - suddenly finds
-          himself in a strange, emptied-out version of Tokyo in which he and his friends must compete in
-          dangerous games in order to survive.</div>
-        <div class="actions">
-          <button class="View-details"><a href="movie-details.html">View Details</a></button>
-          <button class="Watch-trailer">Watch Trailer</button>
+
+      <?php
+      // Fetch latest movie as trending
+      $trendingSql = "SELECT * FROM movies ORDER BY created_at DESC LIMIT 1";
+      $trendingResult = $conn->query($trendingSql);
+      if ($trendingResult && $trendingResult->num_rows > 0) {
+        $trending = $trendingResult->fetch_assoc();
+      ?>
+        <img class="bg-img" src="<?= htmlspecialchars($trending['background_url']) ?>" alt="<?= htmlspecialchars($trending['title']) ?>">
+        <div class="trending-content">
+          <div class="Titlemovie1"><?= htmlspecialchars($trending['title']) ?></div>
+          <div class="Description"><?= htmlspecialchars($trending['description']) ?></div>
+          <div class="actions">
+            <button class="View-details"><a href="movie-details.php?id=<?= $trending['movie_id'] ?>">View Details</a></button>
+            <button class="Watch-trailer">Watch Trailer</button>
+          </div>
         </div>
-      </div>
+      <?php } ?>
+
       <div class="poster-strip slider-container recommendations-grid" aria-hidden="false">
-        <img class="poster-btn" data-movie="1" src="../../assets/images/the-fragrant-flower-blooms-with-dignity.jpg"
-          alt="The Fragrant Flower">
-        <img class="poster-btn" data-movie="2" src="../../assets/images/wednesdayshow.jpg" alt="Wednesday">
-        <img class="poster-btn" data-movie="3" src="../../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
+        <?php
+        $posterSql = "SELECT * FROM movies ORDER BY created_at DESC LIMIT 3";
+        $posterResult = $conn->query($posterSql);
+        while ($movie = $posterResult->fetch_assoc()) {
+          echo '<img class="poster-btn" data-movie="' . $movie['movie_id'] . '" src="' . htmlspecialchars($movie['poster_url']) . '" alt="' . htmlspecialchars($movie['title']) . '">';
+        }
+        ?>
       </div>
     </div>
+
+    <!-- MOVIE ROULETTE -->
     <div class="movie-roulette" id="movies">
       <h2>Movie Roulette</h2>
       <p class="find-something">Use the randomizer below to find something to watch.</p>
@@ -52,9 +67,13 @@
           <label>GENRE
             <select id="genreSelect">
               <option value="any">All Genres</option>
-              <option value="animation">Animation</option>
-              <option value="drama">Drama</option>
-              <option value="action">Action</option>
+              <?php
+              $genreSql = "SELECT DISTINCT genre FROM movies ORDER BY genre ASC";
+              $genreResult = $conn->query($genreSql);
+              while ($row = $genreResult->fetch_assoc()) {
+                echo '<option value="' . htmlspecialchars($row['genre']) . '">' . htmlspecialchars($row['genre']) . '</option>';
+              }
+              ?>
             </select>
           </label>
           <label>TYPE
@@ -63,13 +82,6 @@
               <label><input type="checkbox" id="typeSeries"> TV Shows/Series</label>
             </div>
           </label>
-          <label>MOVIE SCORE
-            <select id="scoreSelect">
-              <option value="any">Any Score</option>
-              <option value="8">8+</option>
-              <option value="7">7+</option>
-            </select>
-          </label>
           <button id="spinBtn" class="spin-btn">Spin now</button>
         </div>
         <div class="roulette-result">
@@ -77,79 +89,77 @@
           <div class="result-meta">
             <h3 id="resultTitle">Arcane</h3>
             <p id="resultInfo">2021 &nbsp; Rated SPG &nbsp; 2 Seasons</p>
-            <p id="resultDesc" class="result-desc">In the cities of Piltover and Zaun, tensions rise as
-              inventors, hooligans, politicians, and crime lords grow increasingly dissatisfied with the
-              constraints of a devastated ...</p>
+            <p id="resultDesc" class="result-desc">In the cities of Piltover and Zaun...</p>
             <button class="View-details small"><a href="movie-details.html">View Details</a></button>
           </div>
         </div>
       </div>
     </div>
-    <div class="recommendations-section" id="home">
-      <h2>RECOMMENDED FOR YOU</h2>
-      <div class="slider-container">
-        <button class="scroll-btn left">❮</button>
-        <div class="recommendations-grid">
-          <img src="../../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
-          <img src="../../assets/images/wednesdayshow.jpg" alt="Wednesday">
-          <img src="../../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
-          <img src="../../assets/images/dandadan-2024.avif" alt="Dandadan">
-          <img src="../../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
-          <img src="../../assets/images/scott.jpg" alt="Scott">
-          <img src="../../assets/images/joker.jpg" alt="Joker">
-          <img src="../../assets/images/interstellar.jpg" alt="Interstellar">
-          <img src="../../assets/images/dr.stone.jpg" alt="Dr Stone">
-          <img src="../../assets/images/moana.jpg" alt="Moana">
-          <img src="../../assets/images/kpopdemon.jpg" alt="Kpop">
-          <img src="../../assets/images/thehows.jpg" alt="The Hows">
-        </div>
-        <button class="scroll-btn right">❯</button>
+  </div>
+
+  <!-- RECOMMENDED FOR YOU -->
+  <div class="recommendations-section" id="home">
+    <h2>RECOMMENDED FOR YOU</h2>
+    <div class="slider-container">
+      <button class="scroll-btn left">❮</button>
+      <div class="recommendations-grid" id="recommendedGrid">
+        <?php
+        $recSql = "SELECT * FROM movies ORDER BY created_at DESC LIMIT 12";
+        $recResult = $conn->query($recSql);
+        while ($movie = $recResult->fetch_assoc()) {
+          echo '<a href="movie-details.php?id=' . $movie['movie_id'] . '"><img src="' . htmlspecialchars($movie['poster_url']) . '" alt="' . htmlspecialchars($movie['title']) . '"></a>';
+        }
+        ?>
       </div>
-    </div>
-    <div class="newly-added-section" id="newly-added">
-      <h2>NEWLY ADDED</h2>
-      <div class="slider-container">
-        <button class="scroll-btn left">❮</button>
-        <div class="recommendations-grid">
-          <img src="../../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
-          <img src="../../assets/images/wednesdayshow.jpg" alt="Wednesday">
-          <img src="../../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
-          <img src="../../assets/images/dandadan-2024.avif" alt="Dandadan">
-          <img src="../../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
-          <img src="../../assets/images/scott.jpg" alt="Scott">
-          <img src="../../assets/images/joker.jpg" alt="Joker">
-          <img src="../../assets/images/interstellar.jpg" alt="Interstellar">
-          <img src="../../assets/images/dr.stone.jpg" alt="Dr Stone">
-          <img src="../../assets/images/moana.jpg" alt="Moana">
-          <img src="../../assets/images/kpopdemon.jpg" alt="Kpop">
-          <img src="../../assets/images/thehows.jpg" alt="The Hows">
-        </div>
-        <button class="scroll-btn right">❯</button>
-      </div>
-    </div>
-    <div class="browse-by-genre-section" id="genre">
-      <h2>BROWSE BY GENRE</h2>
-      <div class="slider-container">
-        <button class="scroll-btn left">❮</button>
-        <div class="recommendations-grid">
-          <img src="../../assets/images/the-fragrant-flower-blooms-with-dignity.jpg" alt="The Fragrant Flower">
-          <img src="../../assets/images/wednesdayshow.jpg" alt="Wednesday">
-          <img src="../../assets/images/breaking-bad-poster.jpg" alt="Breaking Bad">
-          <img src="../../assets/images/dandadan-2024.avif" alt="Dandadan">
-          <img src="../../assets/images/Weapons-2025-horror-movie-review.jpg" alt="Weapons">
-          <img src="../../assets/images/scott.jpg" alt="Scott">
-          <img src="../../assets/images/joker.jpg" alt="Joker">
-          <img src="../../assets/images/interstellar.jpg" alt="Interstellar">
-          <img src="../../assets/images/dr.stone.jpg" alt="Dr Stone">
-          <img src="../../assets/images/moana.jpg" alt="Moana">
-          <img src="../../assets/images/kpopdemon.jpg" alt="Kpop">
-          <img src="../../assets/images/thehows.jpg" alt="The Hows">
-        </div>
-        <button class="scroll-btn right">❯</button>
-      </div>
+      <button class="scroll-btn right">❯</button>
     </div>
   </div>
+
+  <!-- NEWLY ADDED -->
+  <div class="newly-added-section" id="newly-added">
+    <h2>NEWLY ADDED</h2>
+    <div class="slider-container">
+      <button class="scroll-btn left">❮</button>
+      <div class="recommendations-grid" id="newlyAddedGrid">
+        <?php
+        $newSql = "SELECT * FROM movies ORDER BY created_at DESC LIMIT 12";
+        $newResult = $conn->query($newSql);
+        while ($movie = $newResult->fetch_assoc()) {
+          echo '<a href="movie-details.php?id=' . $movie['movie_id'] . '"><img src="' . htmlspecialchars($movie['poster_url']) . '" alt="' . htmlspecialchars($movie['title']) . '"></a>';
+        }
+        ?>
+      </div>
+      <button class="scroll-btn right">❯</button>
+    </div>
+  </div>
+
+  <!-- BROWSE BY GENRE -->
+  <div class="browse-by-genre-section" id="genre">
+    <h2>BROWSE BY GENRE</h2>
+    <div class="slider-container">
+      <button class="scroll-btn left">❮</button>
+      <div class="recommendations-grid" id="genreGrid">
+        <?php
+        $genreMoviesSql = "SELECT * FROM movies ORDER BY genre ASC LIMIT 12";
+        $genreMoviesResult = $conn->query($genreMoviesSql);
+        while ($movie = $genreMoviesResult->fetch_assoc()) {
+          echo '<a href="movie-details.php?id=' . $movie['movie_id'] . '"><img src="' . htmlspecialchars($movie['poster_url']) . '" alt="' . htmlspecialchars($movie['title']) . '"></a>';
+        }
+        ?>
+      </div>
+      <button class="scroll-btn right">❯</button>
+    </div>
+  </div>
+
+  </div>
+
   <?php include "../includes/footer.php"; ?>
+  <script>
+    const testEl = document.getElementById("movies");
+    console.log("Roulette container exists:", testEl);
+    if (testEl) testEl.style.border = "2px solid green";
+  </script>
+
 </body>
 
 </html>

@@ -162,6 +162,22 @@
     `).join('');
   }
 
+  async function fetchMovies() {
+    try {
+        const response = await fetch("../api/fetch_movies.php");
+        const movies = await response.json();
+
+        console.log(movies); // just to verify data
+
+       
+    } catch (error) {
+        console.error("Error fetching movies:", error);
+    }
+}
+
+// Call the function when page loads
+fetchMovies();
+
   // Wait for DOM to be fully loaded and moviesData to be available
   document.addEventListener("DOMContentLoaded", () => {
     // Check if moviesData is available

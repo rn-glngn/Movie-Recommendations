@@ -71,43 +71,11 @@
         <li><a href="../pages/movie-list.html">Movies</a></li>
         <li><a href="../pages/index.html#newly-added">Newly Added</a></li>
         <li><a href="../pages/index.html#trending">Trending</a></li>
-        <li class="dropdown">
-          <a href="../pages/index.html#genre">Genre</a>
-          <div class="dropdown-content genre-dropdown">
-            <strong>TOP GENRES &amp; TAGS</strong>
-            <ul>
-              <li>Action &amp; Adventure</li>
-              <li>Animation</li>
-              <li>Comedy</li>
-              <li>Crime</li>
-              <li>Documentary</li>
-              <li>Drama</li>
-              <li>Family</li>
-              <li>Fantasy</li>
-              <li>Horror</li>
-              <li>LGBTQ</li>
-              <li>Mystery</li>
-              <li>Romance</li>
-              <li>Science Fiction</li>
-              <li>Thriller</li>
-            </ul>
-          </div>
-        </li>
-        <li class="dropdown">
-          <a href="#">Services</a>
-          <div class="dropdown-content">
-            <strong>SERVICES</strong>
-            <ul>
-              <li>Amazon Prime Video</li>
-              <li>Disney+</li>
-              <li>HBO Max</li>
-              <li>Hulu</li>
-              <li>iQiyi</li>
-              <li>Netflix</li>
-              <li>Viki</li>
-              <li>YouTube Movies</li>
-            </ul>
-          </div>
+        <li>
+          <label for="genreDropdown" class="sr-only">Browse by Genre</label>
+          <select id="genreDropdown" class="nav-genre-select">
+            <option value="">Browse by Genre</option>
+          </select>
         </li>
       </ul>
     </nav>
@@ -115,13 +83,11 @@
   <div class="main-container">
     <div class="Trending-now-section" id="trending">
       <div class="section-header">TRENDING NOW</div>
-      <img class="bg-img" src="../assets/images/Alice-In-Borderland.jpg" alt="Alice In Borderland">
+      <img class="bg-img">
       <div class="trending-content">
-        <div class="Titlemovie1">Alice In Borderland</div>
-        <div class="Rating">8.6/10</div>
-        <div class="Description">Arisu - a listless, jobless and video-game-obsessed young man - suddenly finds
-          himself in a strange, emptied-out version of Tokyo in which he and his friends must compete in
-          dangerous games in order to survive.</div>
+        <div class="Titlemovie1"></div>
+        <div class="Rating"></div>
+        <div class="Description"></div>
         <div class="actions">
           <button class="View-details" id="trendingViewDetails">View Details</button>
           <button class="Watch-trailer">Watch Trailer</button>
@@ -186,14 +152,7 @@
         <button class="scroll-btn right">❯</button>
       </div>
     </div>
-    <div class="browse-by-genre-section" id="genre">
-      <h2>BROWSE BY GENRE</h2>
-      <div class="slider-container">
-        <button class="scroll-btn left">❮</button>
-        <div class="recommendations-grid" id="genreGrid"></div>
-        <button class="scroll-btn right">❯</button>
-      </div>
-    </div>
+    
   </div>
   <footer>
     <p>&copy; 2025 FilmoPicks: Your Movie-TV Shows Recommendation | About | Privacy </p>

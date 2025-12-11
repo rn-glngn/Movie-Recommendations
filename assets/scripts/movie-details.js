@@ -48,47 +48,6 @@ function loadMovieData(movie) {
 
   // Update synopsis
   document.querySelector(".synopsis-box").innerHTML = `<p>${synopsis}</p>`;
-
-  // Update directors
-  const directorSection = document.querySelector(".director-section");
-  directorSection.innerHTML = (Array.isArray(directors) ? directors : []).map(director => `
-    <div class="director-info">
-      <div class="director-avatar"><img src="${director.avatar}" alt="${director.name}" class="avatar-img"></div>
-      <div class="director-details">
-        <h3>${director.name}</h3>
-        <p>${director.role}</p>
-      </div>
-    </div>
-  `).join('');
-
-  // Update cast
-  const castGrid = document.querySelector(".cast-grid");
-  castGrid.innerHTML = (Array.isArray(cast) ? cast : []).map(actor => `
-    <div class="cast-member">
-      <div class="cast-avatar"><img src="${actor.avatar}" alt="${actor.name}" class="avatar-img"></div>
-      <div class="cast-name">${actor.name}</div>
-      <div class="cast-role">${actor.role}</div>
-    </div>
-  `).join('');
-
-  // Update comments
-  const commentsContainer = document.querySelector(".comments-container");
-  commentsContainer.innerHTML = (Array.isArray(comments) ? comments : []).map(comment => `
-    <div class="comment" data-date="${comment.date}">
-      <div class="avatar">👤</div>
-      <div class="comment-content">
-        <div class="comment-header">
-          <span class="commenter-name">${comment.commenterName}</span>
-          <span class="comment-stars">${comment.stars}</span>
-        </div>
-        <div class="comment-text">${comment.text}</div>
-      </div>
-    </div>
-  `).join('');
-
-  // Update comment count
-  const commentCount = document.querySelector(".comment-count");
-  commentCount.innerHTML = `<i class="fa-regular fa-comment"></i> ${comments.length} comments`;
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -132,33 +91,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       alert("Searching for: " + searchInput.value);
     }
   });
-
-  // --- COMMENTS SORT + VIEW MORE ---
-  const commentsContainer = document.querySelector(".comments-container");
-  const sortDropdown = document.getElementById("sort-comments");
-  const viewMoreBtn = document.getElementById("viewMoreBtn");
-  const allComments = Array.from(
-    commentsContainer.querySelectorAll(".comment")
-  );
-  const initialVisible = 4;
-
-  // Function: Hide comments after the first 4
-  function hideExtraComments() {
-    allComments.forEach((comment, index) => {
-      comment.classList.toggle("hidden", index >= initialVisible);
-    });
-  }
-
-  // Function: Sort comments
-  function sortComments(order) {
-    const sorted = [...allComments].sort((a, b) => {
-      const dateA = new Date(a.dataset.date);
-      const dateB = new Date(b.dataset.date);
-      return order === "newest" ? dateB - dateA : dateA - dateB;
-    });
-    sorted.forEach((comment) => commentsContainer.appendChild(comment));
-    hideExtraComments();
-  }
 
   // Initial state
   hideExtraComments();

@@ -197,3 +197,44 @@
     }
   });
 })();
+
+// Navbar: Browse by Genre dropdown populate + navigate
+(function () {
+  document.addEventListener("DOMContentLoaded", async () => {
+    const genreDropdown = document.getElementById("genreDropdown");
+    if (!genreDropdown) return;
+
+    async function fetchGenres() {
+      try {
+        const res = await fetch("../backend/fetchgenrename.php");
+        const json = await res.json();
+        const list = Array.isArray(json) ? json : (json.data || []);
+        return list;
+      } catch (err) {
+        console.error("Failed to fetch genres", err);
+        return [];
+      }
+    }
+
+    // Populate dropdown immediately on page load
+    const genres = await fetchGenres();
+    genreDropdown.length = 1; // keep placeholder
+    genres.forEach((g) => {
+      const name = g.name || g.genre || g.title || g;
+      const id = g.id || g.genre_id || g.genreId;
+      if (!name) return;
+      const opt = document.createElement("option");
+      opt.value = id ? String(id) : String(name).toLowerCase().replace(/\s+/g, "-");
+      opt.textContent = name;
+      genreDropdown.appendChild(opt);
+    });
+
+    // Navigate to movie list when a genre is selected
+    genreDropdown.addEventListener("change", () => {
+      const val = genreDropdown.value;
+      if (!val) return;
+      // Navigate using genre_id for ID-based filtering
+      window.location.href = `../pages/movie-list.html?genre_id=${encodeURIComponent(val)}`;
+    });
+  });
+})();

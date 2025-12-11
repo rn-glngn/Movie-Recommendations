@@ -1,11 +1,20 @@
 async function loadMovies() {
-    try {
-        const res = await fetch("../backend/fetchmovies.php"); // no http, just filename
-        const data = await res.json();
-        return data.data
-    } catch (err) {
-        console.error(err);
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const genreId = params.get("genre_id");
+    let res;
+    if (genreId) {
+      res = await fetch(`../backend/fetchmoviesbygenreid.php?genre_id=${encodeURIComponent(genreId)}`);
+    } else {
+      res = await fetch("../backend/fetchmovies.php");
     }
+    const data = await res.json();
+    const list = Array.isArray(data) ? data : (data.data || []);
+    return list;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
 }
 
 async function getAllMovies() {

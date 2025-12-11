@@ -27,5 +27,19 @@ async function getAllMovies() {
   return movies;
 }
 
+fetch("../backend/fetchgenrename.php")  // <-- change to your PHP filename
+    .then(response => response.json())
+    .then(data => {
+        // data = array of genre_ids
+        console.log("Fetched genre IDs:", data);
+
+        // you can store it for later use:
+        const genreIDs = data;
+
+        // do something later if needed...
+    })
+    .catch(error => {
+        console.error("Error fetching genres:", error);
+    });
 
 

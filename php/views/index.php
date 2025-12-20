@@ -42,7 +42,7 @@
           <div class="Description"><?= htmlspecialchars($trending['description']) ?></div>
           <div class="actions">
             <button class="View-details"><a href="movie-details.php?id=<?= $trending['movie_id'] ?>">View Details</a></button>
-            <button class="Watch-trailer">Watch Trailer</button>
+            <button class="Watch-trailer"><a href="<?= htmlspecialchars($trending['trailer_url']) ?>" target="_blank">Watch Trailer</a></button>
           </div>
         </div>
       <?php } ?>
@@ -59,7 +59,7 @@
     </div>
 
     <!-- MOVIE ROULETTE -->
-    <div class="movie-roulette" id="movies">
+     <div class="movie-roulette" id="movies">
       <h2>Movie Roulette</h2>
       <p class="find-something">Use the randomizer below to find something to watch.</p>
       <div class="roulette-inner">
@@ -68,10 +68,10 @@
             <select id="genreSelect">
               <option value="any">All Genres</option>
               <?php
-              $genreSql = "SELECT DISTINCT genre FROM movies ORDER BY genre ASC";
+              $genreSql = "SELECT * FROM genres";
               $genreResult = $conn->query($genreSql);
               while ($row = $genreResult->fetch_assoc()) {
-                echo '<option value="' . htmlspecialchars($row['genre']) . '">' . htmlspecialchars($row['genre']) . '</option>';
+                echo '<option value="' . htmlspecialchars($row['genre_name']) . '">' . htmlspecialchars($row['genre_name']) . '</option>';
               }
               ?>
             </select>
@@ -85,11 +85,11 @@
           <button id="spinBtn" class="spin-btn">Spin now</button>
         </div>
         <div class="roulette-result">
-          <img id="roulettePoster" src="../../assets/images/arcane.jpg" alt="Poster">
+          <img id="roulettePoster" src="" alt="Poster">
           <div class="result-meta">
-            <h3 id="resultTitle">Arcane</h3>
-            <p id="resultInfo">2021 &nbsp; Rated SPG &nbsp; 2 Seasons</p>
-            <p id="resultDesc" class="result-desc">In the cities of Piltover and Zaun...</p>
+            <h3 id="resultTitle"></h3>
+            <p id="resultInfo"></p>
+            <p id="resultDesc" class="result-desc"></p>
             <button class="View-details small"><a href="movie-details.html">View Details</a></button>
           </div>
         </div>
@@ -104,7 +104,7 @@
       <button class="scroll-btn left">❮</button>
       <div class="recommendations-grid" id="recommendedGrid">
         <?php
-        $recSql = "SELECT * FROM movies ORDER BY created_at DESC LIMIT 12";
+        $recSql = "SELECT * FROM movies ORDER BY RAND() DESC LIMIT 12";
         $recResult = $conn->query($recSql);
         while ($movie = $recResult->fetch_assoc()) {
           echo '<a href="movie-details.php?id=' . $movie['movie_id'] . '"><img src="' . htmlspecialchars($movie['poster_url']) . '" alt="' . htmlspecialchars($movie['title']) . '"></a>';

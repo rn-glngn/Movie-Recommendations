@@ -1,153 +1,261 @@
-async function loadMovies() {
-  try {
-    const res = await fetch("../backend/fetchmovies.php"); // no http, just filename
-    const data = await res.json();
-    return data.data;
-  } catch (err) {
-    console.error(err);
-  }
-}
+let ALL_MOVIES = [];
 
+// ---------- Fetch Movies ----------
 async function getAllMovies() {
-  const movies = await loadMovies();
-  return movies;
+  if (ALL_MOVIES.length) return ALL_MOVIES;
+
+  const res = await fetch("../modules/fetch-movies.php");
+  const data = await res.json();
+
+  ALL_MOVIES = Array.isArray(data) ? data : [];
+  return ALL_MOVIES;
 }
 
-// Movie List Page - Dynamic Grid and Table Generation
-(function () {
-  document.addEventListener("DOMContentLoaded", async () => {
-    const movies = await getAllMovies();
-    console.log(movies);
-    if (movies.length === 0) return;
+// ---------- Movie List Page ----------
+document.addEventListener("DOMContentLoaded", async () => {
+  const movies = await getAllMovies();
+  console.log("Loaded movies:", movies);
 
-    const moviesPerPage = 12;
-    let currentPage = 1;
+  if (!movies.length) return;
 
-    // --- GRID VIEW ---
-    function renderGrid(page = 1) {
-      const movieGrid = document.getElementById("movieGrid");
-      const start = (page - 1) * moviesPerPage;
-      const end = start + moviesPerPage;
-      const paginatedMovies = movies.slice(start, end);
+  const moviesPerPage = 12;
+  let currentPage = 1;
+  const sortSelect = document.getElementById("sort");
 
-      movieGrid.innerHTML = paginatedMovies
-        .map(
-          (movie) => `
-        <article class="movie-card">
-          <a href="../pages/movie-details.html?id=${
-            movie.movie_id || movie.id
-          }" class="card-link" title="View details for ${movie.title}">
-            <div class="poster" style="background-image:url('${
-              movie.poster_url || movie.posterImage
-            }')" role="img"
-              aria-label="Poster ${movie.movie_id || movie.id}"></div>
-            <h3 class="movie-title">${movie.title}</h3>
-          </a>
-        </article>
-      `
-        )
-        .join("");
+  if (!location.hash) {
+    location.hash = "grid";
+  }
 
-      renderGridPagination(page);
+  // ---------- Formatting Helpers ----------
+  function safe(val, fallback = "N/A") {
+    return val ?? fallback;
+  }
+
+  function formatDate(dateStr) {
+    if (!dateStr) return "N/A";
+
+    const date = new Date(dateStr);
+    if (isNaN(date)) return "N/A";
+
+    return date.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+  }
+
+  function capitalize(str) {
+    return str ? str[0].toUpperCase() + str.slice(1) : "";
+  }
+
+  function formatDuration(minutes) {
+    if (!minutes || isNaN(minutes)) return "";
+
+    const hrs = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+
+    if (hrs && mins) return `${hrs}hr ${mins} min`;
+    if (hrs) return `${hrs}hr`;
+    return `${mins} min`;
+  }
+
+  function getFilteredMovies() {
+    let filtered = [...movies];
+
+    // Type filter
+    filtered = filtered.filter(
+      (m) =>
+        (typeMovieCheckbox?.checked && m.type === "movie") ||
+        (typeSeriesCheckbox?.checked && m.type === "series")
+    );
+
+    // Genre filter
+    if (genreSelect && genreSelect.value !== "any") {
+      filtered = filtered.filter((m) => m.genre === genreSelect.value);
     }
 
-    function renderGridPagination(currentPage) {
-      const gridPagination = document.getElementById("gridPagination");
-      const totalPages = Math.ceil(movies.length / moviesPerPage);
-
-      let paginationHTML = "";
-      for (let i = 1; i <= totalPages; i++) {
-        const isActive = i === currentPage ? "active" : "";
-        paginationHTML += `<a href="#grid" class="page ${isActive}" data-page="${i}">${i}</a>`;
-      }
-      paginationHTML += `<a href="#grid" class="page" data-page="${
-        currentPage + 1
-      }">»</a>`;
-
-      gridPagination.innerHTML = paginationHTML;
-
-      // Add pagination click handlers
-      gridPagination.querySelectorAll(".page").forEach((link) => {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          const page = parseInt(link.dataset.page);
-          if (page > 0 && page <= totalPages) {
-            renderGrid(page);
-          }
-        });
+    // Sorting
+    if (sortSelect) {
+      const sortVal = sortSelect.value;
+      filtered.sort((a, b) => {
+        if (sortVal === "latest")
+          return new Date(b.created_at) - new Date(a.created_at);
+        if (sortVal === "oldest")
+          return new Date(a.created_at) - new Date(b.created_at);
+        if (sortVal === "az") return a.title.localeCompare(b.title);
+        if (sortVal === "za") return b.title.localeCompare(a.title);
+        return 0;
       });
     }
 
-    // --- TABLE VIEW ---
-    function renderTable(page = 1) {
-      const movieTableBody = document.getElementById("movieTableBody");
-      const start = (page - 1) * moviesPerPage;
-      const end = start + moviesPerPage;
-      const paginatedMovies = movies.slice(start, end);
+    return filtered;
+  }
 
-      movieTableBody.innerHTML = paginatedMovies
-        .map(
-          (movie) => `
-        <tr>
-          <td class="td-poster">
-            <a href="../pages/movie-details.html?id=${
-              movie.movie_id || movie.id
-            }">
-              <img src="${movie.poster_url || movie.posterImage}" alt="${
-            movie.title
-          }">
-            </a>
-          </td>
-          <td class="td-title"><a href="../pages/movie-details.html?id=${
-            movie.movie_id || movie.id
-          }">${movie.title}</a></td>
-          <td>${movie.release_date || movie.date || "N/A"}</td>
-          <td>${movie.rating || "N/A"}</td>
-          <td>${movie.rating ? (movie.rating * 10).toFixed(1) : "N/A"}</td>
-        </tr>
-      `
-        )
-        .join("");
-
-      renderTablePagination(page);
-    }
-
-    function renderTablePagination(currentPage) {
-      const tablePagination = document.getElementById("tablePagination");
-      const totalPages = Math.ceil(movies.length / moviesPerPage);
-
-      let paginationHTML = '<a href="#rows" class="pag">&laquo;</a>';
-      for (let i = 1; i <= totalPages; i++) {
-        const isActive = i === currentPage ? "active" : "";
-        paginationHTML += `<a href="#rows" class="pag ${isActive}" data-page="${i}">${i}</a>`;
-      }
-      paginationHTML += '<a href="#rows" class="pag">&raquo;</a>';
-
-      tablePagination.innerHTML = paginationHTML;
-
-      // Add pagination click handlers
-      tablePagination.querySelectorAll(".pag").forEach((link, index) => {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          let page = currentPage;
-
-          if (link.textContent === "«") {
-            page = Math.max(1, currentPage - 1);
-          } else if (link.textContent === "»") {
-            page = Math.min(totalPages, currentPage + 1);
-          } else if (link.dataset.page) {
-            page = parseInt(link.dataset.page);
-          }
-
-          if (page > 0 && page <= totalPages) {
-            renderTable(page);
-          }
-        });
+  // ---------- Sorting ----------
+  function getSortedMovies() {
+    const sorted = [...movies];
+    if (sortSelect) {
+      const val = sortSelect.value;
+      sorted.sort((a, b) => {
+        switch (val) {
+          case "latest":
+            // Sort by release_date descending
+            return new Date(b.release_date) - new Date(a.release_date);
+          case "oldest":
+            // Sort by release_date ascending
+            return new Date(a.release_date) - new Date(b.release_date);
+          case "az":
+            return (a.title ?? "").localeCompare(b.title ?? "");
+          case "za":
+            return (b.title ?? "").localeCompare(a.title ?? "");
+        }
+        return 0;
       });
     }
+    return sorted;
+  }
 
-    // Initial render
-    renderGrid(1);
-    renderTable(1);
+  // ===== PAGINATION =====
+  function goToPage(page) {
+    const totalPages = Math.ceil(movies.length / moviesPerPage);
+
+    if (page < 1 || page > totalPages) return;
+
+    currentPage = page;
+    renderGrid(currentPage);
+    renderTable(currentPage);
+  }
+
+  // ===== GRID VIEW =====
+  function renderGrid(page = 1) {
+    const movieGrid = document.getElementById("movieGrid");
+    if (!movieGrid) return;
+
+    const start = (page - 1) * moviesPerPage;
+    const paginated = movies.slice(start, start + moviesPerPage);
+
+    movieGrid.innerHTML = paginated
+      .map(
+        (m) => `
+    <article class="movie-card">
+      <a href="../pages/movie-details.php?id=${
+        m.movie_id
+      }" class="card-link" title="${safe(m.title)}">
+        <div class="poster" style="background-image:url('${safe(
+          m.poster_url
+        )}')" role="img" aria-label="Poster ${m.movie_id}"></div>
+        <h3 class="movie-title">${safe(m.title)}</h3>
+      </a>
+    </article>
+  `
+      )
+      .join("");
+
+    renderGridPagination();
+  }
+
+  function renderGridPagination(currentPage) {
+    const gridPagination = document.getElementById("gridPagination");
+    const totalPages = Math.ceil(movies.length / moviesPerPage);
+
+    let html = "";
+
+    // « button (only if NOT on first page)
+    if (currentPage > 1) {
+      html += `<a href="#grid" class="page first" data-page="1">&laquo;</a>`;
+    }
+
+    for (let i = 1; i <= totalPages; i++) {
+      const isActive = i === currentPage ? "active" : "";
+      html += `<a href="#grid" class="page ${isActive}" data-page="${i}">${i}</a>`;
+    }
+
+    gridPagination.innerHTML = html;
+
+    gridPagination.querySelectorAll(".page").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const page = Number(btn.dataset.page);
+        if (page) goToPage(page);
+      });
+    });
+  }
+
+  // ===== TABLE VIEW =====
+  function renderTable(page = 1) {
+    const tbody = document.getElementById("movieTableBody");
+    if (!tbody) return;
+
+    const start = (page - 1) * moviesPerPage;
+    const paginated = movies.slice(start, start + moviesPerPage);
+
+    movieTableBody.innerHTML = paginated
+      .map(
+        (m) => `
+    <tr>
+      <td class="td-poster">
+        <a href="../views/movie-details.php?id=${m.movie_id}">
+          <img src="${safe(m.poster_url)}" alt="${safe(m.title)}">
+        </a>
+      </td>
+      <td class="td-title">
+        <a href="../views/movie-details.php?id=${m.movie_id}">
+          ${safe(m.title)}
+        </a>
+      </td>
+      <td>${formatDate(m.release_date)}</td>
+      <td>${capitalize(m.type)}</td>
+      <td>${formatDuration(m.duration)}</td>
+    </tr>
+  `
+      )
+      .join("");
+
+    renderTablePagination();
+  }
+
+  function renderTablePagination(currentPage) {
+    const tablePagination = document.getElementById("tablePagination");
+    const totalPages = Math.ceil(movies.length / moviesPerPage);
+
+    let html = "";
+
+    // « button
+    if (currentPage > 1) {
+      html += `<a href="#rows" class="pag first" data-page="1">&laquo;</a>`;
+    }
+
+    for (let i = 1; i <= totalPages; i++) {
+      const isActive = i === currentPage ? "active" : "";
+      html += `<a href="#rows" class="pag ${isActive}" data-page="${i}">${i}</a>`;
+    }
+
+    tablePagination.innerHTML = html;
+
+    tablePagination.querySelectorAll(".pag").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const page = Number(btn.dataset.page);
+        if (page) goToPage(page);
+      });
+    });
+  }
+
+  if (sortSelect) {
+    sortSelect.addEventListener("change", () => goToPage(1));
+  }
+
+  // Initial render
+  goToPage(1);
+
+  const gridBtn = document.getElementById("gridViewBtn");
+  const rowBtn = document.getElementById("rowViewBtn");
+
+  gridBtn.addEventListener("click", () => {
+    location.hash = "grid";
   });
-})();
+
+  rowBtn.addEventListener("click", () => {
+    location.hash = "rows";
+  });
+});

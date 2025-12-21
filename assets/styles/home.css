@@ -428,7 +428,7 @@ body {
 
 .result-meta h3 {
   margin: 0 0 10px 0;
-  font-size: 2.8rem;
+  font-size: 2rem;
   font-weight: 800;
   line-height: 1.1;
   color: #FFFFFF;
@@ -472,15 +472,13 @@ body {
 
 /* Recommendations Grid */
 .recommendations-section,
-.newly-added-section,
-.browse-by-genre-section {
-  margin: 60px 30px;
+.newly-added-section {
+  margin: 60px 30px 30px;
   scroll-margin-top: 100px;
 }
 
 .recommendations-section h2,
-.newly-added-section h2,
-.browse-by-genre-section h2 {
+.newly-added-section h2 {
   font-size: 1.6rem;
   font-weight: 800;
   color: #E5F2F2;
@@ -492,8 +490,7 @@ body {
 }
 
 .recommendations-section h2::before,
-.newly-added-section h2::before,
-.browse-by-genre-section h2::before {
+.newly-added-section h2::before {
   content: "";
   width: 4px;
   height: 20px;

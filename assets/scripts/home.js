@@ -24,6 +24,36 @@ document.addEventListener("DOMContentLoaded", async () => {
   initRoulette();
 });
 
+// ---------- Formatting Helpers ----------
+function formatDate(dateStr) {
+  if (!dateStr) return "N/A";
+
+  const date = new Date(dateStr);
+  if (isNaN(date)) return "N/A";
+
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric"
+  });
+}
+
+function formatDuration(minutes) {
+  if (!minutes || isNaN(minutes)) return "";
+
+  const hrs = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+
+  if (hrs && mins) return `${hrs}hr ${mins} min`;
+  if (hrs) return `${hrs}hr`;
+  return `${mins} min`;
+}
+
+function formatSeasons(seasons) {
+  if (!seasons || isNaN(seasons)) return "";
+  return seasons === 1 ? "1 Season" : `${seasons} Seasons`;
+}
+
 // ================== TRENDING SECTION ==================
 function initTrending() {
   const container = document.querySelector(".Trending-now-section");
@@ -117,23 +147,31 @@ function initRoulette() {
   }
 
   function showMovie(movie) {
-    if (!movie) return;
+  if (!movie) return;
 
-    poster.src = movie.poster_url;
-    titleEl.textContent = movie.title;
-    infoEl.textContent = [
-      movie.release_year || movie.release_date || "N/A",
-      movie.duration || movie.seasons || ""
-    ]
-      .filter(Boolean)
-      .join(" • ");
+  poster.src = movie.poster_url;
+  titleEl.textContent = movie.title;
 
-    descEl.textContent = movie.description || "";
+  const releaseDate = formatDate(
+    movie.release_date || movie.release_year
+  );
 
-    if (viewLink) {
-      viewLink.href = `movie-details.php?id=${movie.movie_id}`;
-    }
+  const metaRight =
+    movie.type === "series"
+      ? formatSeasons(movie.seasons)
+      : formatDuration(movie.duration);
+
+  infoEl.textContent = [releaseDate, metaRight]
+    .filter(Boolean)
+    .join(" • ");
+
+  descEl.textContent = movie.description || "";
+
+  if (viewLink) {
+    viewLink.href = `movie-details.php?id=${movie.movie_id}`;
   }
+}
+
 
   // Initial display
   showMovie(pickRandom() || ALL_MOVIES[0]);
@@ -170,3 +208,30 @@ function initRoulette() {
     })
   );
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".slider-container").forEach(slider => {
+    const grid = slider.querySelector(".home-grid");
+    const leftBtn = slider.querySelector(".scroll-btn.left");
+    const rightBtn = slider.querySelector(".scroll-btn.right");
+
+    if (!grid || !leftBtn || !rightBtn) return;
+
+    const scrollAmount = 350;
+
+    rightBtn.addEventListener("click", () => {
+      grid.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth"
+      });
+    });
+
+    leftBtn.addEventListener("click", () => {
+      grid.scrollBy({
+        left: -scrollAmount,
+        behavior: "smooth"
+      });
+    });
+  });
+});
+

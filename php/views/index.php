@@ -98,11 +98,11 @@
   </div>
 
   <!-- RECOMMENDED FOR YOU -->
-  <div class="recommendations-section" id="home">
+  <div class="recommendations-section home-section" id="home">
     <h2>RECOMMENDED FOR YOU</h2>
     <div class="slider-container">
       <button class="scroll-btn left">❮</button>
-      <div class="recommendations-grid" id="recommendedGrid">
+      <div class="recommendations-grid home-grid" id="recommendedGrid">
         <?php
         $recSql = "SELECT * FROM movies ORDER BY RAND() DESC LIMIT 12";
         $recResult = $conn->query($recSql);
@@ -116,11 +116,11 @@
   </div>
 
   <!-- NEWLY ADDED -->
-  <div class="newly-added-section" id="newly-added">
+  <div class="newly-added-section home-section" id="newly-added">
     <h2>NEWLY ADDED</h2>
     <div class="slider-container">
       <button class="scroll-btn left">❮</button>
-      <div class="recommendations-grid" id="newlyAddedGrid">
+      <div class="recommendations-grid home-grid" id="newlyAddedGrid">
         <?php
         $newSql = "SELECT * FROM movies ORDER BY created_at DESC LIMIT 12";
         $newResult = $conn->query($newSql);
@@ -133,33 +133,7 @@
     </div>
   </div>
 
-  <!-- BROWSE BY GENRE -->
-  <div class="browse-by-genre-section" id="genre">
-    <h2>BROWSE BY GENRE</h2>
-    <div class="slider-container">
-      <button class="scroll-btn left">❮</button>
-      <div class="recommendations-grid" id="genreGrid">
-        <?php
-        $genreMoviesSql = "SELECT * FROM movies ORDER BY genre ASC LIMIT 12";
-        $genreMoviesResult = $conn->query($genreMoviesSql);
-        while ($movie = $genreMoviesResult->fetch_assoc()) {
-          echo '<a href="movie-details.php?id=' . $movie['movie_id'] . '"><img src="' . htmlspecialchars($movie['poster_url']) . '" alt="' . htmlspecialchars($movie['title']) . '"></a>';
-        }
-        ?>
-      </div>
-      <button class="scroll-btn right">❯</button>
-    </div>
-  </div>
-
-  </div>
-
   <?php include "../includes/footer.php"; ?>
-  <script>
-    const testEl = document.getElementById("movies");
-    console.log("Roulette container exists:", testEl);
-    if (testEl) testEl.style.border = "2px solid green";
-  </script>
-
 </body>
 
 </html>
